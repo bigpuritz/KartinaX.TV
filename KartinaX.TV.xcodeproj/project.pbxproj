@@ -115,7 +115,7 @@
 		4DBD0788173AD73400CE96DD /* VLCKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VLCKit.framework; sourceTree = "<group>"; };
 		4DBF901C172B388F00F4214B /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
 		4DBF901E172BF05700F4214B /* App.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = App.iconset; sourceTree = "<group>"; };
-		4DF54E2A173FAC240076CE95 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4DF54E2A173FAC240076CE95 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D9E0E0A1A89470471D033217 /* RKKartinaRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKKartinaRequest.m; sourceTree = "<group>"; };
 		D9E0E5126CB86B172811DC97 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
 		D9E133AA1B807CBBFF5A62E5 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
