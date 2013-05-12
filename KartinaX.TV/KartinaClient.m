@@ -16,6 +16,7 @@
 #import "EPGDataItem.h"
 #import "EPGData.h"
 #import "Utils.h"
+#import "KartinaSession.h"
 
 @implementation KartinaClient
 
@@ -114,8 +115,7 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
 
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithCapacity:2];
 
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *protectedCode = [standardUserDefaults stringForKey:@"protectedCode"];
+    NSString *protectedCode = [KartinaSession protectedCode];
     if (protectedCode != nil) {
         [params setObject:@"all" forKey:@"show"];
         [params setObject:protectedCode forKey:@"protect_code"];
@@ -159,8 +159,7 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
         [params setObject:unixTime forKey:@"gmt"];
     }
     if (protectedChannel == YES) {
-        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-        NSString *protectedCode = [standardUserDefaults stringForKey:@"protectedCode"];
+        NSString *protectedCode = [KartinaSession protectedCode];
         if (protectedCode != nil)
             [params setObject:protectedCode forKey:@"protect_code"];
     }

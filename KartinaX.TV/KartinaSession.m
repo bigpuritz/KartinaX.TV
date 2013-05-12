@@ -139,6 +139,21 @@ static KartinaSession *instance = nil;    // static instance variable
     return [KartinaSession sharedInstance].login != nil;
 }
 
++ (NSString *)protectedCode {
+
+
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *code = [standardUserDefaults stringForKey:@"protectedCode"];
+
+    if (code != nil && [code stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+        return code;
+    }
+
+
+    return nil;
+}
+
+
 - (NSMutableDictionary *)epg {
     if (_epg == nil) {
         _epg = [[NSMutableDictionary alloc] init];

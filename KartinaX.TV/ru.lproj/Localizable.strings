@@ -57,4 +57,5 @@
 "Can’t find film" = "Невозможно найти фильм";
 "This film already added to favorite list" = "Этот фильм уже добавлен в список избранных";
 "System error" = "Ошибка системы";
+"Current code is wrong" = "Неверный код для защищенных каналов";
 "Error" = "Ошибка";

@@ -51,8 +51,8 @@ extern NSString *const kEPGLoadFailedNotification;
 
 + (EPGData *)epgDataForDate:(NSDate *)date;
 
-
 + (BOOL)isLoggedIn;
 
++ (NSString *)protectedCode;
 
 @end

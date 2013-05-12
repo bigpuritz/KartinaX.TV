@@ -64,6 +64,7 @@
     [self.epgBrowser setAction:@selector(_browserClicked:)];
     [self.epgBrowser setDoubleAction:@selector(_browserDblClicked:)];
     [self.epgBrowser setTarget:self];
+    [self.epgBrowser.enclosingScrollView setBackgroundColor:[NSColor clearColor]];
 
     [self.window setDelegate:self];
     [self startTimer];
