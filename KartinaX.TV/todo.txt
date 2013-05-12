@@ -1,0 +1,13 @@
+1. protected channels
+2. logout
+3. epg browser: select running show
+4. Icons / Branding
+5. Packaging / GitHub Product Page
+
+------------------
+
+- Videothek
+- EPGBrowser Details view / Channel icons
+- PlayerControls with Text info
+- Calendar Controls HUD Colors
+- Mac Notification Center (?)
