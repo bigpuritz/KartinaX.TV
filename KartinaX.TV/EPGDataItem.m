@@ -26,4 +26,21 @@
     return mapping;
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:_channelId forKey:@"channelId"];
+    [coder encodeObject:_channelName forKey:@"channelName"];
+    [coder encodeObject:_shows forKey:@"shows"];
+
+}
+
+- (id)initWithCoder:(NSCoder *)coder {
+    if (self = [super init]) {
+        self.channelId = [coder decodeObjectForKey:@"channelId"];
+        self.channelName = [coder decodeObjectForKey:@"channelName"];
+        self.shows = [coder decodeObjectForKey:@"shows"];
+    }
+    return self;
+}
+
+
 @end

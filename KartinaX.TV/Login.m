@@ -6,12 +6,7 @@
 
 
 #import "Login.h"
-#import "RKObjectMapping.h"
 #import "Account.h"
-#import "ChannelList.h"
-#import "ChannelStream.h"
-#import "EPGData.h"
-#import "Settings.h"
 #import <RestKit/RestKit.h>
 
 
@@ -46,7 +41,6 @@
     NSNumber *val = [self.services objectForKey:@"vod"];
     return val != nil && val.intValue == 1 ? YES : NO;
 }
-
 
 
 @end

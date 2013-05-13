@@ -17,6 +17,8 @@
 #import "EPGData.h"
 #import "Utils.h"
 #import "KartinaSession.h"
+#import "TMCache.h"
+#import "Logout.h"
 
 @implementation KartinaClient
 
@@ -36,7 +38,6 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
         RKLogConfigureByName("RestKit/Network*", RKLogLevelCritical);
         RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelCritical);
 
-
         RKResponseDescriptor *loginResponseDescriptor =
                 [RKResponseDescriptor responseDescriptorWithMapping:[Login objectMapping]
                                                         pathPattern:@"login"
@@ -52,16 +53,20 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
         RKResponseDescriptor *epgResponseDescriptor =
                 [RKResponseDescriptor responseDescriptorWithMapping:[Show objectMapping]
                                                         pathPattern:@"epg" keyPath:@"epg" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-
         RKResponseDescriptor *epg3ResponseDescriptor =
                 [RKResponseDescriptor responseDescriptorWithMapping:[EPGDataItem objectMapping]
                                                         pathPattern:@"epg3" keyPath:@"epg3" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+        RKResponseDescriptor *logoutResponseDescriptor =
+                [RKResponseDescriptor responseDescriptorWithMapping:[Logout objectMapping]
+                                                        pathPattern:@"logout"
+                                                            keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
 
         [objectManager addResponseDescriptor:loginResponseDescriptor];
         [objectManager addResponseDescriptor:channelListResponseDescriptor];
         [objectManager addResponseDescriptor:channelStreamResponseDescriptor];
         [objectManager addResponseDescriptor:epgResponseDescriptor];
         [objectManager addResponseDescriptor:epg3ResponseDescriptor];
+        [objectManager addResponseDescriptor:logoutResponseDescriptor];
     }
     return instance;
 }
@@ -199,6 +204,13 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
 - (void)loadEPG:(NSDate *)date {
 
     NSNumber *unixTime = [Utils dateDDMMYYAsUnixTimestamp:date];
+
+    EPGData *data = [[TMCache sharedCache] objectForKey:unixTime.stringValue];
+    if (data != nil) {
+        [self.delegate onLoadEpgDataSuccess:data];
+        return;
+    }
+
     [objectManager getObjectsAtPath:@"epg3"
                          parameters:@{@"dtime" : unixTime, @"period" : @"24"}
                             success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
@@ -213,6 +225,9 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
                                     data.items = results;
                                     [data enhanceShowInformation];
                                     [self.delegate onLoadEpgDataSuccess:data];
+
+                                    // put into cache
+                                    [[TMCache sharedCache] setObject:data forKey:unixTime.stringValue block:nil];
                                 }
 
                                 if (error)
@@ -223,6 +238,33 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
                                 [self.delegate onLoadEpgDataFail:error];
                             }
     ];
+}
+
+- (void)logout {
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    [objectManager getObjectsAtPath:@"logout"
+                         parameters:nil
+                            success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                                [self.delegate onLogoutSuccess];
+                                dispatch_semaphore_signal(semaphore);
+                            }
+                            failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                [self.delegate onLogoutFail:error];
+                            }
+    ];
+
+    // wait for a second
+    NSTimeInterval TMCacheTestBlockTimeout = 1.0;
+    dispatch_time_t timeout = dispatch_time(DISPATCH_TIME_NOW, (int64_t) (TMCacheTestBlockTimeout * NSEC_PER_SEC));
+    dispatch_semaphore_wait(semaphore, timeout);
+}
+
+- (void)trimEPGCache {
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:[[NSDate alloc] init]];
+    [components setDay:([components day] - 7)];
+    NSDate *lastWeek = [cal dateFromComponents:components];
+    [[TMCache sharedCache] trimToDate:lastWeek];
 }
 
 

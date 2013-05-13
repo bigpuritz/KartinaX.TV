@@ -140,16 +140,12 @@ static KartinaSession *instance = nil;    // static instance variable
 }
 
 + (NSString *)protectedCode {
-
-
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [standardUserDefaults stringForKey:@"protectedCode"];
 
     if (code != nil && [code stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
         return code;
     }
-
-
     return nil;
 }
 

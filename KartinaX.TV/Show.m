@@ -70,4 +70,22 @@
     int _30mins = 60 * 30;
     return secondsSinceStart > 0 && secondsSinceStart <= _30mins;
 }
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:_name forKey:@"name"];
+    [coder encodeObject:_formattedStart forKey:@"formattedStart"];
+    [coder encodeObject:_start forKey:@"start"];
+    [coder encodeObject:_end forKey:@"end"];
+}
+
+- (id)initWithCoder:(NSCoder *)coder {
+    if (self = [super init]) {
+        self.name = [coder decodeObjectForKey:@"name"];
+        self.formattedStart = [coder decodeObjectForKey:@"formattedStart"];
+        self.start = [coder decodeObjectForKey:@"start"];
+        self.end = [coder decodeObjectForKey:@"end"];
+    }
+    return self;
+}
+
 @end

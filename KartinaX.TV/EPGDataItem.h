@@ -9,7 +9,7 @@
 #import "RKObjectMappingAware.h"
 
 
-@interface EPGDataItem : NSObject<RKObjectMappingAware>
+@interface EPGDataItem : NSObject <RKObjectMappingAware, NSCoding>
 
 @property(copy, nonatomic) NSNumber *channelId;
 @property(copy, nonatomic) NSString *channelName;

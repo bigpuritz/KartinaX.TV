@@ -9,7 +9,7 @@
 #import "RKObjectMappingAware.h"
 
 
-@interface Show : NSObject <RKObjectMappingAware>
+@interface Show : NSObject <RKObjectMappingAware, NSCoding>
 
 @property(copy, nonatomic) NSString *name;
 @property(copy, nonatomic) NSString *formattedStart;
@@ -20,9 +20,9 @@
 
 - (NSString *)displayName;
 
-- (BOOL) isInArchiveRange;
+- (BOOL)isInArchiveRange;
 
-- (BOOL) isMoreThan2WeeksOld;
+- (BOOL)isMoreThan2WeeksOld;
 
 - (BOOL)isLessThan30MinOld;
 @end

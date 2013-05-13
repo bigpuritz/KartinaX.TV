@@ -54,5 +54,18 @@
     return nil;
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:_date forKey:@"date"];
+    [coder encodeObject:_items forKey:@"items"];
+}
+
+- (id)initWithCoder:(NSCoder *)coder {
+    if (self = [super init]) {
+        self.date = [coder decodeObjectForKey:@"date"];
+        self.items = [coder decodeObjectForKey:@"items"];
+    }
+    return self;
+}
+
 
 @end

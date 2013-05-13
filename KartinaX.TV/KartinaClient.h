@@ -31,5 +31,8 @@
 
 - (void)loadEPG:(NSDate *)date;
 
+- (void)logout;
+
+- (void)trimEPGCache;
 
 @end

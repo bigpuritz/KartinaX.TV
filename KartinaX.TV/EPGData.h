@@ -11,7 +11,7 @@
 @class Show;
 
 
-@interface EPGData : NSObject
+@interface EPGData : NSObject <NSCoding>
 
 @property(nonatomic, strong) NSDate *date;
 @property(nonatomic, strong) NSArray *items;  // array of EPGDataItem's

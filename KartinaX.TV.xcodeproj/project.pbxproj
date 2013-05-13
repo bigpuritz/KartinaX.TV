@@ -53,6 +53,7 @@
 		D9EAE9AA47618CCCECF9D6E6 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E0E5126CB86B172811DC97 /* Login.m */; };
 		D9EAEC4EDABDE4F90BA4E03F /* KartinaClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EA9A3FC319061E7FB698CE /* KartinaClient.m */; };
 		D9ECD15A471FB7618891A6DC /* RKKartinaRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E0E0A1A89470471D033217 /* RKKartinaRequest.m */; };
+		D9EDB998483A247CCEC71570 /* Logout.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E28D571C9DBB62F6CC66AF /* Logout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -116,6 +117,7 @@
 		4DBF901C172B388F00F4214B /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
 		4DBF901E172BF05700F4214B /* App.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = App.iconset; sourceTree = "<group>"; };
 		4DF54E2A173FAC240076CE95 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D9E069E8AD67C10F1C147D74 /* Logout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logout.h; sourceTree = "<group>"; };
 		D9E0E0A1A89470471D033217 /* RKKartinaRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKKartinaRequest.m; sourceTree = "<group>"; };
 		D9E0E5126CB86B172811DC97 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
 		D9E133AA1B807CBBFF5A62E5 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		D9E20B63B5014598D377BE09 /* ChannelGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelGroup.h; sourceTree = "<group>"; };
 		D9E2215F968F7F3175DB347B /* ChannelGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelGroup.m; sourceTree = "<group>"; };
 		D9E230E2D6F882440E92BD9D /* KartinaClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KartinaClient.h; sourceTree = "<group>"; };
+		D9E28D571C9DBB62F6CC66AF /* Logout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logout.m; sourceTree = "<group>"; };
 		D9E3519337F3475366815DFB /* RKObjectMappingAware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKObjectMappingAware.h; sourceTree = "<group>"; };
 		D9E4C73D811A5936AC45AE74 /* ChannelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelList.m; sourceTree = "<group>"; };
 		D9E5C18F3748D6CEEF07FB65 /* RKKartinaRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKKartinaRequest.h; sourceTree = "<group>"; };
@@ -333,6 +336,8 @@
 				D9EB7EDF75C553B1BF4A08A8 /* x_channel_list.json */,
 				D9EBC46643E87092468E9E24 /* Settings.m */,
 				D9E812D61BCAC2EF4F3CB19A /* Settings.h */,
+				D9E28D571C9DBB62F6CC66AF /* Logout.m */,
+				D9E069E8AD67C10F1C147D74 /* Logout.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -464,6 +469,7 @@
 				4DBD0775172ED2F300CE96DD /* UpdatePreferencesViewController.m in Sources */,
 				D9E2BBE4BE24FEF922657BD1 /* KartinaSession.m in Sources */,
 				D9EA4BDA78CBF6AE6A2350C2 /* Settings.m in Sources */,
+				D9EDB998483A247CCEC71570 /* Logout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
