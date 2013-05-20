@@ -33,10 +33,9 @@
 		4DBD077F17355FAE00CE96DD /* UpdatePreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DBD078117355FAE00CE96DD /* UpdatePreferencesViewController.xib */; };
 		4DBD078217355FC400CE96DD /* EPGViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DBD078417355FC400CE96DD /* EPGViewController.xib */; };
 		4DBD078517355FD300CE96DD /* PlayerControlsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DBD078717355FD300CE96DD /* PlayerControlsController.xib */; };
-		4DBD0789173AD73400CE96DD /* VLCKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DBD0788173AD73400CE96DD /* VLCKit.framework */; };
-		4DBD078A173AD74100CE96DD /* VLCKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4DBD0788173AD73400CE96DD /* VLCKit.framework */; };
 		4DBF901D172B388F00F4214B /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4DBF901C172B388F00F4214B /* todo.txt */; };
 		4DBF901F172BF05700F4214B /* App.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 4DBF901E172BF05700F4214B /* App.iconset */; };
+		4DC0A439174A97B700749851 /* VLCKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DC0A438174A97B700749851 /* VLCKit.framework */; };
 		4DF54E29173FAC230076CE95 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4DF54E2B173FAC240076CE95 /* Localizable.strings */; };
 		D9E072EC137FF1CCA9DB9924 /* EPGData.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E93876EB417C90657F8AFA /* EPGData.m */; };
 		D9E0A477292D186A764FA139 /* ChannelGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E2215F968F7F3175DB347B /* ChannelGroup.m */; };
@@ -64,7 +63,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				4D20395B172B066900F9D0C7 /* Sparkle.framework in CopyFiles */,
-				4DBD078A173AD74100CE96DD /* VLCKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,9 +111,9 @@
 		4DBD078017355FAE00CE96DD /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/UpdatePreferencesViewController.xib; sourceTree = "<group>"; };
 		4DBD078317355FC400CE96DD /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/EPGViewController.xib; sourceTree = "<group>"; };
 		4DBD078617355FD300CE96DD /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/PlayerControlsController.xib; sourceTree = "<group>"; };
-		4DBD0788173AD73400CE96DD /* VLCKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VLCKit.framework; sourceTree = "<group>"; };
 		4DBF901C172B388F00F4214B /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
 		4DBF901E172BF05700F4214B /* App.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = App.iconset; sourceTree = "<group>"; };
+		4DC0A438174A97B700749851 /* VLCKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VLCKit.framework; sourceTree = "<group>"; };
 		4DF54E2A173FAC240076CE95 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D9E069E8AD67C10F1C147D74 /* Logout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logout.h; sourceTree = "<group>"; };
 		D9E0E0A1A89470471D033217 /* RKKartinaRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKKartinaRequest.m; sourceTree = "<group>"; };
@@ -167,7 +165,7 @@
 				4D4283AC16EB5BBE0058BE42 /* Cocoa.framework in Frameworks */,
 				48F8C9C78E0445978FDC3136 /* libPods.a in Frameworks */,
 				4D20395A172B064B00F9D0C7 /* Sparkle.framework in Frameworks */,
-				4DBD0789173AD73400CE96DD /* VLCKit.framework in Frameworks */,
+				4DC0A439174A97B700749851 /* VLCKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +214,7 @@
 		4D4283AD16EB5BBE0058BE42 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4DBD0788173AD73400CE96DD /* VLCKit.framework */,
+				4DC0A438174A97B700749851 /* VLCKit.framework */,
 				4D203959172B064B00F9D0C7 /* Sparkle.framework */,
 				4D4283AE16EB5BBE0058BE42 /* AppKit.framework */,
 				4D4283AF16EB5BBE0058BE42 /* CoreData.framework */,
