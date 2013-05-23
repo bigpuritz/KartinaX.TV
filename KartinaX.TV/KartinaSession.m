@@ -51,7 +51,7 @@ NSString *const kEPGLoadFailedNotification = @"EPGLoadFailedNotification";
 
 static KartinaSession *instance = nil;    // static instance variable
 
-
+/*
 + (KartinaSession *)sharedInstance {
     if (instance == nil) {
         instance = (KartinaSession *) [[super allocWithZone:NULL] init];
@@ -70,6 +70,43 @@ static KartinaSession *instance = nil;    // static instance variable
     }
     return self;
 }
+*/
+
++ (id)sharedInstance {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[self actualAlloc] initWithNil:nil];
+    });
+    return instance;
+}
+
++ (id)actualAlloc {
+    return [super alloc];
+}
+
++ (id)alloc {
+    return [KartinaSession sharedInstance];
+}
+
+- (id)initWithNil:(id)theNil {
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(playbackItemSelected:)
+                                                     name:kPlaybackItemSelectedNotification
+                                                   object:nil];
+    }
+    return self;
+}
+
+- (id)init {
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    return self;
+}
+
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

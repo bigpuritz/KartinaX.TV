@@ -96,7 +96,6 @@ extern NSString * VLCMediaPlayerStateToString(VLCMediaPlayerState state);
     float position;                     //< The position of the media being played
     id drawable;                        //< The drawable associated to this media player
     VLCAudio *audio;
-    BOOL shouldResumePlaying;           //< resume playing on iOS
 }
 
 #if !TARGET_OS_IPHONE
@@ -104,6 +103,7 @@ extern NSString * VLCMediaPlayerStateToString(VLCMediaPlayerState state);
 - (id)initWithVideoView:(VLCVideoView *)aVideoView;
 - (id)initWithVideoLayer:(VLCVideoLayer *)aVideoLayer;
 #endif
+- (id)initWithOptions:(NSArray *)options;
 
 /* Properties */
 - (void)setDelegate:(id)value;
