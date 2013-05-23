@@ -12,6 +12,7 @@
 @class ChannelList;
 @class ChannelStream;
 @class EPGData;
+@class SetSetting;
 
 @protocol KartinaClientDelegate <NSObject>
 
@@ -36,5 +37,9 @@
 - (void)onLogoutSuccess;
 
 - (void)onLogoutFail:(NSError *)error;
+
+- (void)onSetSettingSuccess:(SetSetting *)setting;
+
+- (void)onSetSettingFail:(NSError *)error;
 
 @end

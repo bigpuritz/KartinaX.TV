@@ -7,6 +7,8 @@
 
 #import "Login.h"
 #import "Account.h"
+#import "Settings.h"
+#import "SetSetting.h"
 #import <RestKit/RestKit.h>
 
 
@@ -21,7 +23,6 @@
             @"sid" : @"sid",
             @"sid_name" : @"sidName",
             @"services" : @"services",
-            @"settings" : @"settings",
             @"error" : @"error",
             @"servertime" : @"serverTime"
     }];
@@ -29,6 +30,9 @@
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"account"
                                                                             toKeyPath:@"account"
                                                                           withMapping:[Account objectMapping]]];
+    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"settings"
+                                                                            toKeyPath:@"settings"
+                                                                          withMapping:[Settings objectMapping]]];
     return mapping;
 }
 

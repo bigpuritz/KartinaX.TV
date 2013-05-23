@@ -7,7 +7,14 @@
 
 
 #import <Foundation/Foundation.h>
+#import "RKObjectMappingAware.h"
+#import "RKKartinaRequest.h"
+
+@protocol RKObjectMappingAware;
 
 
-@interface SetSetting : NSObject
+@interface SetSetting : RKKartinaRequest <RKObjectMappingAware>
+
+@property(copy, nonatomic) NSDictionary *message;
+
 @end

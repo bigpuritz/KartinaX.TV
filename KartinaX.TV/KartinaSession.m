@@ -15,6 +15,7 @@
 #import "KartinaClient.h"
 #import "PlaybackItem.h"
 #import "Show.h"
+#import "SetSetting.h"
 
 @interface KartinaSession ()
 
@@ -47,6 +48,9 @@ NSString *const kPlaybackItemSelectedNotification = @"PlaybackItemSelectedNotifi
 
 NSString *const kEPGLoadSuccessfulNotification = @"kEPGLoadSuccessfulNotification";
 NSString *const kEPGLoadFailedNotification = @"EPGLoadFailedNotification";
+
+NSString *const kSetSettingSuccessfulNotification = @"kSetSettingSuccessfulNotification";
+NSString *const kSetSettingFailedNotification = @"kSetSettingFailedNotification";
 
 
 static KartinaSession *instance = nil;    // static instance variable
@@ -186,6 +190,14 @@ static KartinaSession *instance = nil;    // static instance variable
     return nil;
 }
 
++ (void)setSettingValue:(NSString *)value forKey:(NSString *)key {
+
+    KartinaClient *client = [KartinaClient sharedInstance];
+    [client setSettingValue:value forKey:key];
+}
+
+
+
 
 - (NSMutableDictionary *)epg {
     if (_epg == nil) {
@@ -204,6 +216,7 @@ static KartinaSession *instance = nil;    // static instance variable
 
 - (void)onLoginFail:(NSError *)error {
     self.login = nil;
+    self.currentPlaybackItem = nil;
 
     if (error.code == 0)
         [self sendErrorNotification:error name:kUserCredentialsMissingNotification];
@@ -279,6 +292,14 @@ static KartinaSession *instance = nil;    // static instance variable
 
 - (void)onLogoutFail:(NSError *)error {
 
+}
+
+- (void)onSetSettingSuccess:(SetSetting *)setting {
+    [self sendNotification:kSetSettingSuccessfulNotification userInfo:@{@"setting" : setting}];
+}
+
+- (void)onSetSettingFail:(NSError *)error {
+    [self sendErrorNotification:error name:kSetSettingFailedNotification];
 }
 
 

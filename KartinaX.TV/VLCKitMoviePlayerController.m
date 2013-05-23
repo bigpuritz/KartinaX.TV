@@ -29,7 +29,7 @@
     BOOL inFullScreen;
 }
 
-- (instancetype)initWithStreamURL:(NSURL *)streamURL {
+- (instancetype)initWithChannelStream:(ChannelStream *)stream {
 
     if ((self = [super init])) {
 
@@ -79,7 +79,7 @@
         _player = [[VLCMediaPlayer alloc] initWithVideoView:_view];
         _player.delegate = self;
 
-        [self initPlayerWithURL:streamURL];
+        [self startPlayerWithStream:stream];
 
 
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -143,11 +143,14 @@
 }
 
 
-- (void)initPlayerWithURL:(NSURL *)url {
-    _contentURL = [url copy];
-    if (_contentURL != nil) {
-        VLCMedia *media = [VLCMedia mediaWithURL:_contentURL];
+- (void)startPlayerWithStream:(ChannelStream *)stream {
+    if (stream != nil && stream.streamURL != nil) {
+        VLCMedia *media = [VLCMedia mediaWithURL:[stream.streamURL copy]];
         media.delegate = self;
+        [media addOptions:@{
+                @"--no-http-reconnect" : [NSNull null],
+                @"--network-caching" : stream.networkCachingInMs
+        }];
         [_player setMedia:media];
         [_player play];
     }
@@ -216,12 +219,18 @@
     NSLog(@"playback item time did end....");
 }
 
+- (void)kartinaSessionMissing {
+
+    [self.player stop];
+
+}
+
 
 /********************************************************************/
 
 - (void)channelStreamLoaded:(NSNotification *)notification {
     ChannelStream *stream = [notification.userInfo objectForKey:@"channelStream"];
-    [self initPlayerWithURL:stream.nsUrl];
+    [self startPlayerWithStream:stream];
 }
 
 

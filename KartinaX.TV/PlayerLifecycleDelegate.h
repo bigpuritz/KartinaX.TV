@@ -20,4 +20,6 @@
 
 - (void)playbackItemTimeDidEnd;
 
+- (void)kartinaSessionMissing;
+
 @end

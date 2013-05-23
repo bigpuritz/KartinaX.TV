@@ -8,6 +8,10 @@
 
 #import "KartinaPreferencesViewController.h"
 #import "KartinaClient.h"
+#import "KartinaSession.h"
+#import "Login.h"
+#import "Account.h"
+#import "Settings.h"
 
 @interface KartinaPreferencesViewController ()
 
@@ -18,22 +22,128 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:@"KartinaPreferencesViewController" bundle:nibBundleOrNil];
     if (self) {
-
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onConnectSuccess:)
+                                                     name:kLoginSuccessfulNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onConnectFailed:)
+                                                     name:kLoginFailedNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onConnectFailed:)
+                                                     name:kUserCredentialsMissingNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onSetSettingSuccess:)
+                                                     name:kSetSettingSuccessfulNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onSetSettingFail:)
+                                                     name:kSetSettingFailedNotification
+                                                   object:nil];
     }
 
     return self;
 }
 
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
 - (void)awakeFromNib {
+
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
 
     NSString *username = [standardUserDefaults stringForKey:@"username"];
     NSString *password = [standardUserDefaults stringForKey:@"password"];
-    NSString *protectedCode = [standardUserDefaults stringForKey:@"protectedCode"];
 
     [self.usernameField setStringValue:(username != nil ? username : @"")];
     [self.passwordField setStringValue:(password != nil ? password : @"")];
-    [self.protectedChannelsCode setStringValue:(protectedCode != nil ? protectedCode : @"")];
+
+    [self initializeKartinaSettings];
+}
+
+
+- (void)initializeKartinaSettings {
+
+    [self.packetName setStringValue:NSLocalizedString(@"not available", @"not available")];
+    [self.packetExpire setStringValue:NSLocalizedString(@"not available", @"not available")];
+    [self.serverComboBox removeAllItems];
+    [self.timeshiftComboBox removeAllItems];
+    [self.bitrateComboBox removeAllItems];
+    [self.cachingComboBox removeAllItems];
+    [self.timezoneComboBox setStringValue:@""];
+    [self.protectedChannelsCode setEnabled:NO];
+    [self.serverComboBox setEnabled:NO];
+    [self.timeshiftComboBox setEnabled:NO];
+    [self.timezoneComboBox setEnabled:NO];
+    [self.bitrateComboBox setEnabled:NO];
+    [self.cachingComboBox setEnabled:NO];
+
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    if ([KartinaSession isLoggedIn]) {
+
+        Login *login = [KartinaSession currentLogin];
+
+        [self.protectedChannelsCode setEnabled:YES];
+        [self.serverComboBox setEnabled:YES];
+        [self.timeshiftComboBox setEnabled:YES];
+        [self.timezoneComboBox setEnabled:YES];
+        [self.bitrateComboBox setEnabled:YES];
+        [self.cachingComboBox setEnabled:YES];
+
+        NSString *protectedCode = [standardUserDefaults stringForKey:@"protectedCode"];
+        [self.protectedChannelsCode setStringValue:(protectedCode != nil ? protectedCode : @"")];
+
+        [self.packetName setStringValue:login.account.packetName];
+
+        NSDate *gmtDate = [NSDate dateWithTimeIntervalSince1970:login.account.packetExpire.doubleValue];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setTimeZone:[NSTimeZone localTimeZone]];
+        [formatter setDateFormat:@"dd.MM.yyyy HH:mm"];
+        [self.packetExpire setStringValue:[formatter stringFromDate:gmtDate]];
+
+
+        Settings *settings = login.settings;
+
+        // streaming server
+        for (NSString *serverDesc in settings.availableStreamingServers) {
+            [self.serverComboBox addItemWithObjectValue:serverDesc];
+            if ([settings.currentStreamingServerIP isEqualToString:settings.availableStreamingServers[serverDesc]]) {
+                [self.serverComboBox setStringValue:serverDesc];
+            }
+        }
+
+        // timeshift
+        for (NSString *item in settings.availableTimeshifts) {
+            [self.timeshiftComboBox addItemWithObjectValue:item];
+        }
+        [self.timeshiftComboBox setStringValue:settings.currentTimeshift];
+
+
+        // timezone
+        [self.timezoneComboBox setStringValue:settings.currentTimeZone];
+
+        // bitrate
+        for (NSString *bitrateTitle in settings.availableBitrates) {
+            NSString *bitrateValue = settings.availableBitrates[bitrateTitle];
+            [self.bitrateComboBox addItemWithObjectValue:bitrateTitle];
+            if ([settings.currentBitrate isEqualToString:bitrateValue]) {
+                [self.bitrateComboBox setStringValue:bitrateTitle];
+            }
+        }
+
+        // caching
+        for (NSString *c in settings.availableCachings) {
+            [self.cachingComboBox addItemWithObjectValue:c];
+        }
+        [self.cachingComboBox setStringValue:settings.currentCaching];
+
+    }
+
 }
 
 
@@ -55,27 +165,110 @@
     return self.usernameField;
 }
 
-- (IBAction)save:(id)sender {
+- (IBAction)connect:(id)sender {
 
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
 
     NSString *oldUsername = [standardUserDefaults stringForKey:@"username"];
     NSString *oldPassword = [standardUserDefaults stringForKey:@"password"];
-    NSString *oldProtectedCode = [standardUserDefaults stringForKey:@"protectedCode"];
 
     NSString *newUsername = self.usernameField.stringValue;
     NSString *newPassword = self.passwordField.stringValue;
-    NSString *newProtectedCode = self.protectedChannelsCode.stringValue;
 
     [standardUserDefaults setObject:newUsername forKey:@"username"];
     [standardUserDefaults setObject:newPassword forKey:@"password"];
-    [standardUserDefaults setObject:newProtectedCode forKey:@"protectedCode"];
 
-    if (![oldUsername isEqualToString:newUsername] || [oldPassword isEqualToString:newPassword]) {
+    if (![oldUsername isEqualToString:newUsername] || ![oldPassword isEqualToString:newPassword]) {
+        [self.loginProgressIndicator setHidden:NO];
+        [self.loginProgressIndicator startAnimation:self];
         KartinaClient *client = [KartinaClient sharedInstance];
         [client loginWithUsername:newUsername AndPassword:newPassword];
     }
 
-    [self.view.window close];
 }
+
+
+- (void)onConnectSuccess:(NSNotification *)notification {
+    [self.loginProgressIndicator stopAnimation:self];
+    [self.loginProgressIndicator setHidden:YES];
+    [self initializeKartinaSettings];
+}
+
+- (void)onConnectFailed:(NSNotification *)notification {
+    [self.loginProgressIndicator stopAnimation:self];
+    [self.loginProgressIndicator setHidden:YES];
+    [self initializeKartinaSettings];
+}
+
+
+- (IBAction)streamingServerSelected:(NSComboBox *)sender {
+    [self.setSettingProgressIndicator startAnimation:self];
+    [self.setSettingProgressIndicator setHidden:NO];
+
+    Settings *settings = [KartinaSession currentLogin].settings;
+    NSString *ip = [settings streamingServerIpForName:sender.stringValue];
+
+    NSLog(@"setting value: %@", ip);
+    [KartinaSession setSettingValue:ip forKey:@"stream_server"];
+}
+
+- (IBAction)timeshiftSelected:(NSComboBox *)sender {
+    [self.setSettingProgressIndicator startAnimation:self];
+    [self.setSettingProgressIndicator setHidden:NO];
+    NSLog(@"setting value: %@", sender.stringValue);
+
+    [KartinaSession setSettingValue:sender.stringValue forKey:@"timeshift"];
+}
+
+- (IBAction)timezoneSelected:(NSComboBox *)sender {
+    [self.setSettingProgressIndicator startAnimation:self];
+    [self.setSettingProgressIndicator setHidden:NO];
+
+    NSLog(@"setting value: %@", sender.stringValue);
+    [KartinaSession setSettingValue:sender.stringValue forKey:@"timezone"];
+}
+
+- (IBAction)bitrateSelected:(NSComboBox *)sender {
+    [self.setSettingProgressIndicator startAnimation:self];
+    [self.setSettingProgressIndicator setHidden:NO];
+
+    Settings *settings = [KartinaSession currentLogin].settings;
+    NSString *bitrate = [settings bitrateValueForName:sender.stringValue];
+
+    NSLog(@"setting value: %@", bitrate);
+    [KartinaSession setSettingValue:bitrate forKey:@"bitrate"];
+}
+
+- (IBAction)cachingSelected:(NSComboBox *)sender {
+    [self.setSettingProgressIndicator startAnimation:self];
+    [self.setSettingProgressIndicator setHidden:NO];
+
+    NSLog(@"setting value: %@", sender.stringValue);
+    [KartinaSession setSettingValue:sender.stringValue forKey:@"http_caching"];
+}
+
+- (IBAction)protectedCodeEntered:(NSSecureTextField *)sender {
+    [self doSaveProtectedCode];
+}
+
+- (void)controlTextDidChange:(NSNotification *)notification {
+    [self doSaveProtectedCode];
+}
+
+- (void)onSetSettingFail:(id)onSetSettingFail {
+    [self.setSettingProgressIndicator stopAnimation:self];
+    [self.setSettingProgressIndicator setHidden:YES];
+}
+
+- (void)onSetSettingSuccess:(id)onSetSettingSuccess {
+    [self.setSettingProgressIndicator stopAnimation:self];
+    [self.setSettingProgressIndicator setHidden:YES];
+}
+
+- (void)doSaveProtectedCode {
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *newProtectedCode = self.protectedChannelsCode.stringValue;
+    [standardUserDefaults setObject:newProtectedCode forKey:@"protectedCode"];
+}
+
 @end

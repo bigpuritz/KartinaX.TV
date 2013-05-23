@@ -11,7 +11,6 @@
 		4D165BFD171F3B530046AE63 /* PlayerControlsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D165BFB171F3B530046AE63 /* PlayerControlsController.m */; };
 		4D203954172ACF5D00F9D0C7 /* KartinaPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D203952172ACF5D00F9D0C7 /* KartinaPreferencesViewController.m */; };
 		4D203955172ACF5D00F9D0C7 /* KartinaPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D203953172ACF5D00F9D0C7 /* KartinaPreferencesViewController.xib */; };
-		4D203957172AD1CE00F9D0C7 /* KartinaSettings.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4D203956172AD1CE00F9D0C7 /* KartinaSettings.jpg */; };
 		4D20395A172B064B00F9D0C7 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D203959172B064B00F9D0C7 /* Sparkle.framework */; };
 		4D20395B172B066900F9D0C7 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4D203959172B064B00F9D0C7 /* Sparkle.framework */; };
 		4D4283AC16EB5BBE0058BE42 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4283AB16EB5BBE0058BE42 /* Cocoa.framework */; };
@@ -35,7 +34,9 @@
 		4DBD078517355FD300CE96DD /* PlayerControlsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DBD078717355FD300CE96DD /* PlayerControlsController.xib */; };
 		4DBF901D172B388F00F4214B /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4DBF901C172B388F00F4214B /* todo.txt */; };
 		4DBF901F172BF05700F4214B /* App.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 4DBF901E172BF05700F4214B /* App.iconset */; };
-		4DC0A439174A97B700749851 /* VLCKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DC0A438174A97B700749851 /* VLCKit.framework */; };
+		4DF2404F174BE93D0029241C /* KartinaSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2404E174BE93D0029241C /* KartinaSettings.png */; };
+		4DF24052174D1BA00029241C /* VLCKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF24051174D1BA00029241C /* VLCKit.framework */; };
+		4DF24053174D1BA60029241C /* VLCKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4DF24051174D1BA00029241C /* VLCKit.framework */; };
 		4DF54E29173FAC230076CE95 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4DF54E2B173FAC240076CE95 /* Localizable.strings */; };
 		D9E072EC137FF1CCA9DB9924 /* EPGData.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E93876EB417C90657F8AFA /* EPGData.m */; };
 		D9E0A477292D186A764FA139 /* ChannelGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E2215F968F7F3175DB347B /* ChannelGroup.m */; };
@@ -44,6 +45,7 @@
 		D9E2BBE4BE24FEF922657BD1 /* KartinaSession.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E5EA6163B8DE1DE25C87E7 /* KartinaSession.m */; };
 		D9E2D5CD30246599E8568985 /* ChannelStream.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EF0762809D1B888672531C /* ChannelStream.m */; };
 		D9E311B762A7107D2FF1A2B1 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EC8DE0CD189D9787A851D3 /* Utils.m */; };
+		D9E38A449AFFA276D4B69253 /* SetSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = D9ED0A931CC6D167DC80DEF2 /* SetSetting.m */; };
 		D9E519F92B01534A127996B6 /* ChannelList.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E4C73D811A5936AC45AE74 /* ChannelList.m */; };
 		D9E551FD52565FF409DC6C05 /* PlaybackItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EE2DB05CD784700CC1AA87 /* PlaybackItem.m */; };
 		D9E898D06031E83BD11D6A05 /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EA7BBD3AD2BA5EB8A234E0 /* Show.m */; };
@@ -63,6 +65,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				4D20395B172B066900F9D0C7 /* Sparkle.framework in CopyFiles */,
+				4DF24053174D1BA60029241C /* VLCKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,7 +79,6 @@
 		4D203951172ACF5D00F9D0C7 /* KartinaPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KartinaPreferencesViewController.h; sourceTree = "<group>"; };
 		4D203952172ACF5D00F9D0C7 /* KartinaPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KartinaPreferencesViewController.m; sourceTree = "<group>"; };
 		4D203953172ACF5D00F9D0C7 /* KartinaPreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KartinaPreferencesViewController.xib; sourceTree = "<group>"; };
-		4D203956172AD1CE00F9D0C7 /* KartinaSettings.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = KartinaSettings.jpg; sourceTree = "<group>"; };
 		4D203959172B064B00F9D0C7 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		4D4283A816EB5BBE0058BE42 /* KartinaX.TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KartinaX.TV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D4283AB16EB5BBE0058BE42 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -113,7 +115,8 @@
 		4DBD078617355FD300CE96DD /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/PlayerControlsController.xib; sourceTree = "<group>"; };
 		4DBF901C172B388F00F4214B /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
 		4DBF901E172BF05700F4214B /* App.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = App.iconset; sourceTree = "<group>"; };
-		4DC0A438174A97B700749851 /* VLCKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VLCKit.framework; sourceTree = "<group>"; };
+		4DF2404E174BE93D0029241C /* KartinaSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KartinaSettings.png; sourceTree = "<group>"; };
+		4DF24051174D1BA00029241C /* VLCKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VLCKit.framework; sourceTree = "<group>"; };
 		4DF54E2A173FAC240076CE95 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D9E069E8AD67C10F1C147D74 /* Logout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logout.h; sourceTree = "<group>"; };
 		D9E0E0A1A89470471D033217 /* RKKartinaRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKKartinaRequest.m; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 		D9E812D61BCAC2EF4F3CB19A /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		D9E844CF5ED51726982B16DC /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		D9E93876EB417C90657F8AFA /* EPGData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPGData.m; sourceTree = "<group>"; };
+		D9E96BD8F2C2F4D50E21A5C6 /* SetSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSetting.h; sourceTree = "<group>"; };
 		D9E9D57437480A2B34323DC3 /* ChannelStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelStream.h; sourceTree = "<group>"; };
 		D9E9DA64BE55EC6B6846B8C8 /* channels.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = channels.json; sourceTree = "<group>"; };
 		D9EA7BBD3AD2BA5EB8A234E0 /* Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Show.m; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 		D9EC8DE0CD189D9787A851D3 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		D9ECE859B5858F42FE95BB19 /* ChannelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelList.h; sourceTree = "<group>"; };
 		D9ECF66703FF10F2FFF657CD /* VLCKitMoviePlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLCKitMoviePlayerController.h; sourceTree = "<group>"; };
+		D9ED0A931CC6D167DC80DEF2 /* SetSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSetting.m; sourceTree = "<group>"; };
 		D9ED4DFB28A6336553CA4202 /* Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Show.h; sourceTree = "<group>"; };
 		D9EE2DB05CD784700CC1AA87 /* PlaybackItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaybackItem.m; sourceTree = "<group>"; };
 		D9EEA0BA237AA78813A33571 /* PlayerLifecycleDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerLifecycleDelegate.h; sourceTree = "<group>"; };
@@ -165,7 +170,7 @@
 				4D4283AC16EB5BBE0058BE42 /* Cocoa.framework in Frameworks */,
 				48F8C9C78E0445978FDC3136 /* libPods.a in Frameworks */,
 				4D20395A172B064B00F9D0C7 /* Sparkle.framework in Frameworks */,
-				4DC0A439174A97B700749851 /* VLCKit.framework in Frameworks */,
+				4DF24052174D1BA00029241C /* VLCKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,8 +180,8 @@
 		4D203958172AD1F500F9D0C7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4DF2404E174BE93D0029241C /* KartinaSettings.png */,
 				4DBD0777172ED55B00CE96DD /* UpdateSettings.png */,
-				4D203956172AD1CE00F9D0C7 /* KartinaSettings.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -214,7 +219,7 @@
 		4D4283AD16EB5BBE0058BE42 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4DC0A438174A97B700749851 /* VLCKit.framework */,
+				4DF24051174D1BA00029241C /* VLCKit.framework */,
 				4D203959172B064B00F9D0C7 /* Sparkle.framework */,
 				4D4283AE16EB5BBE0058BE42 /* AppKit.framework */,
 				4D4283AF16EB5BBE0058BE42 /* CoreData.framework */,
@@ -336,6 +341,8 @@
 				D9E812D61BCAC2EF4F3CB19A /* Settings.h */,
 				D9E28D571C9DBB62F6CC66AF /* Logout.m */,
 				D9E069E8AD67C10F1C147D74 /* Logout.h */,
+				D9ED0A931CC6D167DC80DEF2 /* SetSetting.m */,
+				D9E96BD8F2C2F4D50E21A5C6 /* SetSetting.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -409,12 +416,12 @@
 				4DF54E29173FAC230076CE95 /* Localizable.strings in Resources */,
 				4DBD078517355FD300CE96DD /* PlayerControlsController.xib in Resources */,
 				4D203955172ACF5D00F9D0C7 /* KartinaPreferencesViewController.xib in Resources */,
-				4D203957172AD1CE00F9D0C7 /* KartinaSettings.jpg in Resources */,
 				4DBF901D172B388F00F4214B /* todo.txt in Resources */,
 				4DBF901F172BF05700F4214B /* App.iconset in Resources */,
 				4DBD0771172DA51700CE96DD /* dsa_pub.pem in Resources */,
 				4DBD077F17355FAE00CE96DD /* UpdatePreferencesViewController.xib in Resources */,
 				4DBD0778172ED55B00CE96DD /* UpdateSettings.png in Resources */,
+				4DF2404F174BE93D0029241C /* KartinaSettings.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +475,7 @@
 				D9E2BBE4BE24FEF922657BD1 /* KartinaSession.m in Sources */,
 				D9EA4BDA78CBF6AE6A2350C2 /* Settings.m in Sources */,
 				D9EDB998483A247CCEC71570 /* Logout.m in Sources */,
+				D9E38A449AFFA276D4B69253 /* SetSetting.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

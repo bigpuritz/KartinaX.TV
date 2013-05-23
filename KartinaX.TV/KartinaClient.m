@@ -19,6 +19,7 @@
 #import "KartinaSession.h"
 #import "TMCache.h"
 #import "Logout.h"
+#import "SetSetting.h"
 
 @implementation KartinaClient
 
@@ -60,6 +61,11 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
                 [RKResponseDescriptor responseDescriptorWithMapping:[Logout objectMapping]
                                                         pathPattern:@"logout"
                                                             keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+        RKResponseDescriptor *setSettingResponseDescriptor =
+                [RKResponseDescriptor responseDescriptorWithMapping:[SetSetting objectMapping]
+                                                        pathPattern:@"settings_set"
+                                                            keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+
 
         [objectManager addResponseDescriptor:loginResponseDescriptor];
         [objectManager addResponseDescriptor:channelListResponseDescriptor];
@@ -67,6 +73,7 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
         [objectManager addResponseDescriptor:epgResponseDescriptor];
         [objectManager addResponseDescriptor:epg3ResponseDescriptor];
         [objectManager addResponseDescriptor:logoutResponseDescriptor];
+        [objectManager addResponseDescriptor:setSettingResponseDescriptor];
     }
     return instance;
 }
@@ -239,6 +246,42 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
                             }
     ];
 }
+
+- (void)setSettingValue:(NSString *)value forKey:(NSString *)key {
+    NSDictionary *params = @{
+            @"var" : key,
+            @"val" : value,
+    };
+
+    [objectManager getObjectsAtPath:@"settings_set"
+                         parameters:params
+                            success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+
+                                NSError *error;
+                                NSArray *results = mappingResult.array;
+                                if (results == nil || results.count == 0) {
+                                    error = [self customError:@"No data returned." code:-1];
+                                } else if (results.count > 1) {
+                                    error = [self customError:@"More than one item returned." code:-2];
+                                } else {
+
+                                    SetSetting *setResult = [results objectAtIndex:0];
+                                    if ([setResult hasError])
+                                        error = [self customError:setResult.errorMessage codeAsNumber:setResult.errorCode];
+                                    else
+                                        [self.delegate onSetSettingSuccess:setResult];
+                                }
+
+                                if (error)
+                                    [self.delegate onSetSettingFail:error];
+
+                            }
+                            failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                [self.delegate onSetSettingFail:error];
+                            }
+    ];
+}
+
 
 - (void)logout {
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);

@@ -22,17 +22,19 @@
     return mapping;
 }
 
-- (NSURL *)nsUrl {
-
+- (NSURL *)streamURL {
     NSString *sanitizedURL = [self.url stringByReplacingOccurrencesOfString:@"http/ts://" withString:@"http://"];
     NSRange range = [sanitizedURL rangeOfString:@" "];
-
     sanitizedURL = [sanitizedURL substringToIndex:range.location];
-    
-    NSLog(@"range: %@", NSStringFromRange(range));
-    NSLog(@"URL: %@", sanitizedURL);
-    
     return self.url ? [NSURL URLWithString:sanitizedURL] : nil;
+}
+
+- (NSString *)networkCachingInMs {
+    NSRange rangeStart = [self.url rangeOfString:@":http-caching="];
+    NSRange rangeEnd = [self.url rangeOfString:@":no-http-reconnect"];
+    NSString *cachingValue = [self.url substringWithRange:NSMakeRange(rangeStart.location + rangeStart.length, rangeEnd.location - rangeStart.location - rangeStart.length)];
+    cachingValue = [cachingValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    return cachingValue;
 }
 
 

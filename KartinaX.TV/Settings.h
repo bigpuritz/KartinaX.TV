@@ -12,7 +12,7 @@
 @class RKObjectMapping;
 
 
-@interface Settings : NSObject<RKObjectMappingAware>
+@interface Settings : NSObject <RKObjectMappingAware>
 
 @property(copy, nonatomic) NSDictionary *timeshift;
 @property(copy, nonatomic) NSDictionary *timezone;
@@ -23,4 +23,28 @@
 
 + (RKObjectMapping *)objectMapping;
 
+
+- (NSDictionary *)availableBitrates;
+
+- (NSString *)currentBitrate;
+
+- (NSString *)currentTimeZone;
+
+- (NSArray *)availableTimeshifts;
+
+- (NSString *)currentTimeshift;
+
+- (NSString *)currentStreamingServerIP;
+
+- (NSDictionary *)availableStreamingServers;
+
+- (NSString *)currentCaching;
+
+- (NSArray *)availableCachings;
+
+
+- (NSString *)streamingServerIpForName:(NSString *)string;
+
+- (NSString *)bitrateValueForName:(NSString *)string;
 @end
+

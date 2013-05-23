@@ -31,8 +31,11 @@
 
 - (void)loadEPG:(NSDate *)date;
 
+- (void)setSettingValue:(NSString *)value forKey:(NSString *)key;
+
 - (void)logout;
 
 - (void)trimEPGCache;
+
 
 @end

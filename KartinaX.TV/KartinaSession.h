@@ -37,6 +37,9 @@ extern NSString *const kPlaybackItemSelectedNotification;
 extern NSString *const kEPGLoadSuccessfulNotification;
 extern NSString *const kEPGLoadFailedNotification;
 
+extern NSString *const kSetSettingSuccessfulNotification;
+extern NSString *const kSetSettingFailedNotification;
+
 + (KartinaSession *)sharedInstance;
 
 + (Login *)currentLogin;
@@ -54,5 +57,7 @@ extern NSString *const kEPGLoadFailedNotification;
 + (BOOL)isLoggedIn;
 
 + (NSString *)protectedCode;
+
++ (void)setSettingValue:(NSString *)value forKey:(NSString *)key;
 
 @end

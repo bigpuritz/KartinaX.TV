@@ -38,7 +38,7 @@
 
 
     // 1. Create the master View Controller
-    self.playerController = [[VLCKitMoviePlayerController alloc] initWithStreamURL:nil];
+    self.playerController = [[VLCKitMoviePlayerController alloc] initWithChannelStream:nil];
     [self.window makeFirstResponder:self.playerController.view];
 
 

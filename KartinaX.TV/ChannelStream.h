@@ -15,6 +15,8 @@
 @property(copy, nonatomic) NSString *url;
 @property(copy, nonatomic) NSNumber *channelId;
 
-- (NSURL *)nsUrl;
+- (NSURL *)streamURL;
+
+- (NSString *)networkCachingInMs;
 
 @end

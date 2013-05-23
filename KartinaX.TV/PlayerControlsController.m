@@ -89,6 +89,7 @@
 
     PlaybackItem *currentPlaybackItem = [KartinaSession currentPlaybackItem];
     NSSlider *slider = _controllerView.timeSlider;
+
     slider.minValue = currentPlaybackItem.start.doubleValue;
     slider.maxValue = currentPlaybackItem.end.doubleValue;
 
@@ -99,6 +100,7 @@
         slider.doubleValue = [currentPlaybackItem.playbackStartPosition doubleValue];
         [_controllerView.timeSlider setEnabled:YES];
     }
+
 }
 
 
@@ -159,20 +161,35 @@
 
 
 - (void)timerFired:(NSTimer *)theTimer {
-    NSSlider *slider = self.controllerView.timeSlider;
-    [slider setDoubleValue:slider.doubleValue + 1];
 
-    if (slider.maxValue == slider.doubleValue) {
-        [self.playerLifecycleDelegate playbackItemTimeDidEnd];
-        PlaybackItem *newItem = [KartinaSession replaceCurrentPlaybackItemWithNext];
-        if (newItem != nil) {
-            [self initSlider];
-        } else {
-            [self stopTimer];
+    if (![KartinaSession isLoggedIn]) {
+
+        [self.playerLifecycleDelegate kartinaSessionMissing];
+        [self stopTimer];
+
+    } else {
+
+        PlaybackItem *currentPlaybackItem = [KartinaSession currentPlaybackItem];
+
+        if (currentPlaybackItem.isPlaybackDurationAvailable) {
+
+            NSSlider *slider = self.controllerView.timeSlider;
+            [slider setDoubleValue:slider.doubleValue + 1];
+
+            if (slider.maxValue == slider.doubleValue) {
+                [self.playerLifecycleDelegate playbackItemTimeDidEnd];
+                PlaybackItem *newItem = [KartinaSession replaceCurrentPlaybackItemWithNext];
+                if (newItem != nil) {
+                    [self initSlider];
+                } else {
+                    [self stopTimer];
+                }
+            }
+
+            [self updateTimeLabel];
+
         }
     }
-
-    [self updateTimeLabel];
 }
 
 

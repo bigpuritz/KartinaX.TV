@@ -17,16 +17,16 @@
 @class PlayerControlsController;
 @class PlayerView;
 @class EPGViewController;
+@class ChannelStream;
 
 @interface VLCKitMoviePlayerController : NSObject <VLCMediaPlayerDelegate, VLCMediaDelegate, PlayerLifecycleDelegate>
 
-@property(copy, readonly) NSURL *contentURL;
 @property(strong, readonly) PlayerView *view;
 @property(nonatomic, strong) NSTextField *unplayableLabel;
 @property(nonatomic, strong) PlayerControlsController *playerControlsController;
 @property(nonatomic, strong) EPGViewController *epgViewController;
 
-- (instancetype)initWithStreamURL:(NSURL *)streamURL;
+- (instancetype)initWithChannelStream:(ChannelStream *)stream;
 
 - (void)showEpg;
 

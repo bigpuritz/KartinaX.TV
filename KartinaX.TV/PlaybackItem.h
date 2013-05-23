@@ -22,4 +22,6 @@
 - (id)initWithName:(NSString *)name start:(NSNumber *)start end:(NSNumber *)end playbackStartPosition:(NSNumber *)position
          channelId:(NSNumber *)channelId channelName:(NSString *)channelName live:(BOOL)live protectedChannel:(BOOL)protectedChannel;
 
+- (BOOL)isPlaybackDurationAvailable;
+
 @end

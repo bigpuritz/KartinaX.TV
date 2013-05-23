@@ -27,4 +27,9 @@
     return self;
 }
 
+- (BOOL)isPlaybackDurationAvailable {
+    return self.start != nil && self.end != nil;
+}
+
+
 @end
