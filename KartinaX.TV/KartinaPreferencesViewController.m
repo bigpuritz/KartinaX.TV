@@ -111,36 +111,41 @@
 
         // streaming server
         for (NSString *serverDesc in settings.availableStreamingServers) {
-            [self.serverComboBox addItemWithObjectValue:serverDesc];
+            [self.serverComboBox addItemWithTitle:serverDesc];
             if ([settings.currentStreamingServerIP isEqualToString:settings.availableStreamingServers[serverDesc]]) {
-                [self.serverComboBox setStringValue:serverDesc];
+                [self.serverComboBox setTitle:serverDesc];
             }
         }
 
         // timeshift
         for (NSString *item in settings.availableTimeshifts) {
-            [self.timeshiftComboBox addItemWithObjectValue:item];
+            [self.timeshiftComboBox addItemWithTitle:item];
         }
-        [self.timeshiftComboBox setStringValue:settings.currentTimeshift];
+        [self.timeshiftComboBox setTitle:settings.currentTimeshift];
 
 
         // timezone
-        [self.timezoneComboBox setStringValue:settings.currentTimeZone];
+        [self.timezoneComboBox addItemsWithTitles:@[
+                @"-12", @"-11", @"-10", @"-9", @"-8", @"-7", @"-6", @"-5", @"-4", @"-3", @"-2", @"-1",
+                @"0",
+                @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12"
+        ]];
+        [self.timezoneComboBox setTitle:settings.currentTimeZone];
 
         // bitrate
         for (NSString *bitrateTitle in settings.availableBitrates) {
             NSString *bitrateValue = settings.availableBitrates[bitrateTitle];
-            [self.bitrateComboBox addItemWithObjectValue:bitrateTitle];
+            [self.bitrateComboBox addItemWithTitle:bitrateTitle];
             if ([settings.currentBitrate isEqualToString:bitrateValue]) {
-                [self.bitrateComboBox setStringValue:bitrateTitle];
+                [self.bitrateComboBox setTitle:bitrateTitle];
             }
         }
 
         // caching
         for (NSString *c in settings.availableCachings) {
-            [self.cachingComboBox addItemWithObjectValue:c];
+            [self.cachingComboBox addItemWithTitle:c];
         }
-        [self.cachingComboBox setStringValue:settings.currentCaching];
+        [self.cachingComboBox setTitle:settings.currentCaching];
 
     }
 
@@ -201,50 +206,45 @@
 }
 
 
-- (IBAction)streamingServerSelected:(NSComboBox *)sender {
+- (IBAction)streamingServerSelected:(NSPopUpButton *)sender {
     [self.setSettingProgressIndicator startAnimation:self];
     [self.setSettingProgressIndicator setHidden:NO];
 
     Settings *settings = [KartinaSession currentLogin].settings;
-    NSString *ip = [settings streamingServerIpForName:sender.stringValue];
+    NSString *ip = [settings streamingServerIpForName:sender.titleOfSelectedItem];
 
-    NSLog(@"setting value: %@", ip);
     [KartinaSession setSettingValue:ip forKey:@"stream_server"];
 }
 
-- (IBAction)timeshiftSelected:(NSComboBox *)sender {
-    [self.setSettingProgressIndicator startAnimation:self];
-    [self.setSettingProgressIndicator setHidden:NO];
-    NSLog(@"setting value: %@", sender.stringValue);
-
-    [KartinaSession setSettingValue:sender.stringValue forKey:@"timeshift"];
-}
-
-- (IBAction)timezoneSelected:(NSComboBox *)sender {
+- (IBAction)timeshiftSelected:(NSPopUpButton *)sender {
     [self.setSettingProgressIndicator startAnimation:self];
     [self.setSettingProgressIndicator setHidden:NO];
 
-    NSLog(@"setting value: %@", sender.stringValue);
-    [KartinaSession setSettingValue:sender.stringValue forKey:@"timezone"];
+    [KartinaSession setSettingValue:sender.titleOfSelectedItem forKey:@"timeshift"];
 }
 
-- (IBAction)bitrateSelected:(NSComboBox *)sender {
+- (IBAction)timezoneSelected:(NSPopUpButton *)sender {
+    [self.setSettingProgressIndicator startAnimation:self];
+    [self.setSettingProgressIndicator setHidden:NO];
+
+    [KartinaSession setSettingValue:sender.titleOfSelectedItem forKey:@"timezone"];
+}
+
+- (IBAction)bitrateSelected:(NSPopUpButton *)sender {
     [self.setSettingProgressIndicator startAnimation:self];
     [self.setSettingProgressIndicator setHidden:NO];
 
     Settings *settings = [KartinaSession currentLogin].settings;
-    NSString *bitrate = [settings bitrateValueForName:sender.stringValue];
+    NSString *bitrate = [settings bitrateValueForName:sender.titleOfSelectedItem];
 
-    NSLog(@"setting value: %@", bitrate);
     [KartinaSession setSettingValue:bitrate forKey:@"bitrate"];
 }
 
-- (IBAction)cachingSelected:(NSComboBox *)sender {
+- (IBAction)cachingSelected:(NSPopUpButton *)sender {
     [self.setSettingProgressIndicator startAnimation:self];
     [self.setSettingProgressIndicator setHidden:NO];
 
-    NSLog(@"setting value: %@", sender.stringValue);
-    [KartinaSession setSettingValue:sender.stringValue forKey:@"http_caching"];
+    [KartinaSession setSettingValue:sender.titleOfSelectedItem forKey:@"http_caching"];
 }
 
 - (IBAction)protectedCodeEntered:(NSSecureTextField *)sender {

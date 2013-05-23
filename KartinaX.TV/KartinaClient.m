@@ -233,8 +233,10 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
                                     [data enhanceShowInformation];
                                     [self.delegate onLoadEpgDataSuccess:data];
 
-                                    // put into cache
-                                    [[TMCache sharedCache] setObject:data forKey:unixTime.stringValue block:nil];
+                                    // put into cache only if items available
+                                    if (data.items.count > 0) {
+                                        [[TMCache sharedCache] setObject:data forKey:unixTime.stringValue block:nil];
+                                    }
                                 }
 
                                 if (error)

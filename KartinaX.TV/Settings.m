@@ -56,7 +56,8 @@
 }
 
 - (NSString *)currentTimeshift {
-    return self.timeshift[@"value"];
+    NSNumber *v = self.timeshift[@"value"];
+    return v.stringValue;
 }
 
 - (NSString *)currentStreamingServerIP {
@@ -77,7 +78,7 @@
 }
 
 - (NSString *)currentCaching {
-    return self.httpCaching[@"value"];
+    return ((NSNumber *) self.httpCaching[@"value"]).stringValue;
 }
 
 - (NSArray *)availableCachings {
