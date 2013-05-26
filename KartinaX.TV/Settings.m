@@ -43,8 +43,7 @@
 }
 
 - (NSString *)currentBitrate {
-    NSNumber *v = self.bitrate[@"value"];
-    return v.stringValue;
+    return [NSString stringWithFormat:@"%@", self.bitrate[@"value"]];
 }
 
 - (NSString *)currentTimeZone {
@@ -56,8 +55,7 @@
 }
 
 - (NSString *)currentTimeshift {
-    NSNumber *v = self.timeshift[@"value"];
-    return v.stringValue;
+    return [NSString stringWithFormat:@"%@", self.timeshift[@"value"]];
 }
 
 - (NSString *)currentStreamingServerIP {
@@ -78,7 +76,7 @@
 }
 
 - (NSString *)currentCaching {
-    return ((NSNumber *) self.httpCaching[@"value"]).stringValue;
+    return [NSString stringWithFormat:@"%@", self.httpCaching[@"value"]];
 }
 
 - (NSArray *)availableCachings {

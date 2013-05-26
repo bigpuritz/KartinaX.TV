@@ -55,7 +55,7 @@ NSString *const kSetSettingFailedNotification = @"kSetSettingFailedNotification"
 
 static KartinaSession *instance = nil;    // static instance variable
 
-/*
+
 + (KartinaSession *)sharedInstance {
     if (instance == nil) {
         instance = (KartinaSession *) [[super allocWithZone:NULL] init];
@@ -72,42 +72,6 @@ static KartinaSession *instance = nil;    // static instance variable
                                                      name:kPlaybackItemSelectedNotification
                                                    object:nil];
     }
-    return self;
-}
-*/
-
-+ (id)sharedInstance {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [[self actualAlloc] initWithNil:nil];
-    });
-    return instance;
-}
-
-+ (id)actualAlloc {
-    return [super alloc];
-}
-
-+ (id)alloc {
-    return [KartinaSession sharedInstance];
-}
-
-- (id)initWithNil:(id)theNil {
-    self = [super init];
-    if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(playbackItemSelected:)
-                                                     name:kPlaybackItemSelectedNotification
-                                                   object:nil];
-    }
-    return self;
-}
-
-- (id)init {
-    return self;
-}
-
-- (id)initWithCoder:(NSCoder *)decoder {
     return self;
 }
 
@@ -195,8 +159,6 @@ static KartinaSession *instance = nil;    // static instance variable
     KartinaClient *client = [KartinaClient sharedInstance];
     [client setSettingValue:value forKey:key];
 }
-
-
 
 
 - (NSMutableDictionary *)epg {
@@ -313,9 +275,7 @@ static KartinaSession *instance = nil;    // static instance variable
 
 - (void)sendErrorNotification:(NSError *)error name:(NSString *)name {
 
-    NSString *localizedDescription = error.localizedDescription;
-    NSString *localizedString = NSLocalizedString(error.localizedDescription, error.localizedDescription);
-
+    NSLog(@"Uncaught error: %@, %@", error, error.userInfo);
     [[NSNotificationCenter defaultCenter]
             postNotificationName:name
                           object:self
@@ -326,7 +286,7 @@ static KartinaSession *instance = nil;    // static instance variable
                                      defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:error.localizedDescription];
     [alert runModal];
 
-    NSLog(@"Uncaught error: %@, %@", error, error.userInfo);
+
 }
 
 

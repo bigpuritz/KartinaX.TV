@@ -76,8 +76,8 @@
         [self setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self setWantsLayer:YES];
 
-        NSRect playPauseRect = NSMakeRect(0, 0, 18, 18);
-        _playPauseButton = [self createButtonWithFrame:playPauseRect image:[self playImageWithSize:playPauseRect.size]];
+        NSRect playPauseRect = NSMakeRect(0, 0, 24, 24);
+        _playPauseButton = [self createButtonWithFrame:playPauseRect image:[self playImage]];
         [self addSubview:_playPauseButton];
 
         _timeSlider = [[JKSMoviePlayerSlider alloc] initWithFrame:NSMakeRect(0, 0, 235, 20)];
@@ -94,7 +94,7 @@
         [_timeLabel setStringValue:@"--:--:--"];
         [self addSubview:_timeLabel];
 
-        _epgButton = [self createButtonWithFrame:playPauseRect image:[self epgImageWithSize:playPauseRect.size]];
+        _epgButton = [self createButtonWithFrame:playPauseRect image:[self epgImage]];
         [_epgButton setToolTip:NSLocalizedString(@"EPG", @"EPG")];
         [self addSubview:_epgButton];
 
@@ -105,7 +105,7 @@
         [self addConstraintWithItem:_timeLabel toItem:_timeSlider attribute:NSLayoutAttributeCenterY];
         [self addConstraintWithItem:_epgButton toItem:_timeSlider attribute:NSLayoutAttributeCenterY];
 
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_playPauseButton(==18)]-[_timeSlider]-5-[_timeLabel]-10-[_epgButton(==18)]-|"
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_playPauseButton(==24)]-[_timeSlider]-5-[_timeLabel]-10-[_epgButton(==24)]-|"
                                                                      options:0
                                                                      metrics:nil views:NSDictionaryOfVariableBindings(_playPauseButton, _timeSlider, _timeLabel, _epgButton)]];
 
@@ -141,10 +141,10 @@
 - (void)setPlaying:(BOOL)flag {
     if (flag) {
         [self.playPauseButton setToolTip:NSLocalizedString(@"Pause", @"Pause")];
-        [self.playPauseButton setImage:[self pauseImageWithSize:[self.playPauseButton frame].size]];
+        [self.playPauseButton setImage:[self pauseImage]];
     } else {
         [self.playPauseButton setToolTip:NSLocalizedString(@"Play", @"Play")];
-        [self.playPauseButton setImage:[self playImageWithSize:[self.playPauseButton frame].size]];
+        [self.playPauseButton setImage:[self playImage]];
     }
 }
 
@@ -172,86 +172,18 @@
 }
 
 
-- (NSImage *)rewindImageWithSize:(NSSize)size {
-    NSImage *image = [NSImage imageWithSize:size flipped:YES drawingHandler:^BOOL(NSRect dstRect) {
-        NSBezierPath *path = [[NSBezierPath alloc] init];
-        [path moveToPoint:NSMakePoint(NSMinX(dstRect), NSMidY(dstRect))];
-        [path lineToPoint:NSMakePoint(NSMidX(dstRect), NSMinY(dstRect))];
-        [path lineToPoint:NSMakePoint(NSMidX(dstRect), NSMidY(dstRect))];
-        [path lineToPoint:NSMakePoint(NSMaxX(dstRect), NSMinY(dstRect))]; // tri2
-        [path lineToPoint:NSMakePoint(NSMaxX(dstRect), NSMaxY(dstRect))];
-        [path lineToPoint:NSMakePoint(NSMidX(dstRect), NSMidY(dstRect))];
-        [path lineToPoint:NSMakePoint(NSMidX(dstRect), NSMaxY(dstRect))]; // tri1 again
-        [path lineToPoint:NSMakePoint(NSMinX(dstRect), NSMidY(dstRect))];
-        [path closePath];
-        [[NSColor whiteColor] setFill];
-        [path fill];
-        return YES;
-    }];
-    [image setTemplate:YES];
-    return image;
+- (NSImage *)playImage {
+    return [NSImage imageNamed:@"PlayerPlay"];
 }
 
 
-- (NSImage *)playImageWithSize:(NSSize)size {
-    return [NSImage imageWithSize:size flipped:YES drawingHandler:^BOOL(NSRect dstRect) {
-        NSBezierPath *path = [[NSBezierPath alloc] init];
-        [path moveToPoint:NSZeroPoint];
-        [path lineToPoint:NSMakePoint(NSMaxX(dstRect), NSMidY(dstRect))];
-        [path lineToPoint:NSMakePoint(NSMinX(dstRect), NSMaxY(dstRect))];
-        [path closePath];
-        [[NSColor whiteColor] setFill];
-        [path fill];
-        return YES;
-    }];
+- (NSImage *)pauseImage {
+    return [NSImage imageNamed:@"PlayerPause"];
 }
 
 
-- (NSImage *)pauseImageWithSize:(NSSize)size {
-    NSImage *image = [NSImage imageWithSize:size flipped:YES drawingHandler:^BOOL(NSRect dstRect) {
-        [[NSColor whiteColor] setFill];
-        const CGFloat spacing = 2.0f;
-        NSRectFill(NSMakeRect(NSMinX(dstRect), NSMinY(dstRect), (NSWidth(dstRect) / 2) - spacing, NSHeight(dstRect)));
-        NSRectFill(NSMakeRect((NSWidth(dstRect) / 2) + spacing, NSMinY(dstRect), NSWidth(dstRect) - spacing, NSHeight(dstRect)));
-        return YES;
-    }];
-    [image setTemplate:YES];
-    return image;
-}
-
-
-- (NSImage *)epgImageWithSize:(NSSize)size {
-    NSImage *image = [NSImage imageWithSize:size flipped:YES drawingHandler:^BOOL(NSRect dstRect) {
-        [[NSColor whiteColor] setFill];
-        NSRectFill(NSMakeRect(NSMinX(dstRect) + 4, NSMinY(dstRect) + 2, NSWidth(dstRect) - 4, 1));
-        NSRectFill(NSMakeRect(NSMinX(dstRect) + 4, NSMinY(dstRect) + 6, NSWidth(dstRect) - 4, 1));
-        NSRectFill(NSMakeRect(NSMinX(dstRect) + 4, NSMinY(dstRect) + 10, NSWidth(dstRect) - 4, 1));
-        NSRectFill(NSMakeRect(NSMinX(dstRect) + 4, NSMinY(dstRect) + 14, NSWidth(dstRect) - 4, 1));
-        return YES;
-    }];
-    [image setTemplate:YES];
-    return image;
-}
-
-
-- (NSImage *)fastForwardImageWithSize:(NSSize)size {
-    NSImage *image = [NSImage imageWithSize:size flipped:YES drawingHandler:^BOOL(NSRect dstRect) {
-        NSBezierPath *path = [[NSBezierPath alloc] init];
-        [path moveToPoint:NSMakePoint(NSMinX(dstRect), NSMinY(dstRect))];
-        [path lineToPoint:NSMakePoint(NSMinX(dstRect), NSMaxY(dstRect))];
-        [path lineToPoint:NSMakePoint(NSMidX(dstRect), NSMidY(dstRect))];
-        [path lineToPoint:NSMakePoint(NSMidX(dstRect), NSMaxY(dstRect))]; // tri2
-        [path lineToPoint:NSMakePoint(NSMaxX(dstRect), NSMidY(dstRect))];
-        [path lineToPoint:NSMakePoint(NSMidX(dstRect), NSMinY(dstRect))];
-        [path lineToPoint:NSMakePoint(NSMidX(dstRect), NSMidY(dstRect))];
-        [path lineToPoint:NSMakePoint(NSMinX(dstRect), NSMinY(dstRect))];
-        [path closePath];
-        [[NSColor whiteColor] setFill];
-        [path fill];
-        return YES;
-    }];
-    [image setTemplate:YES];
-    return image;
+- (NSImage *)epgImage {
+    return [NSImage imageNamed:@"PlayerEPG"];
 }
 
 

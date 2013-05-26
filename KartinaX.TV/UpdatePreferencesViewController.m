@@ -15,6 +15,7 @@
 @implementation UpdatePreferencesViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+
     self = [super initWithNibName:@"UpdatePreferencesViewController" bundle:nibBundleOrNil];
     if (self) {
 

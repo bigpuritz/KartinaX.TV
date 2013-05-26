@@ -1,33 +1,36 @@
 PODS:
-  - AFNetworking (1.1.0)
-  - RestKit (0.20.0):
+  - AFNetworking (1.2.1)
+  - RestKit (0.20.1):
     - RestKit/Core
-  - RestKit/Core (0.20.0):
+  - RestKit/Core (0.20.1):
     - RestKit/CoreData
     - RestKit/Network
     - RestKit/ObjectMapping
-  - RestKit/CoreData (0.20.0)
-  - RestKit/Network (0.20.0):
-    - AFNetworking (= 1.1.0)
+  - RestKit/CoreData (0.20.1)
+  - RestKit/Network (0.20.1):
+    - AFNetworking (~> 1.2.0)
     - RestKit/ObjectMapping
     - RestKit/Support
     - SOCKit
-  - RestKit/ObjectMapping (0.20.0)
-  - RestKit/Support (0.20.0)
+  - RestKit/ObjectMapping (0.20.1)
+  - RestKit/Support (0.20.1):
+    - TransitionKit (= 1.1.0)
   - RHPreferences (1.0.0)
   - SOCKit (1.1)
-  - TMCache (1.1.1)
+  - TMCache (1.1.2)
+  - TransitionKit (1.1.0)
 
 DEPENDENCIES:
-  - RestKit (~> 0.20.0)
+  - RestKit (~> 0.20.1)
   - RHPreferences (~> 1.0.0)
-  - TMCache (~> 1.1.1)
+  - TMCache (~> 1.1.2)
 
 SPEC CHECKSUMS:
-  AFNetworking: 761a418233d280c1e0580bcb76ff9cb4c3073d17
-  RestKit: 580771664a14eaaa40bf53cf83584f12fc141930
+  AFNetworking: a44069e3c9c89867544f6639482f155c7e5f9b41
+  RestKit: ceca63bc91172098c710c469facd2560e8a59164
   RHPreferences: 0725b8c28519a1f4fe7002765dd6b4333b966fdd
   SOCKit: ed67aeeca4a697b63a933229e53f4670d5b9300f
-  TMCache: ac135fa840f08dbd9fc225d6f425817550f3288b
+  TMCache: 6003b743a5331388d3c862a0a60da1bef553a714
+  TransitionKit: 1624e84f252d5cd26900be28ccb73c69fbe63f8a
 
 COCOAPODS: 0.19.1

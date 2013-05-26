@@ -61,7 +61,7 @@
         [self constrainItem:_unplayableLabel toCenterOfItem:_view];
         [_unplayableLabel setHidden:YES];
 
-        [_view layer].backgroundColor = [[NSColor blackColor] CGColor];
+        //[_view layer].backgroundColor = [[NSColor blackColor] CGColor];
 
 
         NSTrackingArea *tracker = [[NSTrackingArea alloc] initWithRect:[_view bounds]

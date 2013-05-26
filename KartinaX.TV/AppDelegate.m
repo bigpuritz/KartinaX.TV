@@ -66,7 +66,8 @@
 
     // 3 start kartina session
     KartinaClient *client = [KartinaClient sharedInstance];
-    client.delegate = [KartinaSession sharedInstance];
+    KartinaSession *session = [KartinaSession sharedInstance];
+    client.delegate = session;
 
     // 4 login
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];

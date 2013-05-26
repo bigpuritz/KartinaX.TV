@@ -12,7 +12,6 @@
 #import "ChannelStream.h"
 #import <RestKit/RestKit.h>
 #import "KartinaClientDelegate.h"
-#import "Show.h"
 #import "EPGDataItem.h"
 #import "EPGData.h"
 #import "Utils.h"
@@ -51,9 +50,6 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
                 [RKResponseDescriptor responseDescriptorWithMapping:[ChannelStream objectMapping]
                                                         pathPattern:@"get_url"
                                                             keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-        RKResponseDescriptor *epgResponseDescriptor =
-                [RKResponseDescriptor responseDescriptorWithMapping:[Show objectMapping]
-                                                        pathPattern:@"epg" keyPath:@"epg" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
         RKResponseDescriptor *epg3ResponseDescriptor =
                 [RKResponseDescriptor responseDescriptorWithMapping:[EPGDataItem objectMapping]
                                                         pathPattern:@"epg3" keyPath:@"epg3" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
@@ -70,7 +66,6 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
         [objectManager addResponseDescriptor:loginResponseDescriptor];
         [objectManager addResponseDescriptor:channelListResponseDescriptor];
         [objectManager addResponseDescriptor:channelStreamResponseDescriptor];
-        [objectManager addResponseDescriptor:epgResponseDescriptor];
         [objectManager addResponseDescriptor:epg3ResponseDescriptor];
         [objectManager addResponseDescriptor:logoutResponseDescriptor];
         [objectManager addResponseDescriptor:setSettingResponseDescriptor];

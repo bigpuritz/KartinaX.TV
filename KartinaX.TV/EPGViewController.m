@@ -49,10 +49,13 @@
     self.datePicker.dateValue = [NSDate date];
     [self.datePickerCell sendActionOn:NSLeftMouseDown];
 
+
+
     //[self.epgBrowser setPath:@"/ Германия/ Das Erste/   20:15 Alles für meine Tochter"];
     //NSIndexPath *path = [NSIndexPath indexPathWithIndex:10];
     //path = [[path indexPathByAddingIndex:0] indexPathByAddingIndex:27];
     //[self.epgBrowser setSelectionIndexPath:path];
+
 }
 
 
@@ -64,7 +67,18 @@
     [self.epgBrowser setAction:@selector(_browserClicked:)];
     [self.epgBrowser setDoubleAction:@selector(_browserDblClicked:)];
     [self.epgBrowser setTarget:self];
-    [self.epgBrowser.enclosingScrollView setBackgroundColor:[NSColor clearColor]];
+
+    NSLog(@"enclosing: %@", self.epgBrowser.enclosingScrollView);
+
+    [self.epgBrowser setAutohidesScroller:YES];
+    [self.epgBrowser.enclosingScrollView setScrollerStyle:NSScrollerStyleOverlay];
+
+    NSArray *subviews = self.epgBrowser.subviews;
+
+    NSView *v = subviews[0];
+    NSScroller *scroller = v.subviews[1];
+    [scroller setScrollerStyle:NSScrollerStyleOverlay];
+
 
     [self.window setDelegate:self];
     [self startTimer];
@@ -325,6 +339,7 @@
     // We are drawing into a transparent browser on a HUD window. Make the cell draw the text white.
 
 }
+
 
 - (IBAction)epgDateSelected:(id)sender {
     [self.loadingIndicator startAnimation:self];
