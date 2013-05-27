@@ -22,4 +22,8 @@
 
 - (void)kartinaSessionMissing;
 
+- (void)geometryIncrease;
+
+- (void)geometryDecrease;
+
 @end

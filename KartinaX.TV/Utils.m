@@ -24,5 +24,9 @@
     return [NSNumber numberWithInt:(int) [[NSDate date] timeIntervalSince1970]];
 }
 
++ (NSString *)stringValue:(NSObject *)obj {
+    return [NSString stringWithFormat:@"%@", obj];
+}
+
 
 @end

@@ -31,12 +31,20 @@
 
     if ([theEvent modifierFlags] & (NSCommandKeyMask)) {
 
-        if (theEvent.keyCode == 35) /* P */ {
+        if (theEvent.keyCode == 35) /* Cmd + P */ {
             [self.playerLifecycleDelegate epgRequested];
         }
 
-        if (theEvent.keyCode == 3) /* F */ {
+        if (theEvent.keyCode == 3) /* Cmd + F */ {
             [self.playerLifecycleDelegate toggleFullScreenRequested];
+        }
+
+        if (theEvent.keyCode == 30) /* Cmd + + */ {
+            [self.playerLifecycleDelegate geometryIncrease];
+        }
+
+        if (theEvent.keyCode == 44) /* Cmd + - */ {
+            [self.playerLifecycleDelegate geometryDecrease];
         }
 
 

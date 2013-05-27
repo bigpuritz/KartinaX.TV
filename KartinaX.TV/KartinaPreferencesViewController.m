@@ -76,7 +76,7 @@
     [self.timeshiftComboBox removeAllItems];
     [self.bitrateComboBox removeAllItems];
     [self.cachingComboBox removeAllItems];
-    [self.timezoneComboBox setStringValue:@""];
+    [self.timezoneComboBox removeAllItems];
     [self.protectedChannelsCode setEnabled:NO];
     [self.serverComboBox setEnabled:NO];
     [self.timeshiftComboBox setEnabled:NO];
@@ -175,8 +175,8 @@
 
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
 
-    NSString *oldUsername = [standardUserDefaults stringForKey:@"username"];
-    NSString *oldPassword = [standardUserDefaults stringForKey:@"password"];
+//    NSString *oldUsername = [standardUserDefaults stringForKey:@"username"];
+//    NSString *oldPassword = [standardUserDefaults stringForKey:@"password"];
 
     NSString *newUsername = self.usernameField.stringValue;
     NSString *newPassword = self.passwordField.stringValue;
@@ -184,12 +184,12 @@
     [standardUserDefaults setObject:newUsername forKey:@"username"];
     [standardUserDefaults setObject:newPassword forKey:@"password"];
 
-    if (![oldUsername isEqualToString:newUsername] || ![oldPassword isEqualToString:newPassword]) {
+//    if (![oldUsername isEqualToString:newUsername] || ![oldPassword isEqualToString:newPassword]) {
         [self.loginProgressIndicator setHidden:NO];
         [self.loginProgressIndicator startAnimation:self];
         KartinaClient *client = [KartinaClient sharedInstance];
         [client loginWithUsername:newUsername AndPassword:newPassword];
-    }
+//    }
 
 }
 

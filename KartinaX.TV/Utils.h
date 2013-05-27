@@ -16,4 +16,6 @@
 
 + (NSNumber *)currentUnixTimestamp;
 
++ (NSString *)stringValue:(NSObject *)obj;
+
 @end

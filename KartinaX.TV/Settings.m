@@ -8,6 +8,7 @@
 
 #import "Settings.h"
 #import "RKObjectMapping.h"
+#import "Utils.h"
 
 @implementation Settings {
 
@@ -31,8 +32,9 @@
 
     NSArray *availableBitrates = self.bitrate[@"names"];
     for (NSDictionary *availableBitrate in availableBitrates) {
+        NSString *val = [Utils stringValue:availableBitrate[@"val"]];
         NSString *key = [@[availableBitrate[@"title"], @" (", availableBitrate[@"val"], @")"] componentsJoinedByString:@""];
-        [bitrates setObject:availableBitrate[@"val"] forKey:key];
+        [bitrates setObject:val forKey:key];
     }
 
     return bitrates;
@@ -43,30 +45,35 @@
 }
 
 - (NSString *)currentBitrate {
-    return [NSString stringWithFormat:@"%@", self.bitrate[@"value"]];
+    return [Utils stringValue:self.bitrate[@"value"]];
 }
 
 - (NSString *)currentTimeZone {
-    return self.timezone[@"value"];
+    return [Utils stringValue:self.timezone[@"value"]];
 }
 
 - (NSArray *)availableTimeshifts {
-    return self.timeshift[@"list"];
+    NSArray *timeshiftObjects = self.timeshift[@"list"];
+    NSMutableArray *available = [[NSMutableArray alloc] init];
+    for (NSObject *obj in timeshiftObjects) {
+        [available addObject:[Utils stringValue:obj]];
+    }
+    return available;
 }
 
 - (NSString *)currentTimeshift {
-    return [NSString stringWithFormat:@"%@", self.timeshift[@"value"]];
+    return [Utils stringValue:self.timeshift[@"value"]];
 }
 
 - (NSString *)currentStreamingServerIP {
-    return self.streamServer[@"value"];
+    return [Utils stringValue:self.streamServer[@"value"]];
 }
 
 - (NSDictionary *)availableStreamingServers {
     NSMutableDictionary *servers = [[NSMutableDictionary alloc] init];
     NSArray *availableServers = self.streamServer[@"list"];
     for (NSDictionary *serverInfo in availableServers) {
-        [servers setObject:serverInfo[@"ip"] forKey:serverInfo[@"descr"]];
+        [servers setObject:[Utils stringValue:serverInfo[@"ip"]] forKey:[Utils stringValue:serverInfo[@"descr"]]];
     }
     return servers;
 }
@@ -76,14 +83,14 @@
 }
 
 - (NSString *)currentCaching {
-    return [NSString stringWithFormat:@"%@", self.httpCaching[@"value"]];
+    return [Utils stringValue:self.httpCaching[@"value"]];
 }
 
 - (NSArray *)availableCachings {
     NSArray *cachingsAsNumbers = self.httpCaching[@"list"];
     NSMutableArray *cachings = [[NSMutableArray alloc] init];
-    for (NSNumber *c in cachingsAsNumbers) {
-        [cachings addObject:c.stringValue];
+    for (NSObject *obj in cachingsAsNumbers) {
+        [cachings addObject:[Utils stringValue:obj]];
     }
     return cachings;
 }

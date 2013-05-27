@@ -264,6 +264,27 @@
 }
 
 
+- (void)geometryIncrease {
+
+    //    self.player.scaleFactor += .1;
+    //
+    //    NSLog(@"factor: %f", self.player.scaleFactor);
+    // "1:1", "4:3", "16:9", "16:10", "185:100", "221:100", "235:100", "239:100", "5:4"
+    //    [self.player setVideoCropGeometry:"16:10"];
+    //    char * aspradio = (char *)[@"4:3" UTF8String];    //16:10
+    //    [self.player setVideoAspectRatio:aspradio];
+
+}
+
+- (void)geometryDecrease {
+    //    self.player.scaleFactor -= .1;
+    //    [self.player setVideoCropGeometry:"16:9"];
+    //    NSLog(@"factor: %f", self.player.scaleFactor);
+    //    char * aspradio = (char *)[@"16:9" UTF8String];    //16:10
+    //    [self.player setVideoAspectRatio:aspradio];
+}
+
+
 - (void)mouseEntered:(NSEvent *)event {
     [self.playerControlsController.window.animator setAlphaValue:1];
 }
