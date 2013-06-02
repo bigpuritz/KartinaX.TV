@@ -35,25 +35,25 @@
     return mapping;
 }
 
-- (Show *)currentShow {
-    return [[Show alloc] initWithName:self.epgProgname start:self.epgStart end:self.epgEnd];
-}
-
-
-- (BOOL)hasEPGForDate:(NSString *)date {
-    if (self.epg && [self.epg objectForKey:date] != nil) {
-        return YES;
-    }
-    return NO;
-}
-
-
-- (void)addEPGForDate:(NSString *)date epg:(NSArray *)shows {
-    if (!self.epg)
-        _epg = [[NSMutableDictionary alloc] init];
-
-    [((NSMutableDictionary *) _epg) setObject:shows forKey:date];
-}
+//- (Show *)currentShow {
+//    return [[Show alloc] initWithName:self.epgProgname start:self.epgStart end:self.epgEnd];
+//}
+//
+//
+//- (BOOL)hasEPGForDate:(NSString *)date {
+//    if (self.epg && [self.epg objectForKey:date] != nil) {
+//        return YES;
+//    }
+//    return NO;
+//}
+//
+//
+//- (void)addEPGForDate:(NSString *)date epg:(NSArray *)shows {
+//    if (!self.epg)
+//        _epg = [[NSMutableDictionary alloc] init];
+//
+//    [((NSMutableDictionary *) _epg) setObject:shows forKey:date];
+//}
 
 - (BOOL)hasArchive {
     if (self.isArchiveAvailable.intValue == 1)

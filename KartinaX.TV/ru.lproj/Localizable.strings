@@ -17,6 +17,7 @@
 "No EPG data found." = "Ошибка загрузки программы передач.";
 "KartinaSettings" = "Kartina.TV";
 "Preferences" = "Настройки";
+"GlobalSettings" = "Общие";
 "UpdateSettings" = "Обновления";
 "Protected channel requested." = "Ошибка загрузки защищенного канала. Проверьте код доступа к защищенным каналам в настройках.";
 "Unknown error" = "Неизвестная ошибка";
@@ -30,7 +31,8 @@
 "Error generate URL. Bad parameters" = "Ошибка генерации URL – заданы неверные параметры";
 "Need DAY parameter <DDMMYY>" = "Нужен параметр DAY";
 "Need Channel ID" = "Нужен ID канала";
-"Another client with your login was logged" = "Другой клиент вошел под Вашим логином";
+"Another client with your login was logged" = "Другой клиент/устройство использует ваши данные доступа к сервису Kartina.TV";
+"Another client with you login was logged" = "Другой клиент/устройство использует ваши данные доступа к сервису Kartina.TV";
 "Authentication error" = "Ошибка аутентификации";
 "Your packet was expired" = "Ваш пакет просрочен";
 "Unknown API function" = "Неизвестная функция API";
@@ -60,3 +62,6 @@
 "Current code is wrong" = "Неверный код для защищенных каналов";
 "Error" = "Ошибка";
 "not available" = "не доступно";
+"No mappable object representations were found at the key paths searched." = "Ошибка загрузки данных";
+"Best" = "Лучшие";
+"Last" = "Последние";

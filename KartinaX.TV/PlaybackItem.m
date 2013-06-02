@@ -12,17 +12,31 @@
 
 }
 - (id)initWithName:(NSString *)name start:(NSNumber *)start end:(NSNumber *)end  playbackStartPosition:(NSNumber *)position
-         channelId:(NSNumber *)channelId channelName:(NSString *)channelName  live:(BOOL)live protectedChannel:(BOOL)protectedChannel {
+           groupId:(NSNumber *)groupId groupName:(NSString *)groupName
+         channelId:(NSNumber *)channelId channelName:(NSString *)channelName
+  protectedChannel:(BOOL)protectedChannel {
     self = [super init];
     if (self) {
         self.name = name;
         self.start = start;
         self.end = end;
         self.playbackStartPosition = position;
+        self.groupId = groupId;
+        self.groupName = groupName;
         self.channelId = channelId;
         self.channelName = channelName;
-        self.live = live;
         self.protectedChannel = protectedChannel;
+        self.isVOD = NO;
+    }
+    return self;
+}
+
+- (id)initWithName:(NSString *)name vodId:(NSNumber *)vodId {
+    self = [super init];
+    if (self) {
+        self.name = name;
+        self.vodId = vodId;
+        self.isVOD = YES;
     }
     return self;
 }

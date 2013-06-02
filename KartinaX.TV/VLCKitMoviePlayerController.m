@@ -12,8 +12,9 @@
 #import "KartinaSession.h"
 #import "ChannelStream.h"
 #import "PlayerControlsController.h"
-#import "EPGViewController.h"
 #import "PlayerControlsView.h"
+#import "EPGWindowController.h"
+#import "VODStream.h"
 
 
 @interface VLCKitMoviePlayerController ()
@@ -25,7 +26,6 @@
 
 @implementation VLCKitMoviePlayerController {
 
-    NSProgressIndicator *_spinner;
     BOOL inFullScreen;
 }
 
@@ -40,29 +40,7 @@
 
         [_view setTranslatesAutoresizingMaskIntoConstraints:NO];
 
-        _spinner = [[NSProgressIndicator alloc] initWithFrame:NSZeroRect];
-        [_spinner setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [_spinner setStyle:NSProgressIndicatorSpinningStyle];
-        [_spinner startAnimation:self];
-        [_view addSubview:_spinner];
-        [self constrainItem:_spinner toCenterOfItem:_view];
-
-        _unplayableLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 150, 25)];
-        [_unplayableLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [_unplayableLabel setTextColor:[NSColor whiteColor]];
-        [_unplayableLabel setBackgroundColor:[NSColor blackColor]];
-        [_unplayableLabel setStringValue:@"Preview unavailable"];
-        [_unplayableLabel setAlignment:NSCenterTextAlignment];
-        [_unplayableLabel setBordered:NO];
-        [_view addSubview:_unplayableLabel];
-        [_view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[_unplayableLabel(==150)]"
-                                                                      options:0
-                                                                      metrics:nil views:NSDictionaryOfVariableBindings(_unplayableLabel)]];
-        [self constrainItem:_unplayableLabel toCenterOfItem:_view];
-        [_unplayableLabel setHidden:YES];
-
-        //[_view layer].backgroundColor = [[NSColor blackColor] CGColor];
-
+        // [_view layer].backgroundColor = [[NSColor blackColor] CGColor];
 
         NSTrackingArea *tracker = [[NSTrackingArea alloc] initWithRect:[_view bounds]
                                                                options:(NSTrackingActiveInKeyWindow |
@@ -79,12 +57,16 @@
         _player = [[VLCMediaPlayer alloc] initWithVideoView:_view];
         _player.delegate = self;
 
-        [self startPlayerWithStream:stream];
+        [self startPlayerWithChannelStream:stream];
 
 
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(channelStreamLoaded:)
                                                      name:kChannelStreamLoadSuccessfulNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(vodStreamLoaded:)
+                                                     name:kVODStreamLoadSuccessfulNotification
                                                    object:nil];
 
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -143,7 +125,7 @@
 }
 
 
-- (void)startPlayerWithStream:(ChannelStream *)stream {
+- (void)startPlayerWithChannelStream:(ChannelStream *)stream {
     if (stream != nil && stream.streamURL != nil) {
         VLCMedia *media = [VLCMedia mediaWithURL:[stream.streamURL copy]];
         media.delegate = self;
@@ -154,19 +136,37 @@
         [_player setMedia:media];
         [_player play];
     }
+}
 
+- (void)startPlayerWithVODStream:(VODStream *)stream {
+    if (stream != nil && stream.streamURL != nil) {
+        VLCMedia *media = [VLCMedia mediaWithURL:[stream.streamURL copy]];
+        media.delegate = self;
+        [media addOptions:@{
+                @"--no-http-reconnect" : [NSNull null],
+                @"--network-caching" : stream.networkCachingInMs
+        }];
+        [_player setMedia:media];
+        [_player play];
+    }
 }
 
 - (void)showEpg {
-    if (self.epgViewController == nil) {
-        self.epgViewController = [[EPGViewController alloc] init];
-        [self.epgViewController.window setFrameOrigin:NSMakePoint(
-                self.view.window.frame.origin.x + self.view.frame.size.width / 2 - self.epgViewController.window.frame.size.width / 2,
-                self.view.window.frame.origin.y + 50
-        )];
-    }
-    [_epgViewController show];
+//    if (self.epgViewController == nil) {
+//        self.epgViewController = [[EPGViewController alloc] init];
+//        [self.epgViewController.window setFrameOrigin:NSMakePoint(
+//                self.view.window.frame.origin.x + self.view.frame.size.width / 2 - self.epgViewController.window.frame.size.width / 2,
+//                self.view.window.frame.origin.y + 50
+//        )];
+//    }
+//    [_epgViewController show];
 
+
+    // new EPG window
+    if (_epgWindowController == nil ) {
+        _epgWindowController = [[EPGWindowController alloc] initWithWindowNibName:@"EPGWindowController"];
+    }
+    [_epgWindowController showWindow:self];
 
 }
 
@@ -230,7 +230,12 @@
 
 - (void)channelStreamLoaded:(NSNotification *)notification {
     ChannelStream *stream = [notification.userInfo objectForKey:@"channelStream"];
-    [self startPlayerWithStream:stream];
+    [self startPlayerWithChannelStream:stream];
+}
+
+- (void)vodStreamLoaded:(NSNotification *)notification {
+    VODStream *stream = [notification.userInfo objectForKey:@"vodStream"];
+    [self startPlayerWithVODStream:stream];
 }
 
 
@@ -322,7 +327,7 @@
 
 
 - (void)fadeOutPlayerControls {
-    if (inFullScreen && !self.epgViewController.window.isVisible) {
+    if (inFullScreen && !self.epgWindowController.window.isVisible) {
         [NSCursor hide];
     }
     [self.playerControlsController.window.animator setAlphaValue:0];

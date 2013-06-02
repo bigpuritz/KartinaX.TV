@@ -153,8 +153,10 @@
             Channel *channel = (Channel *) item;
             playbackItem = [[PlaybackItem alloc] initWithName:channel.epgProgname
                                                         start:channel.epgStart end:channel.epgEnd
-                                        playbackStartPosition:nil channelId:channel.id channelName:channel.name
-                                                         live:YES protectedChannel:channel.isProtected];
+                                        playbackStartPosition:nil
+                                                      groupId:channel.groupId groupName:channel.groupName
+                                                    channelId:channel.id channelName:channel.name
+                                             protectedChannel:channel.isProtected];
 
         } else if ([item isMemberOfClass:[Show class]]) {
 
@@ -166,15 +168,18 @@
 
                 playbackItem = [[PlaybackItem alloc] initWithName:show.name
                                                             start:show.start end:show.end
-                                            playbackStartPosition:nil channelId:channel.id channelName:channel.name
-                                                             live:YES protectedChannel:channel.isProtected];
+                                            playbackStartPosition:nil
+                                                          groupId:channel.groupId groupName:channel.groupName
+                                                        channelId:channel.id channelName:channel.name
+                                                 protectedChannel:channel.isProtected];
 
             } else if (channel.hasArchive && show.isInArchiveRange) {
 
                 playbackItem = [[PlaybackItem alloc] initWithName:show.name
                                                             start:show.start end:show.end playbackStartPosition:show.start
+                                                          groupId:channel.groupId groupName:channel.groupName
                                                         channelId:channel.id channelName:channel.name
-                                                             live:NO protectedChannel:channel.isProtected];
+                                                 protectedChannel:channel.isProtected];
 
             }
 

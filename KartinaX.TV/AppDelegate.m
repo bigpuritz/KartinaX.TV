@@ -13,6 +13,7 @@
 #import "PlayerControlsController.h"
 #import "KartinaPreferencesViewController.h"
 #import "UpdatePreferencesViewController.h"
+#import "GlobalPreferencesViewController.h"
 
 
 @interface AppDelegate () {
@@ -24,9 +25,6 @@
 
 @implementation AppDelegate
 
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize managedObjectContext = _managedObjectContext;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObject:@"ru"] forKey:@"AppleLanguages"];
@@ -77,6 +75,7 @@
 
     // 5. remove cache items older than 1 week
     [client trimEPGCache];
+
 }
 
 
@@ -90,8 +89,9 @@
     //if we have not created the window controller yet, create it now
     if (!_preferencesWindowController) {
         KartinaPreferencesViewController *kartinaPreferences = [[KartinaPreferencesViewController alloc] init];
+        GlobalPreferencesViewController *globalPreferences = [[GlobalPreferencesViewController alloc] init];
         UpdatePreferencesViewController *updatePreferences = [[UpdatePreferencesViewController alloc] init];
-        _preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:@[kartinaPreferences, updatePreferences]
+        _preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:@[kartinaPreferences, globalPreferences, updatePreferences]
                                                                                              andTitle:NSLocalizedString(@"Preferences", @"Preferences Window Title")];
     }
 
@@ -100,14 +100,30 @@
 
 - (IBAction)showEPG:(id)sender {
     [self.playerController showEpg];
+
 }
 
+- (BOOL)windowShouldClose:(id)sender {
+    return YES;
+}
+
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
+    return YES;
+}
+
+
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
+    NSLog(@"applicationShouldTerminate called....");
+    [self doLogout];
+    return NSTerminateNow;
+}
+
+
+- (void)doLogout {
     if ([KartinaSession isLoggedIn]) {
         KartinaClient *client = [KartinaClient sharedInstance];
         [client logout];
     }
-    return NSTerminateNow;
 }
 
 @end

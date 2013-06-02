@@ -9,6 +9,9 @@
 #import "Account.h"
 #import "Settings.h"
 #import "SetSetting.h"
+#import "VODList.h"
+#import "VODItemDetails.h"
+#import "VODStream.h"
 #import <RestKit/RestKit.h>
 
 

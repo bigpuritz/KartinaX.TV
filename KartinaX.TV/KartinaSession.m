@@ -16,12 +16,15 @@
 #import "PlaybackItem.h"
 #import "Show.h"
 #import "SetSetting.h"
+#import "VODList.h"
+#import "VODItemDetails.h"
+#import "VODStream.h"
 
 @interface KartinaSession ()
 
 @property(nonatomic, strong) Login *login;
 @property(nonatomic, strong) ChannelList *channelList;
-@property(nonatomic, strong) ChannelStream *currentStream;
+//@property(nonatomic, strong) ChannelStream *currentChannelStream;
 @property(nonatomic, strong) PlaybackItem *currentPlaybackItem;
 @property(nonatomic, strong) NSMutableDictionary *epg; // @todo should be externalized!
 
@@ -46,11 +49,20 @@ NSString *const kChannelStreamLoadFailedNotification = @"ChannelStreamLoadFailed
 
 NSString *const kPlaybackItemSelectedNotification = @"PlaybackItemSelectedNotification";
 
-NSString *const kEPGLoadSuccessfulNotification = @"kEPGLoadSuccessfulNotification";
+NSString *const kEPGLoadSuccessfulNotification = @"EPGLoadSuccessfulNotification";
 NSString *const kEPGLoadFailedNotification = @"EPGLoadFailedNotification";
 
-NSString *const kSetSettingSuccessfulNotification = @"kSetSettingSuccessfulNotification";
-NSString *const kSetSettingFailedNotification = @"kSetSettingFailedNotification";
+NSString *const kSetSettingSuccessfulNotification = @"SetSettingSuccessfulNotification";
+NSString *const kSetSettingFailedNotification = @"SetSettingFailedNotification";
+
+NSString *const kVODListLoadSuccessfulNotification = @"VODListLoadSuccessfulNotification";
+NSString *const kVODListLoadFailedNotification = @"VODListLoadFailedNotification";
+
+NSString *const kVODItemDetailsLoadSuccessfulNotification = @"VODItemDetailsLoadSuccessfulNotification";
+NSString *const kVODItemDetailsLoadFailedNotification = @"VODItemDetailsLoadFailedNotification";
+
+NSString *const kVODStreamLoadSuccessfulNotification = @"VODStreamLoadSuccessfulNotification";
+NSString *const kVODStreamLoadFailedNotification = @"VODStreamLoadFailedNotification";
 
 
 static KartinaSession *instance = nil;    // static instance variable
@@ -86,9 +98,17 @@ static KartinaSession *instance = nil;    // static instance variable
 
     // load stream corresponding to the selected playback item
     KartinaClient *client = [KartinaClient sharedInstance];
-    [client loadChannelStream:self.currentPlaybackItem.channelId
-                          gmt:self.currentPlaybackItem.playbackStartPosition
-             protectedChannel:self.currentPlaybackItem.protectedChannel];
+
+    if (self.currentPlaybackItem.isVOD == YES) {
+
+        [client loadVODStream:self.currentPlaybackItem.vodId];
+
+    } else {
+
+        [client loadChannelStream:self.currentPlaybackItem.channelId
+                              gmt:self.currentPlaybackItem.playbackStartPosition
+                 protectedChannel:self.currentPlaybackItem.protectedChannel];
+    }
 }
 
 + (Login *)currentLogin {
@@ -99,9 +119,9 @@ static KartinaSession *instance = nil;    // static instance variable
     return [KartinaSession sharedInstance].channelList;
 }
 
-+ (ChannelStream *)currentChannelStream {
-    return [KartinaSession sharedInstance].currentStream;
-}
+//+ (ChannelStream *)currentChannelStream {
+//    return [KartinaSession sharedInstance].currentChannelStream;
+//}
 
 + (PlaybackItem *)currentPlaybackItem {
     return [KartinaSession sharedInstance].currentPlaybackItem;
@@ -118,9 +138,11 @@ static KartinaSession *instance = nil;    // static instance variable
         PlaybackItem *nextPlaybackItem = [[PlaybackItem alloc] initWithName:nextShow.name
                                                                       start:nextShow.start end:nextShow.end
                                                       playbackStartPosition:nextShow.start
+                                                                    groupId:session.currentPlaybackItem.groupId
+                                                                  groupName:session.currentPlaybackItem.groupName
                                                                   channelId:session.currentPlaybackItem.channelId
                                                                 channelName:session.currentPlaybackItem.channelName
-                                                                       live:session.currentPlaybackItem.live
+//                                                                       live:session.currentPlaybackItem.live
                                                            protectedChannel:session.currentPlaybackItem.protectedChannel];
         session.currentPlaybackItem = nextPlaybackItem;
         return session.currentPlaybackItem;
@@ -207,8 +229,10 @@ static KartinaSession *instance = nil;    // static instance variable
 
         PlaybackItem *item = [[PlaybackItem alloc] initWithName:channel.epgProgname
                                                           start:channel.epgStart end:channel.epgEnd
-                                          playbackStartPosition:nil channelId:channel.id channelName:channel.name
-                                                           live:YES protectedChannel:channel.isProtected];
+                                          playbackStartPosition:nil
+                                                        groupId:channel.groupId groupName:channel.groupName
+                                                      channelId:channel.id channelName:channel.name
+                                               protectedChannel:channel.isProtected];
 
         [[NSNotificationCenter defaultCenter]
                 postNotificationName:kPlaybackItemSelectedNotification
@@ -225,7 +249,7 @@ static KartinaSession *instance = nil;    // static instance variable
 }
 
 - (void)onLoadChannelStreamSuccess:(ChannelStream *)stream {
-    self.currentStream = stream;
+//    self.currentChannelStream = stream;
 
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     [standardUserDefaults setInteger:stream.channelId.intValue forKey:@"lastPlayedChannelId"];
@@ -262,6 +286,34 @@ static KartinaSession *instance = nil;    // static instance variable
 
 - (void)onSetSettingFail:(NSError *)error {
     [self sendErrorNotification:error name:kSetSettingFailedNotification];
+}
+
+
+- (void)onLoadVODListSuccess:(VODList *)list {
+    [self sendNotification:kVODListLoadSuccessfulNotification userInfo:@{@"vodList" : list}];
+}
+
+- (void)onLoadVODListFail:(NSError *)error {
+    [self sendErrorNotification:error name:kVODListLoadFailedNotification];
+}
+
+- (void)onLoadVODItemDetailsSuccess:(VODItemDetails *)item {
+    [self sendNotification:kVODItemDetailsLoadSuccessfulNotification userInfo:@{@"vodItemDetails" : item}];
+}
+
+- (void)onLoadVODItemDetailsFail:(NSError *)error {
+    [self sendErrorNotification:error name:kVODItemDetailsLoadFailedNotification];
+}
+
+- (void)onVODStreamSuccess:(VODStream *)stream {
+//    self.currentChannelStream = stream;
+
+    [self sendNotification:kVODStreamLoadSuccessfulNotification
+                  userInfo:@{@"vodStream" : stream}];
+}
+
+- (void)onVODStreamFail:(NSError *)error {
+    [self sendErrorNotification:error name:kVODStreamLoadFailedNotification];
 }
 
 

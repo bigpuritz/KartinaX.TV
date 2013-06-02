@@ -25,14 +25,17 @@
 @property(copy, nonatomic) NSNumber *epgEnd;
 @property(copy, nonatomic) NSNumber *hide;
 
-@property(strong, nonatomic, readonly) NSDictionary *epg; // NSString -> array of Show's
+//@property(strong, nonatomic, readonly) NSDictionary *epg; // NSString -> array of Show's
 
+@property(nonatomic, strong) NSNumber *groupId;
+@property(nonatomic, copy) NSString *groupName;
 
-- (Show *)currentShow;
+//- (Show *)currentShow;
+//
+//- (BOOL)hasEPGForDate:(NSString *)date;
+//
+//- (void)addEPGForDate:(NSString *)date epg:(NSArray *)shows;
 
-- (BOOL)hasEPGForDate:(NSString *)date;
-
-- (void)addEPGForDate:(NSString *)date epg:(NSArray *)shows;
 
 - (BOOL)hasArchive;
 

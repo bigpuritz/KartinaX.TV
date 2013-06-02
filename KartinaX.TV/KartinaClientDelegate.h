@@ -13,6 +13,9 @@
 @class ChannelStream;
 @class EPGData;
 @class SetSetting;
+@class VODList;
+@class VODItemDetails;
+@class VODStream;
 
 @protocol KartinaClientDelegate <NSObject>
 
@@ -42,4 +45,15 @@
 
 - (void)onSetSettingFail:(NSError *)error;
 
+- (void)onLoadVODListSuccess:(VODList *)list;
+
+- (void)onLoadVODListFail:(NSError *)error;
+
+- (void)onLoadVODItemDetailsSuccess:(VODItemDetails *)item;
+
+- (void)onLoadVODItemDetailsFail:(NSError *)error;
+
+- (void)onVODStreamSuccess:(VODStream *)stream;
+
+- (void)onVODStreamFail:(NSError *)error;
 @end

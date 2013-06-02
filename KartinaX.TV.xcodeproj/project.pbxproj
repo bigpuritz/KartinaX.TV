@@ -25,6 +25,16 @@
 		4D4283E716EBF8FA0058BE42 /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4283E616EBF8FA0058BE42 /* Channel.m */; };
 		4D4283EB16EC86250058BE42 /* EPGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4283E916EC86250058BE42 /* EPGViewController.m */; };
 		4D663FAC171C754F008FB3AD /* EPGDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D663FAB171C754F008FB3AD /* EPGDataItem.m */; };
+		4D71AD64175512EF009ADC34 /* EPGWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D71AD62175512EF009ADC34 /* EPGWindowController.m */; };
+		4D71AD6D17553B3E009ADC34 /* INAppStoreWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D71AD6A17553B3E009ADC34 /* INAppStoreWindow.m */; };
+		4D71AD6E17553B3E009ADC34 /* INWindowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D71AD6C17553B3E009ADC34 /* INWindowButton.m */; };
+		4D71AD6F17553CF9009ADC34 /* EPGWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D71AD7117553CF9009ADC34 /* EPGWindowController.xib */; };
+		4D9804171757714F00165B4C /* VLCKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D9804161757714F00165B4C /* VLCKit.framework */; };
+		4D9804181757716900165B4C /* VLCKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4D9804161757714F00165B4C /* VLCKit.framework */; };
+		4D98041C17578FC200165B4C /* EPGProgrammViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D98041A17578FC200165B4C /* EPGProgrammViewController.m */; };
+		4D9804211757900100165B4C /* EPGVideothekViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D98041F1757900100165B4C /* EPGVideothekViewController.m */; };
+		4D9804221757900100165B4C /* EPGVideothekViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D9804201757900100165B4C /* EPGVideothekViewController.xib */; };
+		4D9804231757A52B00165B4C /* EPGProgrammViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D9804251757A52B00165B4C /* EPGProgrammViewController.xib */; };
 		4DBD0771172DA51700CE96DD /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 4DBD0770172DA51700CE96DD /* dsa_pub.pem */; };
 		4DBD0775172ED2F300CE96DD /* UpdatePreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD0773172ED2F300CE96DD /* UpdatePreferencesViewController.m */; };
 		4DBD0778172ED55B00CE96DD /* UpdateSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DBD0777172ED55B00CE96DD /* UpdateSettings.png */; };
@@ -33,9 +43,15 @@
 		4DBD078517355FD300CE96DD /* PlayerControlsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DBD078717355FD300CE96DD /* PlayerControlsController.xib */; };
 		4DBF901D172B388F00F4214B /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4DBF901C172B388F00F4214B /* todo.txt */; };
 		4DBF901F172BF05700F4214B /* App.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 4DBF901E172BF05700F4214B /* App.iconset */; };
+		4DD5956F175A59A00020FE1C /* ShowPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DD5956E175A59A00020FE1C /* ShowPreview.xib */; };
+		4DD59571175A645D0020FE1C /* TVShow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DD59570175A645D0020FE1C /* TVShow.png */; };
+		4DD59573175A748D0020FE1C /* TVShowGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DD59572175A748D0020FE1C /* TVShowGreen.png */; };
+		4DD59575175A7A6D0020FE1C /* GlobalSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DD59574175A7A6D0020FE1C /* GlobalSettings.png */; };
+		4DD59579175A7AD80020FE1C /* GlobalPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD59577175A7AD80020FE1C /* GlobalPreferencesViewController.m */; };
+		4DD5957A175A7AD80020FE1C /* GlobalPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DD59578175A7AD80020FE1C /* GlobalPreferencesViewController.xib */; };
+		4DD59587175B4CFF0020FE1C /* AGScopeBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD59586175B4CFF0020FE1C /* AGScopeBar.m */; };
+		4DD59589175BD5F70020FE1C /* VODItemDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DD59588175BD5F70020FE1C /* VODItemDetails.xib */; };
 		4DF2404F174BE93D0029241C /* KartinaSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2404E174BE93D0029241C /* KartinaSettings.png */; };
-		4DF24052174D1BA00029241C /* VLCKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF24051174D1BA00029241C /* VLCKit.framework */; };
-		4DF24053174D1BA60029241C /* VLCKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4DF24051174D1BA00029241C /* VLCKit.framework */; };
 		4DF2405417525E050029241C /* KartinaPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2405617525E050029241C /* KartinaPreferencesViewController.xib */; };
 		4DF2405E17526C320029241C /* PlayerPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2405D17526C320029241C /* PlayerPlay.png */; };
 		4DF24060175279100029241C /* PlayerPause.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2405F175279100029241C /* PlayerPause.png */; };
@@ -48,12 +64,14 @@
 		D9E0A477292D186A764FA139 /* ChannelGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E2215F968F7F3175DB347B /* ChannelGroup.m */; };
 		D9E0D1080EE95E1381CB8D65 /* PlayerControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E66A6A9108A6B9B78F5CFC /* PlayerControlsView.m */; };
 		D9E1308AD0526414151F91C6 /* VLCKitMoviePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EA8DF31702155DC682E750 /* VLCKitMoviePlayerController.m */; };
+		D9E1D0BD0B0F941FD4677975 /* VODList.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E90F6AA75BD4A50C76128C /* VODList.m */; };
 		D9E2BBE4BE24FEF922657BD1 /* KartinaSession.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E5EA6163B8DE1DE25C87E7 /* KartinaSession.m */; };
 		D9E2D5CD30246599E8568985 /* ChannelStream.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EF0762809D1B888672531C /* ChannelStream.m */; };
 		D9E311B762A7107D2FF1A2B1 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EC8DE0CD189D9787A851D3 /* Utils.m */; };
 		D9E38A449AFFA276D4B69253 /* SetSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = D9ED0A931CC6D167DC80DEF2 /* SetSetting.m */; };
 		D9E519F92B01534A127996B6 /* ChannelList.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E4C73D811A5936AC45AE74 /* ChannelList.m */; };
 		D9E551FD52565FF409DC6C05 /* PlaybackItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EE2DB05CD784700CC1AA87 /* PlaybackItem.m */; };
+		D9E5D8FCBA430FFDB7E62D5A /* VODItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EFFF688B56240D8D4FCE6B /* VODItem.m */; };
 		D9E629E840710289FF00741D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EF2F1CE29B70EA81A80929 /* SystemConfiguration.framework */; };
 		D9E898D06031E83BD11D6A05 /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EA7BBD3AD2BA5EB8A234E0 /* Show.m */; };
 		D9E959A416ACEB28DFA5AE1C /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E844CF5ED51726982B16DC /* Account.m */; };
@@ -61,6 +79,8 @@
 		D9EAE9AA47618CCCECF9D6E6 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E0E5126CB86B172811DC97 /* Login.m */; };
 		D9EAEC4EDABDE4F90BA4E03F /* KartinaClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EA9A3FC319061E7FB698CE /* KartinaClient.m */; };
 		D9ECD15A471FB7618891A6DC /* RKKartinaRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E0E0A1A89470471D033217 /* RKKartinaRequest.m */; };
+		D9ED1D35A590B20B6CEE56EE /* VODStream.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E0EEF1D033DA2EC457ED75 /* VODStream.m */; };
+		D9ED446118DED4BFE88F973C /* VODItemDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E62EFD57504690E47F9F4A /* VODItemDetails.m */; };
 		D9EDB998483A247CCEC71570 /* Logout.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E28D571C9DBB62F6CC66AF /* Logout.m */; };
 /* End PBXBuildFile section */
 
@@ -72,7 +92,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				4D20395B172B066900F9D0C7 /* Sparkle.framework in CopyFiles */,
-				4DF24053174D1BA60029241C /* VLCKit.framework in CopyFiles */,
+				4D9804181757716900165B4C /* VLCKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +129,20 @@
 		4D4283E916EC86250058BE42 /* EPGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPGViewController.m; sourceTree = "<group>"; };
 		4D663FAA171C754F008FB3AD /* EPGDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPGDataItem.h; sourceTree = "<group>"; };
 		4D663FAB171C754F008FB3AD /* EPGDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPGDataItem.m; sourceTree = "<group>"; };
+		4D71AD61175512EF009ADC34 /* EPGWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPGWindowController.h; sourceTree = "<group>"; };
+		4D71AD62175512EF009ADC34 /* EPGWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPGWindowController.m; sourceTree = "<group>"; };
+		4D71AD6917553B3E009ADC34 /* INAppStoreWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INAppStoreWindow.h; sourceTree = "<group>"; };
+		4D71AD6A17553B3E009ADC34 /* INAppStoreWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INAppStoreWindow.m; sourceTree = "<group>"; };
+		4D71AD6B17553B3E009ADC34 /* INWindowButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INWindowButton.h; sourceTree = "<group>"; };
+		4D71AD6C17553B3E009ADC34 /* INWindowButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INWindowButton.m; sourceTree = "<group>"; };
+		4D71AD7017553CF9009ADC34 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/EPGWindowController.xib; sourceTree = "<group>"; };
+		4D9804161757714F00165B4C /* VLCKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VLCKit.framework; sourceTree = "<group>"; };
+		4D98041917578FC200165B4C /* EPGProgrammViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPGProgrammViewController.h; sourceTree = "<group>"; };
+		4D98041A17578FC200165B4C /* EPGProgrammViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPGProgrammViewController.m; sourceTree = "<group>"; };
+		4D98041E1757900100165B4C /* EPGVideothekViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPGVideothekViewController.h; sourceTree = "<group>"; };
+		4D98041F1757900100165B4C /* EPGVideothekViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPGVideothekViewController.m; sourceTree = "<group>"; };
+		4D9804201757900100165B4C /* EPGVideothekViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EPGVideothekViewController.xib; sourceTree = "<group>"; };
+		4D9804241757A52B00165B4C /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/EPGProgrammViewController.xib; sourceTree = "<group>"; };
 		4DBD0770172DA51700CE96DD /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		4DBD0772172ED2F300CE96DD /* UpdatePreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatePreferencesViewController.h; sourceTree = "<group>"; };
 		4DBD0773172ED2F300CE96DD /* UpdatePreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatePreferencesViewController.m; sourceTree = "<group>"; };
@@ -121,8 +155,17 @@
 		4DBD078617355FD300CE96DD /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/PlayerControlsController.xib; sourceTree = "<group>"; };
 		4DBF901C172B388F00F4214B /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
 		4DBF901E172BF05700F4214B /* App.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = App.iconset; sourceTree = "<group>"; };
+		4DD5956E175A59A00020FE1C /* ShowPreview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowPreview.xib; sourceTree = "<group>"; };
+		4DD59570175A645D0020FE1C /* TVShow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVShow.png; sourceTree = "<group>"; };
+		4DD59572175A748D0020FE1C /* TVShowGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVShowGreen.png; sourceTree = "<group>"; };
+		4DD59574175A7A6D0020FE1C /* GlobalSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GlobalSettings.png; sourceTree = "<group>"; };
+		4DD59576175A7AD80020FE1C /* GlobalPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalPreferencesViewController.h; sourceTree = "<group>"; };
+		4DD59577175A7AD80020FE1C /* GlobalPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalPreferencesViewController.m; sourceTree = "<group>"; };
+		4DD59578175A7AD80020FE1C /* GlobalPreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GlobalPreferencesViewController.xib; sourceTree = "<group>"; };
+		4DD59585175B4CFF0020FE1C /* AGScopeBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGScopeBar.h; sourceTree = "<group>"; };
+		4DD59586175B4CFF0020FE1C /* AGScopeBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGScopeBar.m; sourceTree = "<group>"; };
+		4DD59588175BD5F70020FE1C /* VODItemDetails.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VODItemDetails.xib; sourceTree = "<group>"; };
 		4DF2404E174BE93D0029241C /* KartinaSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KartinaSettings.png; sourceTree = "<group>"; };
-		4DF24051174D1BA00029241C /* VLCKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VLCKit.framework; sourceTree = "<group>"; };
 		4DF2405517525E050029241C /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/KartinaPreferencesViewController.xib; sourceTree = "<group>"; };
 		4DF2405D17526C320029241C /* PlayerPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayerPlay.png; sourceTree = "<group>"; };
 		4DF2405F175279100029241C /* PlayerPause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayerPause.png; sourceTree = "<group>"; };
@@ -134,23 +177,29 @@
 		D9E069E8AD67C10F1C147D74 /* Logout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logout.h; sourceTree = "<group>"; };
 		D9E0E0A1A89470471D033217 /* RKKartinaRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKKartinaRequest.m; sourceTree = "<group>"; };
 		D9E0E5126CB86B172811DC97 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
+		D9E0EEF1D033DA2EC457ED75 /* VODStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VODStream.m; sourceTree = "<group>"; };
 		D9E133AA1B807CBBFF5A62E5 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		D9E1CFD8CB4D9C7F1A839EF8 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		D9E20B63B5014598D377BE09 /* ChannelGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelGroup.h; sourceTree = "<group>"; };
 		D9E2215F968F7F3175DB347B /* ChannelGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelGroup.m; sourceTree = "<group>"; };
 		D9E230E2D6F882440E92BD9D /* KartinaClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KartinaClient.h; sourceTree = "<group>"; };
 		D9E28D571C9DBB62F6CC66AF /* Logout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logout.m; sourceTree = "<group>"; };
+		D9E31C544A7CB4964DB6158E /* VODStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VODStream.h; sourceTree = "<group>"; };
 		D9E3519337F3475366815DFB /* RKObjectMappingAware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKObjectMappingAware.h; sourceTree = "<group>"; };
 		D9E4C73D811A5936AC45AE74 /* ChannelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelList.m; sourceTree = "<group>"; };
 		D9E5C18F3748D6CEEF07FB65 /* RKKartinaRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKKartinaRequest.h; sourceTree = "<group>"; };
 		D9E5EA6163B8DE1DE25C87E7 /* KartinaSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KartinaSession.m; sourceTree = "<group>"; };
 		D9E62D4E253909E41E9F1D60 /* KartinaSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KartinaSession.h; sourceTree = "<group>"; };
+		D9E62EFD57504690E47F9F4A /* VODItemDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VODItemDetails.m; sourceTree = "<group>"; };
+		D9E64F2FB2FBB71B0648BC54 /* VODItemDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VODItemDetails.h; sourceTree = "<group>"; };
 		D9E66A6A9108A6B9B78F5CFC /* PlayerControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerControlsView.m; sourceTree = "<group>"; };
+		D9E66BC22815C205EB8858A4 /* VODItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VODItem.h; sourceTree = "<group>"; };
 		D9E6CA7FFE11E174D9CF1174 /* PlaybackItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybackItem.h; sourceTree = "<group>"; };
 		D9E74FE52D18CB84206E7321 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
 		D9E81203BDE9F48EAD422376 /* EPGData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPGData.h; sourceTree = "<group>"; };
 		D9E812D61BCAC2EF4F3CB19A /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		D9E844CF5ED51726982B16DC /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		D9E90F6AA75BD4A50C76128C /* VODList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VODList.m; sourceTree = "<group>"; };
 		D9E93876EB417C90657F8AFA /* EPGData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPGData.m; sourceTree = "<group>"; };
 		D9E96BD8F2C2F4D50E21A5C6 /* SetSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSetting.h; sourceTree = "<group>"; };
 		D9E9D57437480A2B34323DC3 /* ChannelStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelStream.h; sourceTree = "<group>"; };
@@ -161,6 +210,7 @@
 		D9EB7EDF75C553B1BF4A08A8 /* x_channel_list.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = x_channel_list.json; sourceTree = "<group>"; };
 		D9EBC46643E87092468E9E24 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		D9EC8DE0CD189D9787A851D3 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		D9ECD1ABA15DB18A6DBEFCFA /* VODList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VODList.h; sourceTree = "<group>"; };
 		D9ECE859B5858F42FE95BB19 /* ChannelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelList.h; sourceTree = "<group>"; };
 		D9ECF66703FF10F2FFF657CD /* VLCKitMoviePlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLCKitMoviePlayerController.h; sourceTree = "<group>"; };
 		D9ED0A931CC6D167DC80DEF2 /* SetSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSetting.m; sourceTree = "<group>"; };
@@ -172,6 +222,7 @@
 		D9EF4B1E20DB89C791236A4A /* KartinaClientDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KartinaClientDelegate.h; sourceTree = "<group>"; };
 		D9EFC7C7B111B106A902F8FA /* epg3.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = epg3.json; sourceTree = "<group>"; };
 		D9EFF09C08632E1B4357ADB7 /* PlayerControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerControlsView.h; sourceTree = "<group>"; };
+		D9EFFF688B56240D8D4FCE6B /* VODItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VODItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,8 +235,8 @@
 				4D4283AC16EB5BBE0058BE42 /* Cocoa.framework in Frameworks */,
 				48F8C9C78E0445978FDC3136 /* libPods.a in Frameworks */,
 				4D20395A172B064B00F9D0C7 /* Sparkle.framework in Frameworks */,
-				4DF24052174D1BA00029241C /* VLCKit.framework in Frameworks */,
 				D9E629E840710289FF00741D /* SystemConfiguration.framework in Frameworks */,
+				4D9804171757714F00165B4C /* VLCKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +246,9 @@
 		4D203958172AD1F500F9D0C7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4DD59574175A7A6D0020FE1C /* GlobalSettings.png */,
+				4DD59572175A748D0020FE1C /* TVShowGreen.png */,
+				4DD59570175A645D0020FE1C /* TVShow.png */,
 				4DF24063175285000029241C /* PlayerEPG@2x.png */,
 				4DF24064175285000029241C /* PlayerPause@2x.png */,
 				4DF24065175285000029241C /* PlayerPlay@2x.png */,
@@ -241,7 +295,7 @@
 		4D4283AD16EB5BBE0058BE42 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4DF24051174D1BA00029241C /* VLCKit.framework */,
+				4D9804161757714F00165B4C /* VLCKit.framework */,
 				4D203959172B064B00F9D0C7 /* Sparkle.framework */,
 				4D4283AE16EB5BBE0058BE42 /* AppKit.framework */,
 				4D4283AF16EB5BBE0058BE42 /* CoreData.framework */,
@@ -259,11 +313,12 @@
 				4D4283E116EBEFEC0058BE42 /* Model */,
 				4D4283D116EB5C8A0058BE42 /* View */,
 				4D4283D016EB5C830058BE42 /* Controller */,
+				4DD59581175B4AAF0020FE1C /* AGScopeBar */,
 				4D4283CF16EB5C7C0058BE42 /* Xib */,
+				4D4283B216EB5BBE0058BE42 /* Supporting Files */,
 				4D4283BD16EB5BBE0058BE42 /* AppDelegate.h */,
 				4D4283BE16EB5BBE0058BE42 /* AppDelegate.m */,
 				4D4283C316EB5BBF0058BE42 /* KartinaX_TV.xcdatamodeld */,
-				4D4283B216EB5BBE0058BE42 /* Supporting Files */,
 				4DF54E2B173FAC240076CE95 /* Localizable.strings */,
 				D9E230E2D6F882440E92BD9D /* KartinaClient.h */,
 				D9EA9A3FC319061E7FB698CE /* KartinaClient.m */,
@@ -292,11 +347,17 @@
 		4D4283CF16EB5C7C0058BE42 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
+				4DD59578175A7AD80020FE1C /* GlobalPreferencesViewController.xib */,
+				4D71AD7117553CF9009ADC34 /* EPGWindowController.xib */,
+				4D9804251757A52B00165B4C /* EPGProgrammViewController.xib */,
+				4D9804201757900100165B4C /* EPGVideothekViewController.xib */,
 				4DBD078117355FAE00CE96DD /* UpdatePreferencesViewController.xib */,
 				4DF2405617525E050029241C /* KartinaPreferencesViewController.xib */,
 				4DBD078717355FD300CE96DD /* PlayerControlsController.xib */,
 				4DBD078417355FC400CE96DD /* EPGViewController.xib */,
 				4D4283C016EB5BBE0058BE42 /* MainMenu.xib */,
+				4DD5956E175A59A00020FE1C /* ShowPreview.xib */,
+				4DD59588175BD5F70020FE1C /* VODItemDetails.xib */,
 			);
 			name = Xib;
 			sourceTree = "<group>";
@@ -315,6 +376,14 @@
 				4DBD0772172ED2F300CE96DD /* UpdatePreferencesViewController.h */,
 				4DBD0773172ED2F300CE96DD /* UpdatePreferencesViewController.m */,
 				D9EEA0BA237AA78813A33571 /* PlayerLifecycleDelegate.h */,
+				4D71AD61175512EF009ADC34 /* EPGWindowController.h */,
+				4D71AD62175512EF009ADC34 /* EPGWindowController.m */,
+				4D98041917578FC200165B4C /* EPGProgrammViewController.h */,
+				4D98041A17578FC200165B4C /* EPGProgrammViewController.m */,
+				4D98041E1757900100165B4C /* EPGVideothekViewController.h */,
+				4D98041F1757900100165B4C /* EPGVideothekViewController.m */,
+				4DD59576175A7AD80020FE1C /* GlobalPreferencesViewController.h */,
+				4DD59577175A7AD80020FE1C /* GlobalPreferencesViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -322,6 +391,10 @@
 		4D4283D116EB5C8A0058BE42 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4D71AD6917553B3E009ADC34 /* INAppStoreWindow.h */,
+				4D71AD6A17553B3E009ADC34 /* INAppStoreWindow.m */,
+				4D71AD6B17553B3E009ADC34 /* INWindowButton.h */,
+				4D71AD6C17553B3E009ADC34 /* INWindowButton.m */,
 				4D4283D716EB5D080058BE42 /* PlayerView.h */,
 				4D4283D816EB5D080058BE42 /* PlayerView.m */,
 				D9E66A6A9108A6B9B78F5CFC /* PlayerControlsView.m */,
@@ -365,6 +438,14 @@
 				D9E069E8AD67C10F1C147D74 /* Logout.h */,
 				D9ED0A931CC6D167DC80DEF2 /* SetSetting.m */,
 				D9E96BD8F2C2F4D50E21A5C6 /* SetSetting.h */,
+				D9EFFF688B56240D8D4FCE6B /* VODItem.m */,
+				D9E66BC22815C205EB8858A4 /* VODItem.h */,
+				D9E90F6AA75BD4A50C76128C /* VODList.m */,
+				D9ECD1ABA15DB18A6DBEFCFA /* VODList.h */,
+				D9E62EFD57504690E47F9F4A /* VODItemDetails.m */,
+				D9E64F2FB2FBB71B0648BC54 /* VODItemDetails.h */,
+				D9E0EEF1D033DA2EC457ED75 /* VODStream.m */,
+				D9E31C544A7CB4964DB6158E /* VODStream.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -375,6 +456,15 @@
 				4DBD0770172DA51700CE96DD /* dsa_pub.pem */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		4DD59581175B4AAF0020FE1C /* AGScopeBar */ = {
+			isa = PBXGroup;
+			children = (
+				4DD59585175B4CFF0020FE1C /* AGScopeBar.h */,
+				4DD59586175B4CFF0020FE1C /* AGScopeBar.m */,
+			);
+			name = AGScopeBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -450,6 +540,15 @@
 				4DF24066175285000029241C /* PlayerEPG@2x.png in Resources */,
 				4DF24067175285000029241C /* PlayerPause@2x.png in Resources */,
 				4DF24068175285000029241C /* PlayerPlay@2x.png in Resources */,
+				4D71AD6F17553CF9009ADC34 /* EPGWindowController.xib in Resources */,
+				4D9804231757A52B00165B4C /* EPGProgrammViewController.xib in Resources */,
+				4D9804221757900100165B4C /* EPGVideothekViewController.xib in Resources */,
+				4DD5956F175A59A00020FE1C /* ShowPreview.xib in Resources */,
+				4DD59571175A645D0020FE1C /* TVShow.png in Resources */,
+				4DD59573175A748D0020FE1C /* TVShowGreen.png in Resources */,
+				4DD59575175A7A6D0020FE1C /* GlobalSettings.png in Resources */,
+				4DD5957A175A7AD80020FE1C /* GlobalPreferencesViewController.xib in Resources */,
+				4DD59589175BD5F70020FE1C /* VODItemDetails.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +603,17 @@
 				D9EA4BDA78CBF6AE6A2350C2 /* Settings.m in Sources */,
 				D9EDB998483A247CCEC71570 /* Logout.m in Sources */,
 				D9E38A449AFFA276D4B69253 /* SetSetting.m in Sources */,
+				4D71AD64175512EF009ADC34 /* EPGWindowController.m in Sources */,
+				4D71AD6D17553B3E009ADC34 /* INAppStoreWindow.m in Sources */,
+				4D71AD6E17553B3E009ADC34 /* INWindowButton.m in Sources */,
+				4D98041C17578FC200165B4C /* EPGProgrammViewController.m in Sources */,
+				4D9804211757900100165B4C /* EPGVideothekViewController.m in Sources */,
+				4DD59579175A7AD80020FE1C /* GlobalPreferencesViewController.m in Sources */,
+				D9E5D8FCBA430FFDB7E62D5A /* VODItem.m in Sources */,
+				D9E1D0BD0B0F941FD4677975 /* VODList.m in Sources */,
+				4DD59587175B4CFF0020FE1C /* AGScopeBar.m in Sources */,
+				D9ED446118DED4BFE88F973C /* VODItemDetails.m in Sources */,
+				D9ED1D35A590B20B6CEE56EE /* VODStream.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +644,22 @@
 				4DBD077C17355F5A00CE96DD /* ru */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		4D71AD7117553CF9009ADC34 /* EPGWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4D71AD7017553CF9009ADC34 /* ru */,
+			);
+			name = EPGWindowController.xib;
+			sourceTree = "<group>";
+		};
+		4D9804251757A52B00165B4C /* EPGProgrammViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4D9804241757A52B00165B4C /* ru */,
+			);
+			name = EPGProgrammViewController.xib;
 			sourceTree = "<group>";
 		};
 		4DBD078117355FAE00CE96DD /* UpdatePreferencesViewController.xib */ = {

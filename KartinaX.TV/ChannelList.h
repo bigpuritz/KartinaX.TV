@@ -23,4 +23,5 @@
 
 - (Channel *)channelForId:(NSNumber *)id;
 
+- (void)enhanceChannelList;
 @end

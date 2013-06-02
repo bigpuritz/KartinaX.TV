@@ -18,6 +18,12 @@
 
 - (id)initWithName:(NSString *)name start:(NSNumber *)start end:(NSNumber *)end;
 
+- (NSString *)title;
+
+- (NSString *)description;
+
+- (NSString *)formattedStartEnd;
+
 - (NSString *)displayName;
 
 - (BOOL)isInArchiveRange;

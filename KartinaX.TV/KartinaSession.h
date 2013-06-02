@@ -40,13 +40,22 @@ extern NSString *const kEPGLoadFailedNotification;
 extern NSString *const kSetSettingSuccessfulNotification;
 extern NSString *const kSetSettingFailedNotification;
 
+extern NSString *const kVODListLoadSuccessfulNotification;
+extern NSString *const kVODListLoadFailedNotification;
+
+extern NSString *const kVODItemDetailsLoadSuccessfulNotification;
+extern NSString *const kVODItemDetailsLoadFailedNotification;
+
+extern NSString *const kVODStreamLoadSuccessfulNotification;
+extern NSString *const kVODStreamLoadFailedNotification;
+
 + (KartinaSession *)sharedInstance;
 
 + (Login *)currentLogin;
 
 + (ChannelList *)channelList;
 
-+ (ChannelStream *)currentChannelStream;
+//+ (ChannelStream *)currentChannelStream;
 
 + (PlaybackItem *)currentPlaybackItem;
 

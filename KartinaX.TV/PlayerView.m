@@ -49,8 +49,14 @@
 
 
     } else if (theEvent.keyCode == 49) {
+
         [self.playerLifecycleDelegate playPauseToggleRequested];
+
+    } else {
+
+        [super keyDown:theEvent];
     }
+
 
 }
 

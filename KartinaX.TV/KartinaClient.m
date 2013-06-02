@@ -19,6 +19,9 @@
 #import "TMCache.h"
 #import "Logout.h"
 #import "SetSetting.h"
+#import "VODList.h"
+#import "VODItemDetails.h"
+#import "VODStream.h"
 
 @implementation KartinaClient
 
@@ -61,7 +64,18 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
                 [RKResponseDescriptor responseDescriptorWithMapping:[SetSetting objectMapping]
                                                         pathPattern:@"settings_set"
                                                             keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-
+        RKResponseDescriptor *vodListResponseDescriptor =
+                [RKResponseDescriptor responseDescriptorWithMapping:[VODList objectMapping]
+                                                        pathPattern:@"vod_list"
+                                                            keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+        RKResponseDescriptor *vodItemDetailsResponseDescriptor =
+                [RKResponseDescriptor responseDescriptorWithMapping:[VODItemDetails objectMapping]
+                                                        pathPattern:@"vod_info"
+                                                            keyPath:@"film" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+        RKResponseDescriptor *vodStreamResponseDescriptor =
+                [RKResponseDescriptor responseDescriptorWithMapping:[VODStream objectMapping]
+                                                        pathPattern:@"vod_geturl"
+                                                            keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
 
         [objectManager addResponseDescriptor:loginResponseDescriptor];
         [objectManager addResponseDescriptor:channelListResponseDescriptor];
@@ -69,6 +83,9 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
         [objectManager addResponseDescriptor:epg3ResponseDescriptor];
         [objectManager addResponseDescriptor:logoutResponseDescriptor];
         [objectManager addResponseDescriptor:setSettingResponseDescriptor];
+        [objectManager addResponseDescriptor:vodListResponseDescriptor];
+        [objectManager addResponseDescriptor:vodItemDetailsResponseDescriptor];
+        [objectManager addResponseDescriptor:vodStreamResponseDescriptor];
     }
     return instance;
 }
@@ -117,17 +134,14 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
 
 }
 
-
 - (void)loadChannelList {
 
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithCapacity:2];
-
     NSString *protectedCode = [KartinaSession protectedCode];
     if (protectedCode != nil) {
         [params setObject:@"all" forKey:@"show"];
         [params setObject:protectedCode forKey:@"protect_code"];
     }
-
 
     [objectManager getObjectsAtPath:@"channel_list"
                          parameters:params
@@ -143,8 +157,10 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
                                     ChannelList *list = [results objectAtIndex:0];
                                     if ([list hasError])
                                         error = [self customError:list.errorMessage codeAsNumber:list.errorCode];
-                                    else
+                                    else {
+                                        [list enhanceChannelList];
                                         [self.delegate onLoadChannelListSuccess:list];
+                                    }
 
                                 }
                                 if (error)
@@ -279,7 +295,6 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
     ];
 }
 
-
 - (void)logout {
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     [objectManager getObjectsAtPath:@"logout"
@@ -301,10 +316,116 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
 
 - (void)trimEPGCache {
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:[[NSDate alloc] init]];
+    NSDateComponents *components = [cal components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit)
+                                          fromDate:[[NSDate alloc] init]];
     [components setDay:([components day] - 7)];
     NSDate *lastWeek = [cal dateFromComponents:components];
     [[TMCache sharedCache] trimToDate:lastWeek];
+}
+
+- (void)loadVODList:(NSString *)type page:(NSNumber *)page query:(NSString *)query
+              genre:(NSString *)genre itemsPerPage:(NSNumber *)itemsPerPage {
+
+
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithCapacity:5];
+    [params setObject:type forKey:@"type"];
+    [params setObject:page forKey:@"page"];
+
+    if (query != nil)
+        [params setObject:query forKey:@"query"];
+
+    if (genre != nil)
+        [params setObject:genre forKey:@"genre"];
+
+    [params setObject:itemsPerPage forKey:@"nums"];
+
+    [objectManager getObjectsAtPath:@"vod_list"
+                         parameters:params
+                            success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+
+                                NSError *error;
+                                NSArray *results = mappingResult.array;
+                                if (results == nil || results.count == 0) {
+                                    error = [self customError:@"No data returned." code:-1];
+                                } else if (results.count > 1) {
+                                    error = [self customError:@"More than one item returned." code:-2];
+                                } else {
+                                    [self.delegate onLoadVODListSuccess:results[0]];
+                                }
+                                if (error)
+                                    [self.delegate onLoadVODListFail:error];
+
+                            }
+                            failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                [self.delegate onLoadVODListFail:error];
+                            }
+    ];
+
+}
+
+- (void)loadVODItemDetails:(NSString *)id {
+
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithCapacity:5];
+    [params setObject:id forKey:@"id"];
+
+    [objectManager getObjectsAtPath:@"vod_info"
+                         parameters:params
+                            success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+
+                                NSError *error;
+                                NSArray *results = mappingResult.array;
+                                if (results == nil || results.count == 0) {
+                                    error = [self customError:@"No data returned." code:-1];
+                                } else if (results.count > 1) {
+                                    error = [self customError:@"More than one item returned." code:-2];
+                                } else {
+                                    [self.delegate onLoadVODItemDetailsSuccess:results[0]];
+                                }
+                                if (error)
+                                    [self.delegate onLoadVODItemDetailsFail:error];
+
+                            }
+                            failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                [self.delegate onLoadVODItemDetailsFail:error];
+                            }
+    ];
+}
+
+- (void)loadVODStream:(NSNumber *)fileId {
+
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithCapacity:3];
+    [params setObject:fileId forKey:@"fileid"];
+
+    [objectManager getObjectsAtPath:@"vod_geturl"
+                         parameters:params
+                            success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                                NSError *error;
+                                NSArray *results = mappingResult.array;
+                                if (results == nil || results.count == 0) {
+                                    error = [self customError:@"No data returned." code:-1];
+                                } else if (results.count > 1) {
+                                    error = [self customError:@"More than one item returned." code:-2];
+                                } else {
+                                    VODStream *stream = [results objectAtIndex:0];
+                                    if ([stream hasError]) {
+                                        error = [self customError:stream.errorMessage codeAsNumber:stream.errorCode];
+                                    } else if ([stream.url isEqualToString:@"protected"]) {
+                                        error = [self customError:@"Protected vod requested." code:-7];
+                                    } else {
+                                        [self.delegate onVODStreamSuccess:stream];
+                                    }
+                                }
+
+                                if (error)
+                                    [self.delegate onVODStreamFail:error];
+
+
+                            }
+                            failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                [self.delegate onVODStreamFail:error];
+                            }
+    ];
+
 }
 
 
@@ -315,7 +436,6 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
 - (NSError *)customError:(NSString *)message code:(NSInteger)code {
 
     NSLog(@"message: '%@', localized: %@", message, NSLocalizedString(message, message));
-
     return [NSError errorWithDomain:@"net.javaforge.osx.kartina"
                                code:code
                            userInfo:@{NSLocalizedDescriptionKey : NSLocalizedString(message, message)}];

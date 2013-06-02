@@ -51,4 +51,12 @@
 }
 
 
+- (void)enhanceChannelList {
+    for (ChannelGroup *g in self.channelGroups) {
+        for (Channel *c in g.channels) {
+            c.groupId = g.id;
+            c.groupName = g.name;
+        }
+    }
+}
 @end

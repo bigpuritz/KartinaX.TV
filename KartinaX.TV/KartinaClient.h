@@ -37,5 +37,11 @@
 
 - (void)trimEPGCache;
 
+- (void)loadVODList:(NSString *)type page:(NSNumber *)page query:(NSString *)query
+              genre:(NSString *)genre itemsPerPage:(NSNumber *)itemsPerPage;
+
+- (void)loadVODItemDetails:(NSString *)id;
+
+- (void)loadVODStream:(NSNumber *)fileId;
 
 @end

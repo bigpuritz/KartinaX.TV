@@ -34,15 +34,47 @@
     return self;
 }
 
-- (NSString *)displayName {
+- (NSString *)title {
     NSArray *lines = [self.name componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    NSDate *gmtDate = [NSDate dateWithTimeIntervalSince1970:[self.start doubleValue]];
+    return lines[0];
+}
+
+- (NSString *)description {
+    NSArray *lines = [self.name componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    NSUInteger count = lines.count;
+    if (count <= 1) {
+        return @"";
+    }
+
+    NSMutableString *desc = [[NSMutableString alloc] init];
+    for (NSUInteger i = 1; i < count; i++) {
+        [desc appendString:lines[i]];
+    }
+    return desc;
+}
+
+- (NSString *)formattedStartEnd {
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setTimeZone:[NSTimeZone localTimeZone]];
     [formatter setDateFormat:@"HH:mm"];
 
-    return [@[[formatter stringFromDate:gmtDate], [lines objectAtIndex:0]] componentsJoinedByString:@" "];
+    NSDate *gmtDateStart = [NSDate dateWithTimeIntervalSince1970:[self.start doubleValue]];
+    NSDate *gmtDateEnd = [NSDate dateWithTimeIntervalSince1970:[self.end doubleValue]];
+
+    return [@[[formatter stringFromDate:gmtDateStart], @"-", [formatter stringFromDate:gmtDateEnd]] componentsJoinedByString:@" "];
+}
+
+
+- (NSString *)displayName {
+
+
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setTimeZone:[NSTimeZone localTimeZone]];
+    [formatter setDateFormat:@"HH:mm"];
+
+    NSDate *gmtDate = [NSDate dateWithTimeIntervalSince1970:[self.start doubleValue]];
+    return [@[[formatter stringFromDate:gmtDate], self.title] componentsJoinedByString:@" "];
 }
 
 - (BOOL)isInArchiveRange {

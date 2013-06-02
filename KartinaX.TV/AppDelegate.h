@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @class RHPreferencesWindowController;
+@class EPGWindowController;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate>
 
@@ -17,9 +18,6 @@
 @property(retain) RHPreferencesWindowController *preferencesWindowController;
 
 
-@property(readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property(readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property(readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 
 #pragma mark - IBActions
