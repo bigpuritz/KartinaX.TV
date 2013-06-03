@@ -63,6 +63,7 @@
 		D9E072EC137FF1CCA9DB9924 /* EPGData.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E93876EB417C90657F8AFA /* EPGData.m */; };
 		D9E0A477292D186A764FA139 /* ChannelGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E2215F968F7F3175DB347B /* ChannelGroup.m */; };
 		D9E0D1080EE95E1381CB8D65 /* PlayerControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E66A6A9108A6B9B78F5CFC /* PlayerControlsView.m */; };
+		D9E0F2FC6456264F1A55E80B /* VODGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E8501DCA9D6D2F86B3864E /* VODGenre.m */; };
 		D9E1308AD0526414151F91C6 /* VLCKitMoviePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EA8DF31702155DC682E750 /* VLCKitMoviePlayerController.m */; };
 		D9E1D0BD0B0F941FD4677975 /* VODList.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E90F6AA75BD4A50C76128C /* VODList.m */; };
 		D9E2BBE4BE24FEF922657BD1 /* KartinaSession.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E5EA6163B8DE1DE25C87E7 /* KartinaSession.m */; };
@@ -199,6 +200,7 @@
 		D9E81203BDE9F48EAD422376 /* EPGData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPGData.h; sourceTree = "<group>"; };
 		D9E812D61BCAC2EF4F3CB19A /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		D9E844CF5ED51726982B16DC /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		D9E8501DCA9D6D2F86B3864E /* VODGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VODGenre.m; sourceTree = "<group>"; };
 		D9E90F6AA75BD4A50C76128C /* VODList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VODList.m; sourceTree = "<group>"; };
 		D9E93876EB417C90657F8AFA /* EPGData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPGData.m; sourceTree = "<group>"; };
 		D9E96BD8F2C2F4D50E21A5C6 /* SetSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSetting.h; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		D9EA7BBD3AD2BA5EB8A234E0 /* Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Show.m; sourceTree = "<group>"; };
 		D9EA8DF31702155DC682E750 /* VLCKitMoviePlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLCKitMoviePlayerController.m; sourceTree = "<group>"; };
 		D9EA9A3FC319061E7FB698CE /* KartinaClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KartinaClient.m; sourceTree = "<group>"; };
+		D9EAAE81BA9FDAC2209E7443 /* VODGenre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VODGenre.h; sourceTree = "<group>"; };
 		D9EB7EDF75C553B1BF4A08A8 /* x_channel_list.json */ = {isa = PBXFileReference; lastKnownFileType = file.json; path = x_channel_list.json; sourceTree = "<group>"; };
 		D9EBC46643E87092468E9E24 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		D9EC8DE0CD189D9787A851D3 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
@@ -446,6 +449,8 @@
 				D9E64F2FB2FBB71B0648BC54 /* VODItemDetails.h */,
 				D9E0EEF1D033DA2EC457ED75 /* VODStream.m */,
 				D9E31C544A7CB4964DB6158E /* VODStream.h */,
+				D9E8501DCA9D6D2F86B3864E /* VODGenre.m */,
+				D9EAAE81BA9FDAC2209E7443 /* VODGenre.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -614,6 +619,7 @@
 				4DD59587175B4CFF0020FE1C /* AGScopeBar.m in Sources */,
 				D9ED446118DED4BFE88F973C /* VODItemDetails.m in Sources */,
 				D9ED1D35A590B20B6CEE56EE /* VODStream.m in Sources */,
+				D9E0F2FC6456264F1A55E80B /* VODGenre.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

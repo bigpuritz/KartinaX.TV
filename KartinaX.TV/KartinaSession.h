@@ -55,13 +55,13 @@ extern NSString *const kVODStreamLoadFailedNotification;
 
 + (ChannelList *)channelList;
 
-//+ (ChannelStream *)currentChannelStream;
-
 + (PlaybackItem *)currentPlaybackItem;
 
 + (PlaybackItem *)replaceCurrentPlaybackItemWithNext;
 
 + (EPGData *)epgDataForDate:(NSDate *)date;
+
++ (NSArray *)vodGenres;
 
 + (BOOL)isLoggedIn;
 

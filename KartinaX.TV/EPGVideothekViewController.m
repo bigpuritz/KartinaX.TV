@@ -13,6 +13,7 @@
 #import "VODItem.h"
 #import "VODItemDetails.h"
 #import "PlaybackItem.h"
+#import "VODGenre.h"
 
 @interface EPGVideothekViewController ()
 
@@ -20,9 +21,12 @@
 
 @implementation EPGVideothekViewController {
 
-    VODList *_vodList;
+    VODList *_lastLoadedVODList;
+    NSMutableArray *_vodItems;
     VODItemDetails *_vodItemDetails;
-
+    NSString *_selectedVODType;
+    NSString *_selectedVODGenreId;
+    AGScopeBarItem *_genresItem;
 
 }
 
@@ -31,7 +35,6 @@
     if (self) {
         // Initialization code here.
     }
-
     return self;
 }
 
@@ -40,11 +43,36 @@
     [super loadView];
 
     AGScopeBarGroup *group = nil;
-    AGScopeBarItem *item = nil;
-    group = [_scopeBar addGroupWithIdentifier:@"1" label:nil items:nil];
-    [group addItemWithIdentifier:@"best" title:NSLocalizedString(@"Best", @"Best") ];
+
+    group = [_scopeBar addGroupWithIdentifier:@"0" label:nil items:nil];
     [group addItemWithIdentifier:@"last" title:NSLocalizedString(@"Last", @"Last") ];
+    [group addItemWithIdentifier:@"best" title:NSLocalizedString(@"Best", @"Best") ];
     group.selectionMode = AGScopeBarGroupSelectOne;
+
+    group = [_scopeBar addGroupWithIdentifier:@"1" label:NSLocalizedString(@"FilterGenres", @"FilterGenres") items:nil];
+    _genresItem = [group addItemWithIdentifier:@"genres" title:NSLocalizedString(@"All", @"All")];
+    NSMenu *_genresMenu = [[NSMenu alloc] init];
+
+    NSArray *genres = [KartinaSession vodGenres];
+    // all genres
+    NSMenuItem *menuItemAll = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"All", @"All") action:@selector(vodGenreSelected:) keyEquivalent:@""];
+    [menuItemAll setTag:-1];
+    [menuItemAll setTarget:self];
+    [_genresMenu addItem:menuItemAll];
+
+    for (VODGenre *g in genres) {
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:g.name action:@selector(vodGenreSelected:) keyEquivalent:@""];
+        [menuItem setTag:[g.id integerValue]];
+        [menuItem setTarget:self];
+        [_genresMenu addItem:menuItem];
+    }
+    [_genresMenu setAutoenablesItems:YES];
+    _genresItem.menu = _genresMenu;
+    group.selectionMode = AGScopeBarGroupSelectNone;
+    group.canBeCollapsed = NO;
+
+
+    _vodItems = [[NSMutableArray alloc] init];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(vodListLoaded:)
@@ -65,6 +93,22 @@
 }
 
 
+- (IBAction)vodGenreSelected:(id)sender {
+    [self clearTableView];
+    [self.parentController startLoadingIndicator];
+    KartinaClient *client = [KartinaClient sharedInstance];
+
+    NSInteger genreId = ((NSMenuItem *) sender).tag;
+    if (genreId == -1)
+        _selectedVODGenreId = nil;
+    else
+        _selectedVODGenreId = [NSString stringWithFormat:@"%li", genreId];
+    [client loadVODList:_selectedVODType page:@1 query:nil genre:_selectedVODGenreId itemsPerPage:@20];
+
+    _genresItem.title = ((NSMenuItem *) sender).title;
+}
+
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -72,8 +116,16 @@
 
 - (void)vodListLoaded:(NSNotification *)notification {
     [self.parentController stopLoadingIndicator];
-    _vodList = [notification.userInfo objectForKey:@"vodList"];
+    VODList *list = [notification.userInfo objectForKey:@"vodList"];
+    [_vodItems addObjectsFromArray:list.items];
+    _lastLoadedVODList = list;
     [self.vodTableView reloadData];
+}
+
+- (void)clearTableView {
+    [self.vodTableView scrollRowToVisible:0];
+    [self.vodDetailsView setHidden:YES];
+    [_vodItems removeAllObjects];
 }
 
 - (void)vodListNotLoaded:(NSNotification *)notification {
@@ -91,15 +143,12 @@
     [self.vodDetailsCountry setStringValue:_vodItemDetails.country];
     [self.vodDetailsImdb setStringValue:_vodItemDetails.ratingImdb];
     [self.vodDetailsKinopoisk setStringValue:_vodItemDetails.ratingKinopoisk];
-    [self.vodDetailsMpaa setStringValue:_vodItemDetails.ratingMpaa];
     [self.vodDetailsGenres setStringValue:_vodItemDetails.genres];
     [self.vodDetailsDescription setStringValue:_vodItemDetails.description];
+    [self.vodDetailsDirector setStringValue:_vodItemDetails.director];
+    [self.vodDetailsScenario setStringValue:_vodItemDetails.scenario];
+    [self.vodDetailsActors setStringValue:_vodItemDetails.actors];
     [self.vodDetailsView setHidden:NO];
-
-
-//    NSLog(@"director: %@", item.director);
-//    NSLog(@"scenario: %@", item.scenario);
-//    NSLog(@"actors: %@", item.actors);
 }
 
 - (void)vodItemDetailsNotLoaded:(NSNotification *)notification {
@@ -108,36 +157,44 @@
 
 
 - (void)scopeBar:(AGScopeBar *)theScopeBar item:(AGScopeBarItem *)item wasSelected:(BOOL)selected; {
-
+    _selectedVODType = item.identifier;
+    [self clearTableView];
     [self.parentController startLoadingIndicator];
     KartinaClient *client = [KartinaClient sharedInstance];
-    [client loadVODList:item.identifier page:@1 query:nil genre:nil itemsPerPage:@20];
+    [client loadVODList:item.identifier page:@1 query:nil genre:_selectedVODGenreId itemsPerPage:@20];
 }
 
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    if (_vodList != nil ) {
-        return _vodList.items.count;
+    NSUInteger numberOfItems = _vodItems.count;
+    if (_lastLoadedVODList.total.intValue > numberOfItems) {
+        return numberOfItems + 1;
     }
-    return 0;
+    return numberOfItems;
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 
-    if (_vodList == nil || _vodList.items == nil) {
+    if (_vodItems == nil || row > _vodItems.count) {
         return nil;
     }
 
-    VODItem *item = _vodList.items[(NSUInteger) row];
     NSString *identifier = tableColumn.identifier;
     if ([identifier isEqualToString:@"VODColumn"]) {
-        NSTableCellView *cellView = [tableView makeViewWithIdentifier:@"VODCell" owner:self];
-        [cellView.textField setStringValue:item.name];
-        [cellView.imageView setImage:item.posterImage];
 
-        [[cellView viewWithTag:100] setStringValue:item.year];
-        [[cellView viewWithTag:101] setStringValue:item.country];
-
+        NSTableCellView *cellView;
+        if (row == _vodItems.count) {
+            cellView = [tableView makeViewWithIdentifier:@"LoadMore" owner:self];
+            NSString *title = [NSString stringWithFormat:@"Осталось %i. Загрузить еще 20...", (_lastLoadedVODList.total.intValue - _vodItems.count)];
+            [[cellView viewWithTag:110] setTitle:title];
+        } else {
+            VODItem *item = _vodItems[(NSUInteger) row];
+            cellView = [tableView makeViewWithIdentifier:@"VODCell" owner:self];
+            [cellView.textField setStringValue:item.name];
+            [cellView.imageView setImage:item.posterImage];
+            [[cellView viewWithTag:100] setStringValue:item.year];
+            [[cellView viewWithTag:101] setStringValue:item.country];
+        }
 
         return cellView;
     }
@@ -147,11 +204,12 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
 
-    VODItem *item = _vodList.items[(NSUInteger) self.vodTableView.selectedRow];
+    if (self.vodTableView.selectedRow == _vodItems.count)
+        return;
 
+    VODItem *item = _vodItems[(NSUInteger) self.vodTableView.selectedRow];
     [self.parentController startLoadingIndicator];
     [[KartinaClient sharedInstance] loadVODItemDetails:item.id];
-
 }
 
 
@@ -170,5 +228,12 @@
         ];
     }
 
+}
+
+- (IBAction)loadMoreRequested:(id)sender {
+    [self.parentController startLoadingIndicator];
+    int nextPage = _lastLoadedVODList.page.intValue + 1;
+    KartinaClient *client = [KartinaClient sharedInstance];
+    [client loadVODList:_selectedVODType page:[NSNumber numberWithInt:nextPage] query:nil genre:_selectedVODGenreId itemsPerPage:@20];
 }
 @end

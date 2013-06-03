@@ -44,4 +44,6 @@
 
 - (void)loadVODStream:(NSNumber *)fileId;
 
+- (void)loadVODGenres;
+
 @end

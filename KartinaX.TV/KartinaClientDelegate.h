@@ -56,4 +56,8 @@
 - (void)onVODStreamSuccess:(VODStream *)stream;
 
 - (void)onVODStreamFail:(NSError *)error;
+
+- (void)onVODGenresLoadSucces:(NSArray *)array;
+
+- (void)onVODGenresLoadFail:(NSError *)error;
 @end

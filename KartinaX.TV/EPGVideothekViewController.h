@@ -23,10 +23,15 @@
 @property (weak) IBOutlet NSTextField *vodDetailsCountry;
 @property (weak) IBOutlet NSTextField *vodDetailsImdb;
 @property (weak) IBOutlet NSTextField *vodDetailsKinopoisk;
-@property (weak) IBOutlet NSTextField *vodDetailsMpaa;
+@property (weak) IBOutlet NSTextField *vodDetailsDirector;
 @property (weak) IBOutlet NSTextField *vodDetailsGenres;
 @property (weak) IBOutlet NSTextField *vodDetailsDescription;
 
+@property (weak) IBOutlet NSTextField *vodDetailsScenario;
+@property (weak) IBOutlet NSTextField *vodDetailsActors;
+
+
 - (IBAction)playVODRequested:(id)sender;
+- (IBAction)loadMoreRequested:(id)sender;
 
 @end

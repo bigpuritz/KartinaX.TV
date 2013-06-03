@@ -22,6 +22,7 @@
 #import "VODList.h"
 #import "VODItemDetails.h"
 #import "VODStream.h"
+#import "VODGenre.h"
 
 @implementation KartinaClient
 
@@ -76,6 +77,10 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
                 [RKResponseDescriptor responseDescriptorWithMapping:[VODStream objectMapping]
                                                         pathPattern:@"vod_geturl"
                                                             keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+        RKResponseDescriptor *vodGenresResponseDescriptor =
+                [RKResponseDescriptor responseDescriptorWithMapping:[VODGenre objectMapping]
+                                                        pathPattern:@"vod_genres"
+                                                            keyPath:@"genres" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
 
         [objectManager addResponseDescriptor:loginResponseDescriptor];
         [objectManager addResponseDescriptor:channelListResponseDescriptor];
@@ -86,6 +91,7 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
         [objectManager addResponseDescriptor:vodListResponseDescriptor];
         [objectManager addResponseDescriptor:vodItemDetailsResponseDescriptor];
         [objectManager addResponseDescriptor:vodStreamResponseDescriptor];
+        [objectManager addResponseDescriptor:vodGenresResponseDescriptor];
     }
     return instance;
 }
@@ -328,11 +334,21 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
 
 
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithCapacity:5];
+
+//    if (![type isEqualToString:@"genre"])
     [params setObject:type forKey:@"type"];
     [params setObject:page forKey:@"page"];
 
-    if (query != nil)
-        [params setObject:query forKey:@"query"];
+    if ([type isEqualToString:@"text"]) {
+
+        if (query != nil) {
+            [params setObject:query forKey:@"query"];
+        } else {
+            [params setObject:@"а" forKey:@"query"];
+        }
+
+    }
+
 
     if (genre != nil)
         [params setObject:genre forKey:@"genre"];
@@ -425,6 +441,32 @@ NSString *const baseURL = @"http://iptv.kartina.tv/api/json/";
                                 [self.delegate onVODStreamFail:error];
                             }
     ];
+
+}
+
+- (void)loadVODGenres {
+
+    [objectManager getObjectsAtPath:@"vod_genres"
+                         parameters:nil
+                            success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                                NSError *error;
+                                NSArray *results = mappingResult.array;
+
+                                if (results == nil || results.count == 0) {
+                                    error = [self customError:@"No data returned." code:-1];
+                                }
+
+                                if (error)
+                                    [self.delegate onVODGenresLoadFail:error];
+                                else
+                                    [self.delegate onVODGenresLoadSucces:results];
+
+                            }
+                            failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                [self.delegate onVODGenresLoadFail:error];
+                            }
+    ];
+
 
 }
 

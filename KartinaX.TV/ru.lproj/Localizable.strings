@@ -65,3 +65,6 @@
 "No mappable object representations were found at the key paths searched." = "Ошибка загрузки данных";
 "Best" = "Лучшие";
 "Last" = "Последние";
+"Genres" = "Жанры";
+"All" = "Все";
+"FilterGenres" = "Фильтровать по жанру:";

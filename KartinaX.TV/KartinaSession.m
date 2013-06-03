@@ -24,9 +24,9 @@
 
 @property(nonatomic, strong) Login *login;
 @property(nonatomic, strong) ChannelList *channelList;
-//@property(nonatomic, strong) ChannelStream *currentChannelStream;
 @property(nonatomic, strong) PlaybackItem *currentPlaybackItem;
 @property(nonatomic, strong) NSMutableDictionary *epg; // @todo should be externalized!
+@property(nonatomic, strong) NSArray *vodGenres;
 
 @end
 
@@ -119,9 +119,6 @@ static KartinaSession *instance = nil;    // static instance variable
     return [KartinaSession sharedInstance].channelList;
 }
 
-//+ (ChannelStream *)currentChannelStream {
-//    return [KartinaSession sharedInstance].currentChannelStream;
-//}
 
 + (PlaybackItem *)currentPlaybackItem {
     return [KartinaSession sharedInstance].currentPlaybackItem;
@@ -142,7 +139,6 @@ static KartinaSession *instance = nil;    // static instance variable
                                                                   groupName:session.currentPlaybackItem.groupName
                                                                   channelId:session.currentPlaybackItem.channelId
                                                                 channelName:session.currentPlaybackItem.channelName
-//                                                                       live:session.currentPlaybackItem.live
                                                            protectedChannel:session.currentPlaybackItem.protectedChannel];
         session.currentPlaybackItem = nextPlaybackItem;
         return session.currentPlaybackItem;
@@ -160,6 +156,10 @@ static KartinaSession *instance = nil;    // static instance variable
 - (EPGData *)epgDataForCurrentPlaybackItem {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.currentPlaybackItem.start.doubleValue];
     return [KartinaSession epgDataForDate:date];
+}
+
++ (NSArray *)vodGenres {
+    return [[KartinaSession sharedInstance] vodGenres];
 }
 
 + (BOOL)isLoggedIn {
@@ -196,6 +196,7 @@ static KartinaSession *instance = nil;    // static instance variable
 
     KartinaClient *client = [KartinaClient sharedInstance];
     [client loadChannelList];
+    [client loadVODGenres];
 }
 
 - (void)onLoginFail:(NSError *)error {
@@ -306,14 +307,21 @@ static KartinaSession *instance = nil;    // static instance variable
 }
 
 - (void)onVODStreamSuccess:(VODStream *)stream {
-//    self.currentChannelStream = stream;
-
     [self sendNotification:kVODStreamLoadSuccessfulNotification
                   userInfo:@{@"vodStream" : stream}];
 }
 
 - (void)onVODStreamFail:(NSError *)error {
     [self sendErrorNotification:error name:kVODStreamLoadFailedNotification];
+}
+
+
+- (void)onVODGenresLoadSucces:(NSArray *)array {
+    self.vodGenres = array;
+}
+
+- (void)onVODGenresLoadFail:(NSError *)error {
+    self.vodGenres = nil;
 }
 
 
