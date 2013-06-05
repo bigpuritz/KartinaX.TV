@@ -6,7 +6,9 @@
 //  Copyright (c) 2013 Maxim Kalina. All rights reserved.
 //
 
+#import <TMCache/TMCache.h>
 #import "GlobalPreferencesViewController.h"
+#import "AppSettings.h"
 
 @interface GlobalPreferencesViewController ()
 
@@ -24,6 +26,13 @@
 }
 
 
+- (void)awakeFromNib {
+    [self.playbackOnStartupButton setState:[AppSettings shouldStartPlaybackOnStartup] ? NSOnState : NSOffState];
+    [self.closeEPGWindowButton setState:[AppSettings shouldCloseEPGWindowOnClick] ? NSOnState : NSOffState];
+    [self.transparentEPGWindowButton setState:[AppSettings shouldUseTrancparencyForEPGWindow] ? NSOnState : NSOffState];
+}
+
+
 #pragma mark - RHPreferencesViewControllerProtocol
 
 - (NSString *)identifier {
@@ -38,4 +47,19 @@
     return NSLocalizedString(@"GlobalSettings", @"GlobalSettings");
 }
 
+- (IBAction)clearEpgCache:(id)sender {
+    [[TMCache sharedCache] removeAllObjects];
+}
+
+- (IBAction)playVideoOnStartupClicked:(id)sender {
+    [AppSettings startPlaybackOnStartup:(BOOL) ((NSButton *) sender).state];
+}
+
+- (IBAction)closeEpgWindowClicked:(id)sender {
+    [AppSettings closeEPGWindowOnClick:(BOOL) ((NSButton *) sender).state];
+}
+
+- (IBAction)transparentEpgWindowClicked:(id)sender {
+    [AppSettings useTrancparencyForEPGWindow:(BOOL) ((NSButton *) sender).state];
+}
 @end

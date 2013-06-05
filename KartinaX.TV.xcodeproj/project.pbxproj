@@ -79,6 +79,7 @@
 		D9EAEC4EDABDE4F90BA4E03F /* KartinaClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EA9A3FC319061E7FB698CE /* KartinaClient.m */; };
 		D9EC5401E032992C6BDEE024 /* ScopeBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EB9D80A10A1924FB5323D9 /* ScopeBarView.m */; };
 		D9ECD15A471FB7618891A6DC /* RKKartinaRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E0E0A1A89470471D033217 /* RKKartinaRequest.m */; };
+		D9ECFDBBE89421C346268702 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E84F3F814389CB23EEF95F /* AppSettings.m */; };
 		D9ED1D35A590B20B6CEE56EE /* VODStream.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E0EEF1D033DA2EC457ED75 /* VODStream.m */; };
 		D9ED446118DED4BFE88F973C /* VODItemDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E62EFD57504690E47F9F4A /* VODItemDetails.m */; };
 		D9EDB998483A247CCEC71570 /* Logout.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E28D571C9DBB62F6CC66AF /* Logout.m */; };
@@ -176,6 +177,7 @@
 		D9E0E5126CB86B172811DC97 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
 		D9E0EEF1D033DA2EC457ED75 /* VODStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VODStream.m; sourceTree = "<group>"; };
 		D9E133AA1B807CBBFF5A62E5 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		D9E1CE38766AED5DD050F3EB /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
 		D9E1CFD8CB4D9C7F1A839EF8 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		D9E20B63B5014598D377BE09 /* ChannelGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelGroup.h; sourceTree = "<group>"; };
 		D9E2215F968F7F3175DB347B /* ChannelGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelGroup.m; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		D9E81203BDE9F48EAD422376 /* EPGData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPGData.h; sourceTree = "<group>"; };
 		D9E812D61BCAC2EF4F3CB19A /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		D9E844CF5ED51726982B16DC /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		D9E84F3F814389CB23EEF95F /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
 		D9E8501DCA9D6D2F86B3864E /* VODGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VODGenre.m; sourceTree = "<group>"; };
 		D9E90F6AA75BD4A50C76128C /* VODList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VODList.m; sourceTree = "<group>"; };
 		D9E93876EB417C90657F8AFA /* EPGData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPGData.m; sourceTree = "<group>"; };
@@ -329,6 +332,8 @@
 				D9EF4B1E20DB89C791236A4A /* KartinaClientDelegate.h */,
 				D9E5EA6163B8DE1DE25C87E7 /* KartinaSession.m */,
 				D9E62D4E253909E41E9F1D60 /* KartinaSession.h */,
+				D9E84F3F814389CB23EEF95F /* AppSettings.m */,
+				D9E1CE38766AED5DD050F3EB /* AppSettings.h */,
 			);
 			path = KartinaX.TV;
 			sourceTree = "<group>";
@@ -616,6 +621,7 @@
 				D9ED1D35A590B20B6CEE56EE /* VODStream.m in Sources */,
 				D9E0F2FC6456264F1A55E80B /* VODGenre.m in Sources */,
 				D9EC5401E032992C6BDEE024 /* ScopeBarView.m in Sources */,
+				D9ECFDBBE89421C346268702 /* AppSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

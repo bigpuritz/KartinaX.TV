@@ -18,9 +18,8 @@
 @property(retain) RHPreferencesWindowController *preferencesWindowController;
 
 
-
-
 #pragma mark - IBActions
+
 - (IBAction)showPreferences:(id)sender;
 
 - (IBAction)showEPG:(id)sender;

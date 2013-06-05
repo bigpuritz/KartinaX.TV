@@ -10,6 +10,7 @@
 #import "INAppStoreWindow.h"
 #import "EPGProgrammViewController.h"
 #import "EPGVideothekViewController.h"
+#import "AppSettings.h"
 
 @interface EPGWindowController ()
 
@@ -61,9 +62,12 @@
 
     // transparency
     [self.window setMovableByWindowBackground:NO];
-    self.window.backgroundColor = [NSColor clearColor];
-    [self.window setOpaque:NO];
-    self.window.alphaValue = .9f;
+
+    if ([AppSettings shouldUseTrancparencyForEPGWindow]) {
+        self.window.backgroundColor = [NSColor clearColor];
+        [self.window setOpaque:NO];
+        self.window.alphaValue = .9f;
+    }
 
     [[NSApp mainWindow] addChildWindow:self.window ordered:NSWindowAbove];
 
@@ -72,6 +76,14 @@
 
 - (IBAction)showWindow:(id)sender {
     [NSCursor unhide];
+
+
+    if ([AppSettings shouldUseTrancparencyForEPGWindow]) {
+        self.window.backgroundColor = [NSColor clearColor];
+        [self.window setOpaque:NO];
+        self.window.alphaValue = .9f;
+    }
+
     [self startTimer];
     [super showWindow:sender];
     [self.window makeKeyAndOrderFront:sender];

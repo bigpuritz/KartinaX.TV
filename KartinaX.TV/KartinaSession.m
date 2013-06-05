@@ -19,6 +19,7 @@
 #import "VODList.h"
 #import "VODItemDetails.h"
 #import "VODStream.h"
+#import "AppSettings.h"
 
 @interface KartinaSession ()
 
@@ -219,7 +220,7 @@ static KartinaSession *instance = nil;    // static instance variable
     [client loadEPG:[NSDate new]];
 
     // start playback immediately
-    if (self.currentPlaybackItem == nil) {
+    if (self.currentPlaybackItem == nil && [AppSettings shouldStartPlaybackOnStartup]) {
 
         NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
         NSNumber *lastPlayedChannelId = [NSNumber numberWithInteger:[standardUserDefaults integerForKey:@"lastPlayedChannelId"]];

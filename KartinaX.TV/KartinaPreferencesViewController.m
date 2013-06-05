@@ -57,7 +57,6 @@
 - (void)awakeFromNib {
 
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-
     NSString *username = [standardUserDefaults stringForKey:@"username"];
     NSString *password = [standardUserDefaults stringForKey:@"password"];
 
@@ -185,10 +184,10 @@
     [standardUserDefaults setObject:newPassword forKey:@"password"];
 
 //    if (![oldUsername isEqualToString:newUsername] || ![oldPassword isEqualToString:newPassword]) {
-        [self.loginProgressIndicator setHidden:NO];
-        [self.loginProgressIndicator startAnimation:self];
-        KartinaClient *client = [KartinaClient sharedInstance];
-        [client loginWithUsername:newUsername AndPassword:newPassword];
+    [self.loginProgressIndicator setHidden:NO];
+    [self.loginProgressIndicator startAnimation:self];
+    KartinaClient *client = [KartinaClient sharedInstance];
+    [client loginWithUsername:newUsername AndPassword:newPassword];
 //    }
 
 }

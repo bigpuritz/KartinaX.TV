@@ -15,6 +15,7 @@
 #import "Utils.h"
 #import "ChannelList.h"
 #import "EPGData.h"
+#import "AppSettings.h"
 
 
 @interface EPGProgrammViewController ()
@@ -193,6 +194,10 @@ NSViewController *_sharedShowPreviewController;
                                   object:self
                                 userInfo:@{@"playbackItem" : playbackItem}
             ];
+
+            if ([AppSettings shouldCloseEPGWindowOnClick]) {
+                [self.parentController cancel:self];
+            }
         }
 
 

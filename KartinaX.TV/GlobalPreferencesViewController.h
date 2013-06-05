@@ -11,4 +11,13 @@
 
 @interface GlobalPreferencesViewController : NSViewController <RHPreferencesViewControllerProtocol>
 
+- (IBAction)clearEpgCache:(id)sender;
+- (IBAction)playVideoOnStartupClicked:(id)sender;
+- (IBAction)closeEpgWindowClicked:(id)sender;
+- (IBAction)transparentEpgWindowClicked:(id)sender;
+
+@property (weak) IBOutlet NSButton *playbackOnStartupButton;
+@property (weak) IBOutlet NSButton *closeEPGWindowButton;
+@property (weak) IBOutlet NSButton *transparentEPGWindowButton;
+ 
 @end

@@ -14,6 +14,7 @@
 #import "VODItemDetails.h"
 #import "PlaybackItem.h"
 #import "VODGenre.h"
+#import "AppSettings.h"
 
 @interface EPGVideothekViewController ()
 
@@ -246,6 +247,10 @@
                               object:self
                             userInfo:@{@"playbackItem" : playbackItem}
         ];
+
+        if ([AppSettings shouldCloseEPGWindowOnClick]) {
+            [self.parentController cancel:self];
+        }
     }
 }
 
