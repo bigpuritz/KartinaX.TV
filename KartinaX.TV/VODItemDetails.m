@@ -23,7 +23,7 @@
             @"name_orig" : @"nameOriginal",
             @"description" : @"description",
             @"poster" : @"posterRelativeURL",
-            @"length" : @"lengthMin",
+            @"lenght" : @"lengthMin",
             @"genre_str" : @"genres",
             @"director" : @"director",
             @"scenario" : @"scenario",
@@ -34,7 +34,9 @@
             @"rate_mpaa" : @"ratingMpaa",
             @"country" : @"country",
             @"videos" : @"videosDictionary",
-            @"genres" : @"genresDictionary"
+            @"genres" : @"genresDictionary",
+            @"error" : @"error",
+            @"servertime" : @"serverTime"
 
     }];
     return mapping;
@@ -46,5 +48,22 @@
     return [[NSImage alloc] initByReferencingURL:url];
 }
 
+
+- (NSDictionary *)videoStreams {
+
+    NSMutableDictionary *videoStreams = [[NSMutableDictionary alloc] init];
+    for (NSDictionary *video in self.videosDictionary) {
+        NSString *videoDesc = [@[video[@"title"], @" ", @"(", video[@"format"], @")"] componentsJoinedByString:@""];
+        [videoStreams setObject:video forKey:videoDesc];
+    }
+
+
+    return videoStreams;
+}
+
+
+- (NSNumber *)lengthInSeconds {
+    return [NSNumber numberWithInt:self.lengthMin.intValue * 60];
+}
 
 @end

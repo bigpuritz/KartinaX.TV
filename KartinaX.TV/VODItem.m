@@ -28,7 +28,9 @@
             @"rate_kinopoisk" : @"ratingKinopoisk",
             @"rate_mpaa" : @"ratingMpaa",
             @"country" : @"country",
-            @"genre_str" : @"genres"
+            @"genre_str" : @"genres",
+            @"error" : @"error",
+            @"servertime" : @"serverTime"
     }];
     return mapping;
 }

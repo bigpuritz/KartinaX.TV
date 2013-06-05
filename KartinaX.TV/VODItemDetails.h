@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "RKObjectMappingAware.h"
+#import "RKKartinaRequest.h"
 
 
-@interface VODItemDetails : NSObject <RKObjectMappingAware>
+@interface VODItemDetails : RKKartinaRequest <RKObjectMappingAware>
 
 
 @property(copy, nonatomic) NSString *id;
@@ -18,7 +19,7 @@
 @property(copy, nonatomic) NSString *nameOriginal;
 @property(copy, nonatomic) NSString *description;
 @property(copy, nonatomic) NSString *posterRelativeURL;
-@property(copy, nonatomic) NSString *lengthMin;
+@property(copy, nonatomic) NSNumber *lengthMin;
 @property(copy, nonatomic) NSString *genres;
 @property(copy, nonatomic) NSString *year;
 @property(copy, nonatomic) NSString *director;
@@ -33,5 +34,9 @@
 
 
 - (NSImage *)posterImage;
+
+- (NSDictionary *)videoStreams;
+
+- (NSNumber *)lengthInSeconds;
 
 @end

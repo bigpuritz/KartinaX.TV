@@ -11,7 +11,7 @@
 #import "RKObjectMappingAware.h"
 
 
-@interface VODList : NSObject <RKObjectMappingAware>
+@interface VODList : RKKartinaRequest <RKObjectMappingAware>
 
 @property(copy, nonatomic) NSString *type;
 @property(copy, nonatomic) NSNumber *total;

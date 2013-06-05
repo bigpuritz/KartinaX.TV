@@ -31,18 +31,25 @@
     return self;
 }
 
-- (id)initWithName:(NSString *)name vodId:(NSNumber *)vodId {
+- (id)initWithName:(NSString *)name vodId:(NSNumber *)vodId length:(NSNumber *)length {
     self = [super init];
     if (self) {
         self.name = name;
         self.vodId = vodId;
         self.isVOD = YES;
+        self.start = @0;
+        self.end = length;
+        self.playbackStartPosition = nil;
     }
     return self;
 }
 
 - (BOOL)isPlaybackDurationAvailable {
     return self.start != nil && self.end != nil;
+}
+
+- (BOOL)canSpoolPlaybackPosition {
+    return self.playbackStartPosition != nil;
 }
 
 

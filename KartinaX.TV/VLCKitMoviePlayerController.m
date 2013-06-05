@@ -152,17 +152,7 @@
 }
 
 - (void)showEpg {
-//    if (self.epgViewController == nil) {
-//        self.epgViewController = [[EPGViewController alloc] init];
-//        [self.epgViewController.window setFrameOrigin:NSMakePoint(
-//                self.view.window.frame.origin.x + self.view.frame.size.width / 2 - self.epgViewController.window.frame.size.width / 2,
-//                self.view.window.frame.origin.y + 50
-//        )];
-//    }
-//    [_epgViewController show];
 
-
-    // new EPG window
     if (_epgWindowController == nil ) {
         _epgWindowController = [[EPGWindowController alloc] initWithWindowNibName:@"EPGWindowController"];
     }
@@ -201,6 +191,18 @@
     }
 
 }
+
+- (void)stopRequested {
+    [self.player stop];
+    [self.playerControlsController stopTimer];
+}
+
+
+- (void)pauseRequested {
+    [self.player pause];
+    [self.playerControlsController stopTimer];
+}
+
 
 - (void)playbackStartPositionRequested:(NSNumber *)position {
 
@@ -252,10 +254,8 @@
 }
 
 - (void)mediaPlayerStateChanged:(NSNotification *)aNotification {
-
     // VLCMediaPlayerState state = self.player.state;
-
-/**
+    /**
     VLCMediaPlayerStateStopped,        //< Player has stopped
     VLCMediaPlayerStateOpening,        //< Stream is opening
     VLCMediaPlayerStateBuffering,      //< Stream is buffering
@@ -263,7 +263,8 @@
     VLCMediaPlayerStateError,          //< Player has generated an error
     VLCMediaPlayerStatePlaying,        //< Stream is playing
     VLCMediaPlayerStatePaused          //< Stream is paused
- */
+    */
+
     [self.playerControlsController.controllerView setPlaying:self.player.isPlaying];
 
 }

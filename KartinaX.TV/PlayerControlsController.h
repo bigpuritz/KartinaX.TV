@@ -23,4 +23,7 @@
 
 - (NSNumber *)currentSliderPosition;
 
+- (void)playPauseToggle:(id)sender;
+
+
 @end

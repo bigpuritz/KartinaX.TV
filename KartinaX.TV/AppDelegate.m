@@ -100,20 +100,25 @@
 
 - (IBAction)showEPG:(id)sender {
     [self.playerController showEpg];
-
 }
 
-- (BOOL)windowShouldClose:(id)sender {
-    return YES;
+- (IBAction)showMainWindow:(id)sender {
+    [self.window makeKeyAndOrderFront:self];
 }
 
-- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
+- (void)windowWillClose:(NSNotification *)notification {
+    [self.playerController pauseRequested];
+}
+
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
+    if (!self.window.isVisible) {
+        [self showMainWindow:self];
+    }
     return YES;
 }
 
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
-    NSLog(@"applicationShouldTerminate called....");
     [self doLogout];
     return NSTerminateNow;
 }

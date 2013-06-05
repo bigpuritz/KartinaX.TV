@@ -11,7 +11,7 @@
 #import "AGScopeBar.h"
 
 
-@interface EPGVideothekViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate>
+@interface EPGVideothekViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate, AGScopeBarDelegate>
 
 @property(weak) EPGWindowController *parentController;
 @property(weak) IBOutlet AGScopeBar *scopeBar;
@@ -29,9 +29,13 @@
 
 @property (weak) IBOutlet NSTextField *vodDetailsScenario;
 @property (weak) IBOutlet NSTextField *vodDetailsActors;
+@property (weak) IBOutlet NSTextField *vodDetailsLength;
 
+@property (weak) IBOutlet NSSearchField *vodSearchField;
 
 - (IBAction)playVODRequested:(id)sender;
 - (IBAction)loadMoreRequested:(id)sender;
+- (IBAction)searchVODByNameRequested:(id)sender;
+ 
 
 @end

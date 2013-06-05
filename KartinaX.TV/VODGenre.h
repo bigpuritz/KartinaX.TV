@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "RKObjectMappingAware.h"
+#import "RKKartinaRequest.h"
 
 
-@interface VODGenre : NSObject <RKObjectMappingAware>
+@interface VODGenre : RKKartinaRequest <RKObjectMappingAware>
 
 @property(copy, nonatomic) NSString *id;
 @property(copy, nonatomic) NSString *name;

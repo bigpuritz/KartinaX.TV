@@ -26,7 +26,10 @@
     VODItemDetails *_vodItemDetails;
     NSString *_selectedVODType;
     NSString *_selectedVODGenreId;
+
+    AGScopeBarGroup *_filtersGroup;
     AGScopeBarItem *_genresItem;
+    BOOL ignoreScopeBarSelection;
 
 }
 
@@ -34,6 +37,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Initialization code here.
+
     }
     return self;
 }
@@ -41,15 +45,15 @@
 
 - (void)loadView {
     [super loadView];
+    ignoreScopeBarSelection = NO;
 
-    AGScopeBarGroup *group = nil;
+    _filtersGroup = [_scopeBar addGroupWithIdentifier:@"0" label:nil items:nil];
+    [_filtersGroup addItemWithIdentifier:@"last" title:NSLocalizedString(@"Last", @"Last") ];
+    [_filtersGroup addItemWithIdentifier:@"best" title:NSLocalizedString(@"Best", @"Best") ];
+    [_filtersGroup addItemWithIdentifier:@"favorite" title:NSLocalizedString(@"Favorite", @"Favorite") ];
+    _filtersGroup.selectionMode = AGScopeBarGroupSelectOne;
 
-    group = [_scopeBar addGroupWithIdentifier:@"0" label:nil items:nil];
-    [group addItemWithIdentifier:@"last" title:NSLocalizedString(@"Last", @"Last") ];
-    [group addItemWithIdentifier:@"best" title:NSLocalizedString(@"Best", @"Best") ];
-    group.selectionMode = AGScopeBarGroupSelectOne;
-
-    group = [_scopeBar addGroupWithIdentifier:@"1" label:NSLocalizedString(@"FilterGenres", @"FilterGenres") items:nil];
+    AGScopeBarGroup *group = [_scopeBar addGroupWithIdentifier:@"1" label:NSLocalizedString(@"FilterGenres", @"FilterGenres") items:nil];
     _genresItem = [group addItemWithIdentifier:@"genres" title:NSLocalizedString(@"All", @"All")];
     NSMenu *_genresMenu = [[NSMenu alloc] init];
 
@@ -60,6 +64,7 @@
     [menuItemAll setTarget:self];
     [_genresMenu addItem:menuItemAll];
 
+
     for (VODGenre *g in genres) {
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:g.name action:@selector(vodGenreSelected:) keyEquivalent:@""];
         [menuItem setTag:[g.id integerValue]];
@@ -69,7 +74,6 @@
     [_genresMenu setAutoenablesItems:YES];
     _genresItem.menu = _genresMenu;
     group.selectionMode = AGScopeBarGroupSelectNone;
-    group.canBeCollapsed = NO;
 
 
     _vodItems = [[NSMutableArray alloc] init];
@@ -96,14 +100,14 @@
 - (IBAction)vodGenreSelected:(id)sender {
     [self clearTableView];
     [self.parentController startLoadingIndicator];
-    KartinaClient *client = [KartinaClient sharedInstance];
 
+    KartinaClient *client = [KartinaClient sharedInstance];
     NSInteger genreId = ((NSMenuItem *) sender).tag;
     if (genreId == -1)
         _selectedVODGenreId = nil;
     else
         _selectedVODGenreId = [NSString stringWithFormat:@"%li", genreId];
-    [client loadVODList:_selectedVODType page:@1 query:nil genre:_selectedVODGenreId itemsPerPage:@20];
+    [client loadVODList:_selectedVODType page:@1 query:self.vodSearchField.stringValue genre:_selectedVODGenreId itemsPerPage:@20];
 
     _genresItem.title = ((NSMenuItem *) sender).title;
 }
@@ -112,7 +116,6 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
 
 - (void)vodListLoaded:(NSNotification *)notification {
     [self.parentController stopLoadingIndicator];
@@ -132,7 +135,6 @@
     [self.parentController stopLoadingIndicator];
 }
 
-
 - (void)vodItemDetailsLoaded:(NSNotification *)notification {
     [self.parentController stopLoadingIndicator];
 
@@ -148,6 +150,8 @@
     [self.vodDetailsDirector setStringValue:_vodItemDetails.director];
     [self.vodDetailsScenario setStringValue:_vodItemDetails.scenario];
     [self.vodDetailsActors setStringValue:_vodItemDetails.actors];
+    [self.vodDetailsLength setStringValue:_vodItemDetails.lengthMin.stringValue];
+
     [self.vodDetailsView setHidden:NO];
 }
 
@@ -155,15 +159,24 @@
     [self.parentController stopLoadingIndicator];
 }
 
-
 - (void)scopeBar:(AGScopeBar *)theScopeBar item:(AGScopeBarItem *)item wasSelected:(BOOL)selected; {
+
+    if (ignoreScopeBarSelection == YES || selected == NO)
+        return;
+
     _selectedVODType = item.identifier;
+
+    if ([_selectedVODType isEqualToString:@"favorite"]) {
+        _genresItem.enabled = NO;
+    } else {
+        _genresItem.enabled = YES;
+    }
+
     [self clearTableView];
     [self.parentController startLoadingIndicator];
     KartinaClient *client = [KartinaClient sharedInstance];
-    [client loadVODList:item.identifier page:@1 query:nil genre:_selectedVODGenreId itemsPerPage:@20];
+    [client loadVODList:item.identifier page:@1 query:self.vodSearchField.stringValue genre:_selectedVODGenreId itemsPerPage:@20];
 }
-
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     NSUInteger numberOfItems = _vodItems.count;
@@ -212,14 +225,21 @@
     [[KartinaClient sharedInstance] loadVODItemDetails:item.id];
 }
 
-
 - (IBAction)playVODRequested:(id)sender {
+    NSMenu *_vodStreamMenu = [[NSMenu alloc] init];
+    NSDictionary *videoStreams = _vodItemDetails.videoStreams;
+    for (NSString *key in videoStreams.allKeys) {
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:key action:@selector(doPlayVODRequested:) keyEquivalent:@""];
+        [item setTarget:self];
+        [_vodStreamMenu addItem:item];
+    }
 
-    NSArray *videos = _vodItemDetails.videosDictionary;
+    [NSMenu popUpContextMenu:_vodStreamMenu withEvent:[[NSApplication sharedApplication] currentEvent] forView:sender];
+}
 
-    // @todo handle multiple videos...
-
-    PlaybackItem *playbackItem = [[PlaybackItem alloc] initWithName:_vodItemDetails.name vodId:videos[0][@"id"]];
+- (IBAction)doPlayVODRequested:(id)sender {
+    NSDictionary *video = _vodItemDetails.videoStreams[((NSMenuItem *) sender).title];
+    PlaybackItem *playbackItem = [[PlaybackItem alloc] initWithName:_vodItemDetails.name vodId:video[@"id"] length:_vodItemDetails.lengthInSeconds];
     if (playbackItem != nil) {
         [[NSNotificationCenter defaultCenter]
                 postNotificationName:kPlaybackItemSelectedNotification
@@ -227,13 +247,34 @@
                             userInfo:@{@"playbackItem" : playbackItem}
         ];
     }
-
 }
 
 - (IBAction)loadMoreRequested:(id)sender {
     [self.parentController startLoadingIndicator];
     int nextPage = _lastLoadedVODList.page.intValue + 1;
     KartinaClient *client = [KartinaClient sharedInstance];
-    [client loadVODList:_selectedVODType page:[NSNumber numberWithInt:nextPage] query:nil genre:_selectedVODGenreId itemsPerPage:@20];
+    [client loadVODList:_selectedVODType page:[NSNumber numberWithInt:nextPage] query:self.vodSearchField.stringValue genre:_selectedVODGenreId itemsPerPage:@20];
+}
+
+- (IBAction)searchVODByNameRequested:(id)sender {
+
+    NSString *query = self.vodSearchField.stringValue;
+    if (query == nil || query.length == 0)
+        return;
+
+    [self clearTableView];
+    [self.parentController startLoadingIndicator];
+
+    ignoreScopeBarSelection = YES;
+    [_filtersGroup setSelectionMode:AGScopeBarGroupSelectNone];
+    for (AGScopeBarItem *item in _filtersGroup.items) {
+        [_filtersGroup setSelected:NO forItem:item];
+    }
+    [_filtersGroup setSelectionMode:AGScopeBarGroupSelectOne];
+    ignoreScopeBarSelection = NO;
+
+    _selectedVODType = @"text";
+    KartinaClient *client = [KartinaClient sharedInstance];
+    [client loadVODList:_selectedVODType page:@1 query:query genre:_selectedVODGenreId itemsPerPage:@20];
 }
 @end

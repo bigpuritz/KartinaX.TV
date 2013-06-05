@@ -66,6 +66,7 @@
     self.window.alphaValue = .9f;
 
     [[NSApp mainWindow] addChildWindow:self.window ordered:NSWindowAbove];
+
 }
 
 
@@ -123,5 +124,6 @@
 - (void)cancel:(id)sender {
     [self close];
 }
+
 
 @end

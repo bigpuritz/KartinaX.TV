@@ -71,15 +71,17 @@
                                                      name:kChannelStreamLoadSuccessfulNotification
                                                    object:nil];
 
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(channelStreamLoaded:)
+                                                     name:kVODStreamLoadSuccessfulNotification
+                                                   object:nil];
+
     }
     return self;
 }
 
 
 - (void)channelStreamLoaded:(NSNotification *)notification {
-
-    // ChannelStream *stream = [notification.userInfo objectForKey:@"channelStream"];
-
     [self initSlider];
     [_controllerView.playPauseButton setEnabled:YES];
     [self startTimer];
@@ -93,12 +95,15 @@
     slider.minValue = currentPlaybackItem.start.doubleValue;
     slider.maxValue = currentPlaybackItem.end.doubleValue;
 
-    if (currentPlaybackItem.playbackStartPosition == nil) {
-        slider.doubleValue = [Utils currentUnixTimestamp].doubleValue;
-        [_controllerView.timeSlider setEnabled:NO];
-    } else {
+    if (currentPlaybackItem.canSpoolPlaybackPosition) {
         slider.doubleValue = [currentPlaybackItem.playbackStartPosition doubleValue];
         [_controllerView.timeSlider setEnabled:YES];
+    } else {
+        if (currentPlaybackItem.isVOD)
+            slider.doubleValue = 0;
+        else
+            slider.doubleValue = [Utils currentUnixTimestamp].doubleValue;
+        [_controllerView.timeSlider setEnabled:NO];
     }
 
 }

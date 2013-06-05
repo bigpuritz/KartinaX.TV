@@ -18,7 +18,9 @@
     RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[VODGenre class]];
     [mapping addAttributeMappingsFromDictionary:@{
             @"id" : @"id",
-            @"name" : @"name"
+            @"name" : @"name",
+            @"error" : @"error",
+            @"servertime" : @"serverTime"
     }];
     return mapping;
 }

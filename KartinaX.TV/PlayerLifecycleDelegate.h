@@ -16,6 +16,10 @@
 
 - (void)playPauseToggleRequested;
 
+- (void)stopRequested;
+
+- (void)pauseRequested;
+
 - (void)playbackStartPositionRequested:(NSNumber *)position;
 
 - (void)playbackItemTimeDidEnd;

@@ -22,7 +22,9 @@
             @"type" : @"type",
             @"total" : @"total",
             @"count" : @"count",
-            @"page" : @"page"
+            @"page" : @"page",
+            @"error" : @"error",
+            @"servertime" : @"serverTime"
     }];
 
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"rows"

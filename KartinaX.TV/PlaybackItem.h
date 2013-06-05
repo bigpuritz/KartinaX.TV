@@ -28,9 +28,11 @@
   protectedChannel:(BOOL)protectedChannel;
 
 
-- (id)initWithName:(NSString *)name  vodId:(NSNumber *)vodId;
+- (id)initWithName:(NSString *)name  vodId:(NSNumber *)vodId length:(NSNumber *)length;
 
 - (BOOL)isPlaybackDurationAvailable;
+
+- (BOOL)canSpoolPlaybackPosition;
 
 
 @end

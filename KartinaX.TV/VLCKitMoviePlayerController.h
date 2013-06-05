@@ -16,7 +16,6 @@
 @class VLCVideoView;
 @class PlayerControlsController;
 @class PlayerView;
-@class EPGViewController;
 @class ChannelStream;
 @class EPGWindowController;
 
