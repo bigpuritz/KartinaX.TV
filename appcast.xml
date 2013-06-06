@@ -64,29 +64,19 @@
                        sparkle:dsaSignature="MCwCFD1khSB2OAIJd/aaQVYs/+UO4Tv8AhRbnNV8jid411vZXnz0/Kifo4hofQ=="
                        length="17070235" type="application/octet-stream"/>
         </item>	
- 
         <item>
             <title>Version 1.0.4</title>
 		    <description><![CDATA[
 		        <h2>Версия 1.0.4</h2>
-				<p>Переработано окно программы передач</p>
-				<p>При открытии окна программы передач автоматически селектируется актуальная передача</p>			
-				<p>Добавлена видеотека</p>			
-				<p>Окно программы передач можно закрывать нажатием на ESC</p>						
-				<p>Добавлены новые настройки приложения</p>
-				<p>Обновлена библиотека VLCKit</p>
-				<p>Добавлен русский перевод некоторых сообщений об ошибках</p>
-				<p>При старте приложение использует последнюю известную позицию и размеры окна</p>						
-				<p>При закрытии окна приложения проигрывание видео автоматически останавливается</p>			
+				<p>bla-bla-bla...</p>
 		    ]]>
 			</description>
-			<pubDate>Thu, 06 Jun 2013 19:09:00 +0000</pubDate>
+            <pubDate>Sun, 26 Mai 2013 20:47:00 +0000</pubDate>
             <enclosure url="https://dl.dropboxusercontent.com/u/4034690/KartinaX.TV/1.0.4/KartinaX.TV.app.zip"
-                       sparkle:version="1.0.4" 
-					   sparkle:shortVersionString="1.0.4" 
-					   sparkle:dsaSignature="MC0CFGC9OdraSUXgWAJstiav4N1556jRAhUAsbiK/keVDiuhW96/zFslDY1+0mk="
-                       length="1724206" type="application/octet-stream"/>
-        </item>	
+                       sparkle:version="1.0.4"
+                       sparkle:dsaSignature="MCwCFD1khSB2OAIJd/aaQVYs/+UO4Tv8AhRbnNV8jid411vZXnz0/Kifo4hofQ=="
+                       length="17070235" type="application/octet-stream"/>
+        </item>	 
 							 				
     </channel>
 </rss>
