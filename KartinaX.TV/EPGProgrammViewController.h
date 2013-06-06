@@ -11,7 +11,7 @@
 
 @interface EPGProgrammViewController : NSViewController <NSBrowserDelegate>
 
-@property(weak) EPGWindowController *parentController;
+@property(assign) EPGWindowController *parentController;
 @property(weak) IBOutlet NSBrowser *epgBrowser;
 @property(weak) IBOutlet NSDatePicker *datePicker;
 @property(weak) IBOutlet NSDatePickerCell *datePickerCell;

@@ -13,7 +13,7 @@
 
 @interface EPGVideothekViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate, AGScopeBarDelegate>
 
-@property(weak) EPGWindowController *parentController;
+@property(assign) EPGWindowController *parentController;
 @property(weak) IBOutlet AGScopeBar *scopeBar;
 @property (weak) IBOutlet NSTableView *vodTableView;
 @property (weak) IBOutlet NSView *vodDetailsView;
