@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
     <channel>
         <title>KartinaX.TV App's Changelog</title>
-        <link>https://dl.dropboxusercontent.com/u/4034690/KartinaX.TV/appcast.xml</link>
+        <link>http://bigpuritz.github.io/KartinaX.TV/appcast.xml</link>
         <description>Последние обновления.</description>
         <language>ru</language>
         <item>
