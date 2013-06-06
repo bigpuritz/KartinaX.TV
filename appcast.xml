@@ -64,21 +64,7 @@
                        sparkle:dsaSignature="MCwCFD1khSB2OAIJd/aaQVYs/+UO4Tv8AhRbnNV8jid411vZXnz0/Kifo4hofQ=="
                        length="17070235" type="application/octet-stream"/>
         </item>	
-        <!--
-        <item>
-            <title>Version 1.0.3.1</title>
-		    <description><![CDATA[
-		        <h2>Версия 1.0.3.1 (hotfix release)</h2>
-				<p>Устранена ошибка инициализации приложения при первом старте</p>
-		    ]]>
-			</description>
-            <pubDate>Sun, 27 Mai 2013 20:47:00 +0000</pubDate>
-            <enclosure url="https://dl.dropboxusercontent.com/u/4034690/KartinaX.TV/1.0.3.1/KartinaX.TV.app.zip"
-                       sparkle:version="1.0.3.1"
-                       sparkle:dsaSignature="MC4CFQDDhpEPQp2tFA71CxJl+xU+N7aU+wIVAMPzij7vIsc0Q57fbrH3CMH5jmiF"
-                       length="17070895" type="application/octet-stream"/>
-        </item>
-        -->
+ 
         <item>
             <title>Version 1.0.4</title>
 		    <description><![CDATA[
