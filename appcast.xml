@@ -64,6 +64,7 @@
                        sparkle:dsaSignature="MCwCFD1khSB2OAIJd/aaQVYs/+UO4Tv8AhRbnNV8jid411vZXnz0/Kifo4hofQ=="
                        length="17070235" type="application/octet-stream"/>
         </item>	
+        <!--
         <item>
             <title>Version 1.0.3.1</title>
 		    <description><![CDATA[
@@ -77,6 +78,7 @@
                        sparkle:dsaSignature="MC4CFQDDhpEPQp2tFA71CxJl+xU+N7aU+wIVAMPzij7vIsc0Q57fbrH3CMH5jmiF"
                        length="17070895" type="application/octet-stream"/>
         </item>
+        -->
         <item>
             <title>Version 1.0.4</title>
 		    <description><![CDATA[
