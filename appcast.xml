@@ -5,6 +5,7 @@
         <link>http://bigpuritz.github.io/KartinaX.TV/appcast.xml</link>
         <description>Последние обновления.</description>
         <language>ru</language>
+        <!--
         <item>
             <title>Version 1.0.0 (initial version)</title>
   	    <description><![CDATA[
@@ -76,16 +77,17 @@
                        sparkle:version="1.0.3.1"
                        sparkle:dsaSignature="MC4CFQDDhpEPQp2tFA71CxJl+xU+N7aU+wIVAMPzij7vIsc0Q57fbrH3CMH5jmiF"
                        length="17070895" type="application/octet-stream"/>
-        </item>        
+        </item>    
+        -->
         <item>
-            <title>Version 1.1.20130606</title>
+            <title>Version 1.0.4</title>
 		    <description><![CDATA[
 		        <h2>Версия 1.0.4</h2>
 		    ]]>
 			</description>
             <pubDate>Mon, 03 Jun 2013 22:47:00 +0000</pubDate>
             <enclosure url="https://dl.dropboxusercontent.com/u/4034690/KartinaX.TV/1.0.3/KartinaX.TV.app.zip"
-                       sparkle:version="1.1.20130606"
+                       sparkle:version="1.0.4"
                        sparkle:dsaSignature="MCwCFD1khSB2OAIJd/aaQVYs/+UO4Tv8AhRbnNV8jid411vZXnz0/Kifo4hofQ=="
                        length="17070235" type="application/octet-stream"/>
         </item>	 
