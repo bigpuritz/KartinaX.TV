@@ -2,52 +2,46 @@
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
     <channel>
         <title>KartinaX.TV App's Changelog</title>
-        <link>http://bigpuritz.github.io/KartinaX.TV/appcast.xml</link>
+        <link>https://dl.dropboxusercontent.com/u/4034690/KartinaX.TV/appcast.xml</link>
         <description>Последние обновления.</description>
         <language>ru</language>
-        <!--
+
         <item>
-            <title>Version 1.0.0 (initial version)</title>
-  	    <description><![CDATA[
-		        <h2>Первая версия</h2>
-				<p>Что есть, то есть...</p>
-		    ]]>
-			</description>
-            <pubDate>Sun, 25 Apr 2013 12:20:11 +0000</pubDate>
-            <enclosure url="https://dl.dropboxusercontent.com/u/4034690/KartinaX.TV/1.0.0/KartinaX.TV.dmg.zip"
-                       sparkle:version="1.0.0"
-                       sparkle:dsaSignature="MCwCFENOd++d2WEJZrzaRE+iA1+M+yL3AhRcPSCnfgkC1TGypuzu6QZBWz6QpA=="
-                       length="16835164" type="application/octet-stream"/>
-        </item>
-        <item>
-            <title>Version 1.0.1</title>
+            <title>Version 1.0.4</title>
 		    <description><![CDATA[
-		        <h2>Версия 1.0.1</h2>
-				<p>Небольшие улучшения в области настроек и логина.</p>
+		        <h2>Версия 1.0.4</h2>
+				<p>Переработано окно программы передач</p>
+				<p>При открытии окна программы передач автоматически селектируется актуальная передача</p>			
+				<p>Добавлена видеотека</p>			
+				<p>Окно программы передач можно закрывать нажатием на ESC</p>						
+				<p>Добавлены новые настройки приложения</p>
+				<p>Обновлена библиотека VLCKit</p>
+				<p>Добавлен русский перевод некоторых сообщений об ошибках</p>
+				<p>При старте приложение использует последнюю известную позицию и размеры окна</p>						
+				<p>При закрытии окна приложения проигрывание видео автоматически останавливается</p>			
 		    ]]>
 			</description>
-            <pubDate>Sun, 12 Mai 2013 20:24:11 +0000</pubDate>
-            <enclosure url="https://dl.dropboxusercontent.com/u/4034690/KartinaX.TV/1.0.1/KartinaX.TV.app.zip"
-                       sparkle:version="1.0.1"
-                       sparkle:dsaSignature="MC0CFQCK7iusZVz3hfQGgqv5Wp1ZqllzgQIUPyXMsZTqBWjxBiv02wQ5wbJxcFk="
-                       length="16983783" type="application/octet-stream"/>
+			<pubDate>Fri, 07 Jun 2013 20:30:00 +0000</pubDate>
+            <enclosure url="https://dl.dropboxusercontent.com/u/4034690/KartinaX.TV/1.0.4/KartinaX.TV.app.zip"
+                       sparkle:version="20130607" 
+					   sparkle:shortVersionString="1.0.4" 
+					   sparkle:dsaSignature="MC0CFA/wXvDenK+02HlNMUh/MT7sXHw+AhUAlZy/Y/0lnYnOU76CWq75wA2N2Ak="
+                       length="17242900" type="application/octet-stream"/>
         </item>	
+		<!-- 
         <item>
-            <title>Version 1.0.2</title>
+            <title>Version 1.0.3.1</title>
 		    <description><![CDATA[
-		        <h2>Версия 1.0.2</h2>
-				<p>Добавлено кэширование программы передач</p>
-				<p>Обновлена библиотека RestKit 0.20.0rc1 -&gt; 0.20.0</p>
-				<p>Добавлено автоматическое сворачивание соединения (сессии) при закрытии приложения</p>			
-				
+		        <h2>Версия 1.0.3.1 (hotfix release)</h2>
+				<p>Устранена ошибка инициализации приложения при первом старте</p>
 		    ]]>
 			</description>
-            <pubDate>Mon, 13 Mai 2013 22:47:00 +0000</pubDate>
-            <enclosure url="https://dl.dropboxusercontent.com/u/4034690/KartinaX.TV/1.0.2/KartinaX.TV.app.zip"
-                       sparkle:version="1.0.2"
-                       sparkle:dsaSignature="MC0CFQC9l6Je1P6X/pmiG2LybGJ8qh7FoAIUY8lzh5x5t0j/IoUUBQdSO10E51Q="
-                       length="16953013" type="application/octet-stream"/>
-        </item>
+            <pubDate>Sun, 27 Mai 2013 20:47:00 +0000</pubDate>
+            <enclosure url="https://dl.dropboxusercontent.com/u/4034690/KartinaX.TV/1.0.3.1/KartinaX.TV.app.zip"
+                       sparkle:version="1.0.3.1"
+                       sparkle:dsaSignature="MC4CFQDDhpEPQp2tFA71CxJl+xU+N7aU+wIVAMPzij7vIsc0Q57fbrH3CMH5jmiF"
+                       length="17070895" type="application/octet-stream"/>
+        </item>	
         <item>
             <title>Version 1.0.3</title>
 		    <description><![CDATA[
@@ -64,33 +58,50 @@
                        sparkle:version="1.0.3"
                        sparkle:dsaSignature="MCwCFD1khSB2OAIJd/aaQVYs/+UO4Tv8AhRbnNV8jid411vZXnz0/Kifo4hofQ=="
                        length="17070235" type="application/octet-stream"/>
-        </item>
+        </item>	
         <item>
-            <title>Version 1.0.3.1</title>
+            <title>Version 1.0.2</title>
 		    <description><![CDATA[
-		        <h2>Версия 1.0.3.1 (hotfix release)</h2>
-				<p>Устранена ошибка инициализации приложения при первом старте</p>
+		        <h2>Версия 1.0.2</h2>
+				<p>Добавлено кэширование программы передач</p>
+				<p>Обновлена библиотека RestKit 0.20.0rc1 -&gt; 0.20.0</p>
+				<p>Добавлено автоматическое сворачивание соединения (сессии) при закрытии приложения</p>			
+				
 		    ]]>
 			</description>
-            <pubDate>Sun, 27 Mai 2013 20:47:00 +0000</pubDate>
-            <enclosure url="https://dl.dropboxusercontent.com/u/4034690/KartinaX.TV/1.0.3.1/KartinaX.TV.app.zip"
-                       sparkle:version="1.0.3.1"
-                       sparkle:dsaSignature="MC4CFQDDhpEPQp2tFA71CxJl+xU+N7aU+wIVAMPzij7vIsc0Q57fbrH3CMH5jmiF"
-                       length="17070895" type="application/octet-stream"/>
-        </item>    
-        -->
+            <pubDate>Mon, 13 Mai 2013 22:47:00 +0000</pubDate>
+            <enclosure url="https://dl.dropboxusercontent.com/u/4034690/KartinaX.TV/1.0.2/KartinaX.TV.app.zip"
+                       sparkle:version="1.0.2"
+                       sparkle:dsaSignature="MC0CFQC9l6Je1P6X/pmiG2LybGJ8qh7FoAIUY8lzh5x5t0j/IoUUBQdSO10E51Q="
+                       length="16953013" type="application/octet-stream"/>
+        </item>	
         <item>
-            <title>Version 1.0.4</title>
+            <title>Version 1.0.1</title>
 		    <description><![CDATA[
-		        <h2>Версия 1.0.4</h2>
+		        <h2>Версия 1.0.1</h2>
+				<p>Небольшие улучшения в области настроек и логина.</p>
 		    ]]>
 			</description>
-            <pubDate>Mon, 03 Jun 2013 22:47:00 +0000</pubDate>
-            <enclosure url="https://dl.dropboxusercontent.com/u/4034690/KartinaX.TV/1.0.3/KartinaX.TV.app.zip"
-                       sparkle:version="1.0.4"
-                       sparkle:dsaSignature="MCwCFD1khSB2OAIJd/aaQVYs/+UO4Tv8AhRbnNV8jid411vZXnz0/Kifo4hofQ=="
-                       length="17070235" type="application/octet-stream"/>
-        </item>	 
+            <pubDate>Sun, 12 Mai 2013 20:24:11 +0000</pubDate>
+            <enclosure url="https://dl.dropboxusercontent.com/u/4034690/KartinaX.TV/1.0.1/KartinaX.TV.app.zip"
+                       sparkle:version="1.0.1"
+                       sparkle:dsaSignature="MC0CFQCK7iusZVz3hfQGgqv5Wp1ZqllzgQIUPyXMsZTqBWjxBiv02wQ5wbJxcFk="
+                       length="16983783" type="application/octet-stream"/>
+        </item>	
+        <item>
+            <title>Version 1.0.0 (initial version)</title>
+		    <description><![CDATA[
+		        <h2>Первая версия</h2>
+				<p>Что есть, то есть...</p>
+		    ]]>
+			</description>
+            <pubDate>Sun, 25 Apr 2013 12:20:11 +0000</pubDate>
+            <enclosure url="https://dl.dropboxusercontent.com/u/4034690/KartinaX.TV/1.0.0/KartinaX.TV.dmg.zip"
+                       sparkle:version="1.0.0"
+                       sparkle:dsaSignature="MCwCFENOd++d2WEJZrzaRE+iA1+M+yL3AhRcPSCnfgkC1TGypuzu6QZBWz6QpA=="
+                       length="16835164" type="application/octet-stream"/>
+        </item>												
+		-->
 							 				
     </channel>
 </rss>
