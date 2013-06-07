@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Maxim Kalina. All rights reserved.
 //
 
+#import <Sparkle/Sparkle.h>
 #import "AppDelegate.h"
 #import "KartinaClient.h"
 #import "KartinaSession.h"
@@ -14,6 +15,7 @@
 #import "KartinaPreferencesViewController.h"
 #import "UpdatePreferencesViewController.h"
 #import "GlobalPreferencesViewController.h"
+#import "SUUpdaterDelegate.h"
 
 
 @interface AppDelegate () {
@@ -27,6 +29,12 @@
 
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+
+//    [[SUUpdater sharedUpdater] setDelegate:[[SUUpdaterDelegate alloc] init]];
+
+    [[SUUpdater sharedUpdater] resetUpdateCycle];
+    [[SUUpdater sharedUpdater] checkForUpdatesInBackground];
+
     [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObject:@"ru"] forKey:@"AppleLanguages"];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -34,6 +42,15 @@
                                                  name:kUserCredentialsMissingNotification
                                                object:nil];
 
+    UInt32 v = CFBundleGetVersionNumber(CFBundleGetMainBundle());
+//
+//    CFStringRef ver = CFBundleGetValueForInfoDictionaryKey(
+//            CFBundleGetMainBundle(),
+//            kCFBundleVersionKey);
+//    NSString *appVersion = (__bridge NSString *)ver;
+
+    NSLog(@"bundle verson: %u", v);
+    // 104.20130606
 
     // 1. Create the master View Controller
     self.playerController = [[VLCKitMoviePlayerController alloc] initWithChannelStream:nil];

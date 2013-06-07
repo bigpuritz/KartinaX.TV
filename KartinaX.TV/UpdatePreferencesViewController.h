@@ -9,6 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import "RHPreferencesWindowController.h"
 
-@interface UpdatePreferencesViewController : NSViewController <RHPreferencesViewControllerProtocol>
+@interface UpdatePreferencesViewController : NSViewController <RHPreferencesViewControllerProtocol, SUVersionComparison>
 
 @end

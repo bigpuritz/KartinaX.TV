@@ -72,6 +72,7 @@
 		D9E551FD52565FF409DC6C05 /* PlaybackItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EE2DB05CD784700CC1AA87 /* PlaybackItem.m */; };
 		D9E5D8FCBA430FFDB7E62D5A /* VODItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EFFF688B56240D8D4FCE6B /* VODItem.m */; };
 		D9E629E840710289FF00741D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EF2F1CE29B70EA81A80929 /* SystemConfiguration.framework */; };
+		D9E7D2F762408A7A7E9C318D /* SUUpdaterDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E40F480D05D363EC4F1288 /* SUUpdaterDelegate.m */; };
 		D9E898D06031E83BD11D6A05 /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EA7BBD3AD2BA5EB8A234E0 /* Show.m */; };
 		D9E959A416ACEB28DFA5AE1C /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E844CF5ED51726982B16DC /* Account.m */; };
 		D9EA4BDA78CBF6AE6A2350C2 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EBC46643E87092468E9E24 /* Settings.m */; };
@@ -186,6 +187,7 @@
 		D9E2FD6FF6CA6947960C8997 /* ScopeBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScopeBarView.h; sourceTree = "<group>"; };
 		D9E31C544A7CB4964DB6158E /* VODStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VODStream.h; sourceTree = "<group>"; };
 		D9E3519337F3475366815DFB /* RKObjectMappingAware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKObjectMappingAware.h; sourceTree = "<group>"; };
+		D9E40F480D05D363EC4F1288 /* SUUpdaterDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUUpdaterDelegate.m; sourceTree = "<group>"; };
 		D9E4C73D811A5936AC45AE74 /* ChannelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelList.m; sourceTree = "<group>"; };
 		D9E5C18F3748D6CEEF07FB65 /* RKKartinaRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKKartinaRequest.h; sourceTree = "<group>"; };
 		D9E5EA6163B8DE1DE25C87E7 /* KartinaSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KartinaSession.m; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 		D9E64F2FB2FBB71B0648BC54 /* VODItemDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VODItemDetails.h; sourceTree = "<group>"; };
 		D9E66A6A9108A6B9B78F5CFC /* PlayerControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerControlsView.m; sourceTree = "<group>"; };
 		D9E66BC22815C205EB8858A4 /* VODItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VODItem.h; sourceTree = "<group>"; };
+		D9E6B2EFB418FA1607C4A537 /* SUUpdaterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUUpdaterDelegate.h; sourceTree = "<group>"; };
 		D9E6CA7FFE11E174D9CF1174 /* PlaybackItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybackItem.h; sourceTree = "<group>"; };
 		D9E74FE52D18CB84206E7321 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
 		D9E81203BDE9F48EAD422376 /* EPGData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPGData.h; sourceTree = "<group>"; };
@@ -334,6 +337,8 @@
 				D9E62D4E253909E41E9F1D60 /* KartinaSession.h */,
 				D9E84F3F814389CB23EEF95F /* AppSettings.m */,
 				D9E1CE38766AED5DD050F3EB /* AppSettings.h */,
+				D9E40F480D05D363EC4F1288 /* SUUpdaterDelegate.m */,
+				D9E6B2EFB418FA1607C4A537 /* SUUpdaterDelegate.h */,
 			);
 			path = KartinaX.TV;
 			sourceTree = "<group>";
@@ -622,6 +627,7 @@
 				D9E0F2FC6456264F1A55E80B /* VODGenre.m in Sources */,
 				D9EC5401E032992C6BDEE024 /* ScopeBarView.m in Sources */,
 				D9ECFDBBE89421C346268702 /* AppSettings.m in Sources */,
+				D9E7D2F762408A7A7E9C318D /* SUUpdaterDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
